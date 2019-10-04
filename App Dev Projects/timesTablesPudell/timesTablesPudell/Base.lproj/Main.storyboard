@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="timesTablesPudell" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qXA-ON-Fa9">
+                                <rect key="frame" x="0.0" y="438" width="414" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Input Answe Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OVJ-kB-YVW">
+                                <rect key="frame" x="132" y="458.5" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="eYv-La-bGa"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xh8-Wi-bWU">
+                                <rect key="frame" x="80" y="458.5" width="32" height="30"/>
+                                <state key="normal" title="Next"/>
+                                <connections>
+                                    <action selector="nextPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dna-VT-IgD"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wrong" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fj-Vq-PIP">
+                                <rect key="frame" x="0.0" y="488.5" width="414" height="21"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ii-iy-rta">
+                                <rect key="frame" x="297" y="458.5" width="44" height="30"/>
+                                <state key="normal" title="Check"/>
+                                <connections>
+                                    <action selector="checkPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dmW-bZ-uN8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qXA-ON-Fa9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6ur-o8-v3I"/>
+                            <constraint firstItem="7fj-Vq-PIP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="FrZ-b9-jaJ"/>
+                            <constraint firstItem="qXA-ON-Fa9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KdA-Ed-ECd"/>
+                            <constraint firstItem="OVJ-kB-YVW" firstAttribute="leading" secondItem="xh8-Wi-bWU" secondAttribute="trailing" constant="20" id="KnN-bX-uZR"/>
+                            <constraint firstItem="OVJ-kB-YVW" firstAttribute="bottom" secondItem="1Ii-iy-rta" secondAttribute="bottom" id="MXv-FM-BUd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="qXA-ON-Fa9" secondAttribute="trailing" id="ReN-Lb-A1S"/>
+                            <constraint firstItem="1Ii-iy-rta" firstAttribute="top" secondItem="OVJ-kB-YVW" secondAttribute="top" id="XIc-ST-Flg"/>
+                            <constraint firstItem="OVJ-kB-YVW" firstAttribute="top" secondItem="xh8-Wi-bWU" secondAttribute="top" id="XZ1-Qs-VC0"/>
+                            <constraint firstItem="1Ii-iy-rta" firstAttribute="leading" secondItem="OVJ-kB-YVW" secondAttribute="trailing" constant="15" id="dk0-uy-ngv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="7fj-Vq-PIP" secondAttribute="trailing" id="fGV-BP-T6R"/>
+                            <constraint firstItem="qXA-ON-Fa9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="gDK-NS-Pci"/>
+                            <constraint firstItem="7fj-Vq-PIP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="izX-eX-0IO"/>
+                            <constraint firstItem="7fj-Vq-PIP" firstAttribute="top" secondItem="OVJ-kB-YVW" secondAttribute="bottom" id="k1z-lh-xJ9"/>
+                            <constraint firstItem="OVJ-kB-YVW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="nwp-OS-DsP"/>
+                            <constraint firstItem="OVJ-kB-YVW" firstAttribute="top" secondItem="qXA-ON-Fa9" secondAttribute="bottom" id="peX-WU-7HW"/>
+                            <constraint firstItem="OVJ-kB-YVW" firstAttribute="bottom" secondItem="xh8-Wi-bWU" secondAttribute="bottom" id="rc7-jz-eFB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="checkBtn" destination="1Ii-iy-rta" id="Jgw-IH-Ek7"/>
+                        <outlet property="nextBtn" destination="xh8-Wi-bWU" id="Xi6-BV-NBB"/>
+                        <outlet property="promptLbl" destination="qXA-ON-Fa9" id="Is8-xz-Ynz"/>
+                        <outlet property="responseBox" destination="OVJ-kB-YVW" id="Aco-1u-ruS"/>
+                        <outlet property="responseLbl" destination="7fj-Vq-PIP" id="beT-gE-qHN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
