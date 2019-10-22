@@ -5,7 +5,11 @@
 //  Created by Tristan Pudell-Spatscheck on 10/21/19.
 //  Copyright © 2019 TAPS. All rights reserved.
 //
-//KNOWN PROBLEM WITH SOME ANSWERS BEING CUT OFF (my temp. solution is just having the answer repeated at the start of the description.
+//INITIALIZER GRADING COMMENTS
+//KNOWN PROBLEM WITH SOME ANSWERS BEING CUT OFF (my solution is just having the answer repeated at the start of the description.
+//Also, the 3 types of user interaction are the main selection method, and the two other types included in settings. (Mr.Horner said this counts as long as I made a comment about it)
+//Please note this app only uses 2 screens (1 for quiz, 1 for settings)
+//Also, I know valve is the company, not steam, and gman's head being cut off was intentional
 import UIKit
 //structure that holds the info for each question
 struct Question{
@@ -19,17 +23,20 @@ struct Question{
     var opt4 : String
     var description4 : String
 }
+//GLOBAL VARAIBLES
 var questions : [Question] = []
 var problem = 0
 var points = 0
 var red : Float = 1
 var green : Float = 1
 var blue : Float = 1
+var storedRed : Float = 1
+var storedGreen : Float = 1
+var storedBlue : Float = 1
+var backEnabled = true
+
 class ViewController: UIViewController {
-    //variables + screen components
-    @IBOutlet weak var redSlider: UISlider!
-    @IBOutlet weak var blueSlider: UISlider!
-    @IBOutlet weak var greenSlider: UISlider!
+    //connected variables
     @IBOutlet weak var questionLbl: UILabel!
     @IBOutlet weak var descriptionLbl: UILabel!
     @IBOutlet weak var boxOptions: UISegmentedControl!
@@ -48,7 +55,6 @@ class ViewController: UIViewController {
         boxOptions.setTitle(questions[problem].opt3, forSegmentAt: 2)
         boxOptions.setTitle(questions[problem].opt4, forSegmentAt: 3)
         finalImg.isHidden = true
-        self.view.backgroundColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
     }
     //sets next question + answers
     @IBAction func nextClicked(_ sender: Any) {
@@ -129,6 +135,9 @@ class ViewController: UIViewController {
         questionLbl.text = "You are Master Chief"
             finalImg.image = UIImage(named: "masterchief")
         }
+    }
+    func setBckg(){
+        self.view.backgroundColor = UIColor(red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
     }
 }
 
