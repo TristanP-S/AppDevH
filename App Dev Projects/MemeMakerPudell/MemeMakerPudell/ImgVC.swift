@@ -25,7 +25,6 @@ class ImgVC: UIViewController{
     }
     @IBAction func savePressed(_ sender: Any) {
         //takes a "screenshot" of the screen with the text + image
-        print("Image Saved")
         let saveImg = generateMemedImage()
         //adds image to album
         UIImageWriteToSavedPhotosAlbum(saveImg, nil, nil, nil)
