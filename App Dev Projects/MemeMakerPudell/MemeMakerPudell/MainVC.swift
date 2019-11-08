@@ -9,7 +9,7 @@
 var mainImg: UIImage = UIImage(named: "default")!
 import Foundation
 import UIKit
-class MainVC: UIViewController{
+class MainVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     //UI components on Main VC, typed button instead of btn, too late to fix it
     @IBOutlet weak var changeImgButton: UIButton!
     @IBOutlet weak var addTextButton: UIButton!
@@ -27,16 +27,21 @@ class MainVC: UIViewController{
         imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
     }
+    //change img buttn pressed
     @IBAction func changeImgPressed(_ sender: Any) {
-        //checks if device used has a camera, uses album if not
-        if(UIImagePickerController.availableCaptureModes(for: .rear) != nil){
+        //picks an image from the camera
         pickAnImage(from: .photoLibrary)
-        } else{
-        pickAnImage(from: .camera)
-        }
     }
-    @IBAction func addTextPressed(_ sender: Any) {
-        
-        present(ImgVC(), animated: true, completion: nil)
+    //actually sets photo once its picked from photo album
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
+            print("ImageSaved")
+            mainImg = image
+        }
+        else{
+            print("Invalid Photo Error")
+        }
+        imgPreview.image = mainImg
+        self.dismiss(animated: true, completion: nil)
     }
 }

@@ -25,8 +25,17 @@ class ImgVC: UIViewController{
     }
     @IBAction func savePressed(_ sender: Any) {
         //takes a "screenshot" of the screen with the text + image
+        print("Image Saved")
         let saveImg = generateMemedImage()
         //adds image to album
+        UIImageWriteToSavedPhotosAlbum(saveImg, nil, nil, nil)
+        //Tells user image was saved
+        let alert = UIAlertController(title: "Saved!", message: "Your meme was added to your camera roll.", preferredStyle: .alert)
+        //Add "OK" Button so user can exit the alert
+        let okButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okButton)
+        //actually present the alert
+        self.present(alert, animated: true, completion: nil)
     }
     @IBAction func backPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

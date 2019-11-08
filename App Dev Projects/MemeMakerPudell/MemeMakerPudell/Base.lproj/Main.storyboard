@@ -15,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="exclamationmark.triangle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0G3-g1-qKz">
-                                <rect key="frame" x="0.0" y="50.5" width="375" height="536.5"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" image="bolt.slash" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="0G3-g1-qKz">
+                                <rect key="frame" x="0.0" y="49.5" width="375" height="538"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KZp-g5-5XW">
                                 <rect key="frame" x="0.0" y="587" width="375" height="80"/>
@@ -25,7 +25,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="80"/>
                                         <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="200" id="2Mt-d3-48J"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="2Mt-d3-48J"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                         <state key="normal" title="Change Image">
@@ -35,7 +35,7 @@
                                             <action selector="changeImgPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gu7-LA-FX8"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yF-hs-GQj">
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1yF-hs-GQj">
                                         <rect key="frame" x="200" y="0.0" width="175" height="80"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="33"/>
@@ -43,7 +43,7 @@
                                             <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <connections>
-                                            <action selector="addTextPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Srp-ob-yOb"/>
+                                            <segue destination="JJm-uA-LpI" kind="presentation" id="AlG-kE-Fgc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -51,13 +51,13 @@
                                     <constraint firstAttribute="height" constant="80" id="bOz-i2-Dnt"/>
                                 </constraints>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Meme Maker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wq-ov-a3H">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meme Maker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wq-ov-a3H">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Image Selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pf-tm-rZZ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image Selected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pf-tm-rZZ">
                                 <rect key="frame" x="0.0" y="30" width="375" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -99,17 +99,17 @@
             <objects>
                 <viewController id="JJm-uA-LpI" customClass="ImgVC" customModule="MemeMakerPudell" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WYX-pO-0LE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Preview" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F23-EJ-bfo">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                <rect key="frame" x="145" y="0.0" width="85" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XVV-fb-Uld">
-                                <rect key="frame" x="0.0" y="602" width="375" height="65"/>
+                                <rect key="frame" x="0.0" y="555" width="375" height="92"/>
                                 <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="44"/>
                                 <state key="normal" title="Save">
@@ -120,19 +120,21 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L4i-zq-FE8">
-                                <rect key="frame" x="0.0" y="30" width="375" height="572"/>
+                                <rect key="frame" x="0.0" y="30" width="375" height="525"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Iw5-7S-fH0">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="572"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default" translatesAutoresizingMaskIntoConstraints="NO" id="Iw5-7S-fH0">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="525"/>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3e1-NT-ssT">
-                                        <rect key="frame" x="0.0" y="498" width="375" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Bottom Text Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3e1-NT-ssT">
+                                        <rect key="frame" x="0.0" y="456" width="375" height="29"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cNm-pW-idh">
-                                        <rect key="frame" x="0.0" y="40" width="375" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Top Text Here" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cNm-pW-idh">
+                                        <rect key="frame" x="0.0" y="40" width="375" height="29"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
@@ -141,6 +143,7 @@
                                     <constraint firstAttribute="trailing" secondItem="cNm-pW-idh" secondAttribute="trailing" id="2pU-az-4OE"/>
                                     <constraint firstItem="Iw5-7S-fH0" firstAttribute="top" secondItem="L4i-zq-FE8" secondAttribute="top" id="6Hd-II-1wS"/>
                                     <constraint firstItem="Iw5-7S-fH0" firstAttribute="leading" secondItem="L4i-zq-FE8" secondAttribute="leading" id="8fv-ia-yBL"/>
+                                    <constraint firstAttribute="bottom" secondItem="Iw5-7S-fH0" secondAttribute="bottom" id="Can-0I-STW"/>
                                     <constraint firstAttribute="trailing" secondItem="3e1-NT-ssT" secondAttribute="trailing" id="JRl-Ua-3wD"/>
                                     <constraint firstAttribute="trailing" secondItem="Iw5-7S-fH0" secondAttribute="trailing" id="M69-Cl-fkx"/>
                                     <constraint firstAttribute="bottom" secondItem="3e1-NT-ssT" secondAttribute="bottom" constant="40" id="TaJ-FP-apb"/>
@@ -169,10 +172,10 @@
                             <constraint firstItem="XVV-fb-Uld" firstAttribute="leading" secondItem="ztM-K4-RhC" secondAttribute="leading" id="LQy-9R-4NG"/>
                             <constraint firstItem="ULW-Uq-Iag" firstAttribute="top" secondItem="ztM-K4-RhC" secondAttribute="top" id="LeW-ff-tNs"/>
                             <constraint firstItem="XVV-fb-Uld" firstAttribute="bottom" secondItem="ztM-K4-RhC" secondAttribute="bottom" id="TBH-lP-fwp"/>
-                            <constraint firstItem="F23-EJ-bfo" firstAttribute="leading" secondItem="ztM-K4-RhC" secondAttribute="leading" id="m1E-8M-cTc"/>
+                            <constraint firstItem="F23-EJ-bfo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ztM-K4-RhC" secondAttribute="leading" id="m1E-8M-cTc"/>
                             <constraint firstItem="XVV-fb-Uld" firstAttribute="top" secondItem="L4i-zq-FE8" secondAttribute="bottom" id="rI2-po-y2c"/>
                             <constraint firstItem="F23-EJ-bfo" firstAttribute="top" secondItem="ztM-K4-RhC" secondAttribute="top" id="uFW-Qp-mta"/>
-                            <constraint firstItem="ztM-K4-RhC" firstAttribute="trailing" secondItem="F23-EJ-bfo" secondAttribute="trailing" id="zVh-mR-MSq"/>
+                            <constraint firstItem="ztM-K4-RhC" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="F23-EJ-bfo" secondAttribute="trailing" id="zVh-mR-MSq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ztM-K4-RhC"/>
                     </view>
@@ -192,6 +195,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="exclamationmark.triangle" catalog="system" width="64" height="56"/>
+        <image name="bolt.slash" catalog="system" width="50" height="64"/>
+        <image name="default" width="700" height="525"/>
     </resources>
 </document>
