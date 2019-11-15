@@ -8,6 +8,7 @@
 
 import UIKit
 class Canvas: UIView {
+    var line = [CGPoint]()
     override func draw(_ rect:CGRect){
         //custom drawing
         super.draw(rect)
@@ -15,10 +16,14 @@ class Canvas: UIView {
         guard let context = UIGraphicsGetCurrentContext() else{
             return
         }
-        let startPt =  CGPoint(x: 0, y: 0)
-        let endPt = CGPoint(x: 100, y: 100)
-        context.move(to: startPt)
-        context.addLine(to: endPt)
+        //i=index, p=point in line
+        for (i,p) in line.enumerated(){
+            if i == 0{
+                context.move(to: p)
+            } else {
+                context.addLine(to: p)
+            }
+        }
         context.strokePath()
     }
     //Finger tracking function
@@ -27,7 +32,10 @@ class Canvas: UIView {
         guard let point = touches.first?.location(in: nil) else {
             return
         }
-        print(point)
+        //print(point) <- print location tapped
+        line.append(point)
+        //redraws canvas
+        setNeedsDisplay()
     }
 }
 class ViewController: UIViewController {
