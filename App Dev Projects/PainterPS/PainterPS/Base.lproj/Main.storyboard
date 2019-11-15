@@ -14,9 +14,63 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="s6k-Xi-5kz">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyI-AQ-a4J">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
+                                        <state key="normal" title="Undo"/>
+                                        <connections>
+                                            <action selector="undoClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YJW-6L-Uj0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TU8-ZT-0Fw">
+                                        <rect key="frame" x="40" y="0.0" width="39" height="50"/>
+                                        <state key="normal" title="Clear"/>
+                                        <connections>
+                                            <action selector="clearClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bdB-q3-Lfe"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size: Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bt-sj-7SR">
+                                        <rect key="frame" x="79" y="0.0" width="104" height="50"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uST-If-GG7">
+                                        <rect key="frame" x="181" y="0.0" width="196" height="51"/>
+                                    </slider>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ml5-s3-j9d"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VMv-jM-JKh">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="s6k-Xi-5kz" firstAttribute="top" secondItem="VMv-jM-JKh" secondAttribute="bottom" id="7Ct-8w-5zl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VMv-jM-JKh" secondAttribute="trailing" id="Ava-41-cHf"/>
+                            <constraint firstItem="VMv-jM-JKh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="BhB-rf-quj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="s6k-Xi-5kz" secondAttribute="trailing" id="Clc-TR-qqH"/>
+                            <constraint firstItem="s6k-Xi-5kz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="NhM-4i-zOY"/>
+                            <constraint firstItem="VMv-jM-JKh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gEd-aV-rpb"/>
+                            <constraint firstAttribute="bottom" secondItem="s6k-Xi-5kz" secondAttribute="bottom" id="iVD-q9-Crs"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="canvasView" destination="VMv-jM-JKh" id="12V-mo-MVY"/>
+                        <outlet property="clearBtn" destination="TU8-ZT-0Fw" id="XyI-Oz-cNr"/>
+                        <outlet property="sizeSlider" destination="uST-If-GG7" id="Bgb-JK-kgk"/>
+                        <outlet property="undoBtn" destination="AyI-AQ-a4J" id="Q8p-98-fN9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
