@@ -15,6 +15,7 @@
 		02411AB32379A28600D44950 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02411AB12379A28600D44950 /* LaunchScreen.storyboard */; };
 		02411ABE2379A28600D44950 /* PainterPSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02411ABD2379A28600D44950 /* PainterPSTests.swift */; };
 		02411AC92379A28600D44950 /* PainterPSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02411AC82379A28600D44950 /* PainterPSUITests.swift */; };
+		025B65C0237EEB5800D82BEF /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 025B65BF237EEB5800D82BEF /* Canvas.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		02411AC42379A28600D44950 /* PainterPSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PainterPSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02411AC82379A28600D44950 /* PainterPSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PainterPSUITests.swift; sourceTree = "<group>"; };
 		02411ACA2379A28600D44950 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		025B65BF237EEB5800D82BEF /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				02411AA62379A28300D44950 /* AppDelegate.swift */,
 				02411AA82379A28300D44950 /* SceneDelegate.swift */,
 				02411AAA2379A28300D44950 /* ViewController.swift */,
+				025B65BF237EEB5800D82BEF /* Canvas.swift */,
 				02411AAC2379A28300D44950 /* Main.storyboard */,
 				02411AAF2379A28600D44950 /* Assets.xcassets */,
 				02411AB12379A28600D44950 /* LaunchScreen.storyboard */,
@@ -262,6 +265,7 @@
 				02411AAB2379A28300D44950 /* ViewController.swift in Sources */,
 				02411AA72379A28300D44950 /* AppDelegate.swift in Sources */,
 				02411AA92379A28300D44950 /* SceneDelegate.swift in Sources */,
+				025B65C0237EEB5800D82BEF /* Canvas.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

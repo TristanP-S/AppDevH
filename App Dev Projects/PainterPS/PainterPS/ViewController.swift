@@ -7,59 +7,15 @@
 //
 
 import UIKit
-class Canvas: UIView {
-    var lines = [[CGPoint]]()
-    override func draw(_ rect:CGRect){
-        //custom drawing
-        super.draw(rect)
-        //sets up WHAT you are drawing (dots,circles, rectangles, etc.)
-        guard let context = UIGraphicsGetCurrentContext() else{
-            return
-        }
-        //draws all lines
-        lines.forEach { (line) in
-            //i=index, p=point in line, sets up each line
-            for (i,p) in line.enumerated(){
-                if i == 0{
-                    context.move(to: p)
-                } else {
-                    context.addLine(to: p)
-                }
-            }
-        }
-        //sets up line's aesthetic
-        context.setLineWidth(CGFloat(20))
-        context.setStrokeColor(UIColor.red.cgColor)
-        context.setLineCap(.butt) //<- Makes lines end with curves
-        //draws any line with current settings
-        context.strokePath()
-    }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        lines.append([CGPoint]()) //<- Starts a new line for each new tap
-    }
-    //Finger tracking function
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //location you are touching
-        guard let point = touches.first?.location(in: nil) else {
-            return
-        }
-        //finds most recent line to add points touched to
-        guard var lastLn = lines.popLast() else {
-            return
-        }
-        lastLn.append(point)
-        lines.append(lastLn)
-        //redraws canvas after tracking point
-        setNeedsDisplay()
-    }
-}
 class ViewController: UIViewController {
-    
+    //outlets
     @IBOutlet weak var undoBtn: UIButton!
     @IBOutlet weak var clearBtn: UIButton!
     @IBOutlet weak var sizeSlider: UISlider!
     @IBOutlet weak var canvasView: UIView!
+    //variables
     let canvas = Canvas()
+    //functions
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -70,6 +26,7 @@ class ViewController: UIViewController {
     }
     //undo button clicked
     @IBAction func undoClicked(_ sender: Any) {
+        canvas.undo()
     }
     //clear button clicked
     @IBAction func clearClicked(_ sender: Any) {
