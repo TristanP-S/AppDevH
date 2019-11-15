@@ -29,12 +29,14 @@
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="qSL-3E-nuR"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inc-jS-S2v">
                                         <rect key="frame" x="146" y="10" width="83" height="30"/>
-                                        <state key="normal" title="Color: Black"/>
+                                        <state key="normal" title="Color: Black">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="colorClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gHs-fW-6UW"/>
                                         </connections>
@@ -53,7 +55,9 @@
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="82K-Dk-FJO"/>
                                         </constraints>
-                                        <state key="normal" title="Undo"/>
+                                        <state key="normal" title="Undo">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="undoClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YJW-6L-Uj0"/>
                                         </connections>
@@ -63,7 +67,9 @@
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="wBJ-dZ-5ak"/>
                                         </constraints>
-                                        <state key="normal" title="Clear"/>
+                                        <state key="normal" title="Clear">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
                                         <connections>
                                             <action selector="clearClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bdB-q3-Lfe"/>
                                         </connections>
