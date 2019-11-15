@@ -20,7 +20,7 @@ class Canvas: UIView {
     override func draw(_ rect:CGRect){
         //custom drawing
         super.draw(rect)
-        //sets up WHAT you are drawing (dots,circles, rectangles, etc.)
+        //sets up the context for drawing
         guard let context = UIGraphicsGetCurrentContext() else{
             return
         }
@@ -29,7 +29,7 @@ class Canvas: UIView {
             //sets up line's aesthetic
             context.setStrokeColor(line.color.cgColor)
             context.setLineWidth(line.size)
-            context.setLineCap(.butt) //<- Makes lines end with curves
+            context.setLineCap(.round) //<- Makes lines end with curves
             //i=index, p=point in line, sets up each line
             for (i,p) in line.points.enumerated(){
                 if i == 0{
@@ -43,7 +43,7 @@ class Canvas: UIView {
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        lines.append(Line(color: color, size: size, points: [])) //<- Starts a new line for each new tap
+        lines.append(Line(color: color, size: size, points: [])) //<- Starts a new line for each new tap with new settings
     }
     //Finger tracking function
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
