@@ -8,7 +8,7 @@
 
 import UIKit
 class Canvas: UIView {
-    var line = [CGPoint]()
+    var lines = [[CGPoint]]()
     override func draw(_ rect:CGRect){
         //custom drawing
         super.draw(rect)
@@ -16,19 +16,26 @@ class Canvas: UIView {
         guard let context = UIGraphicsGetCurrentContext() else{
             return
         }
-        //i=index, p=point in line, sets up the line
-        for (i,p) in line.enumerated(){
-            if i == 0{
-                context.move(to: p)
-            } else {
-                context.addLine(to: p)
+        //draws all lines
+        lines.forEach { (line) in
+            //i=index, p=point in line, sets up each line
+            for (i,p) in line.enumerated(){
+                if i == 0{
+                    context.move(to: p)
+                } else {
+                    context.addLine(to: p)
+                }
             }
         }
         //sets up line's aesthetic
         context.setLineWidth(CGFloat(20))
         context.setStrokeColor(UIColor.red.cgColor)
+        context.setLineCap(.butt) //<- Makes lines end with curves
         //draws any line with current settings
         context.strokePath()
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        lines.append([CGPoint]()) //<- Starts a new line for each new tap
     }
     //Finger tracking function
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -36,7 +43,12 @@ class Canvas: UIView {
         guard let point = touches.first?.location(in: nil) else {
             return
         }
-        line.append(point)
+        //finds most recent line to add points touched to
+        guard var lastLn = lines.popLast() else {
+            return
+        }
+        lastLn.append(point)
+        lines.append(lastLn)
         //redraws canvas after tracking point
         setNeedsDisplay()
     }
