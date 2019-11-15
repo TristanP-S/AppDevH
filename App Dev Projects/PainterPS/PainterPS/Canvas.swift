@@ -28,7 +28,6 @@ class Canvas: UIView {
             }
         }
         //sets up line's aesthetic
-        context.setLineWidth(CGFloat(20))
         context.setStrokeColor(UIColor.red.cgColor)
         context.setLineCap(.butt) //<- Makes lines end with curves
         //draws any line with current settings
@@ -65,5 +64,13 @@ class Canvas: UIView {
         lines.removeAll()
         //reloads canvas
         setNeedsDisplay()
+    }
+    //sets size of line
+    func setSize(size: CGFloat){
+        context.setLineWidth(size)
+    }
+    //sets color of line
+    func setColor(color : CGColor){
+        context.setStrokeColor(color)
     }
 }

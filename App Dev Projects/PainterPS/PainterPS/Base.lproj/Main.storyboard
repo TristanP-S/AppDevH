@@ -19,27 +19,43 @@
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyI-AQ-a4J">
-                                        <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="39" height="50"/>
                                         <state key="normal" title="Undo"/>
                                         <connections>
                                             <action selector="undoClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YJW-6L-Uj0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TU8-ZT-0Fw">
-                                        <rect key="frame" x="40" y="0.0" width="39" height="50"/>
+                                        <rect key="frame" x="39" y="0.0" width="38" height="50"/>
                                         <state key="normal" title="Clear"/>
                                         <connections>
                                             <action selector="clearClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bdB-q3-Lfe"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inc-jS-S2v">
+                                        <rect key="frame" x="77" y="0.0" width="118" height="50"/>
+                                        <state key="normal" title="Color: Black"/>
+                                        <connections>
+                                            <action selector="colorClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gHs-fW-6UW"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size: Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bt-sj-7SR">
-                                        <rect key="frame" x="79" y="0.0" width="104" height="50"/>
+                                        <rect key="frame" x="195" y="0.0" width="80" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="qSL-3E-nuR"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uST-If-GG7">
-                                        <rect key="frame" x="181" y="0.0" width="196" height="51"/>
+                                        <rect key="frame" x="273" y="0.0" width="104" height="51"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="wF5-tj-y9G"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="sliderChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="a4c-Fi-0Hr"/>
+                                        </connections>
                                     </slider>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -68,6 +84,8 @@
                     <connections>
                         <outlet property="canvasView" destination="VMv-jM-JKh" id="12V-mo-MVY"/>
                         <outlet property="clearBtn" destination="TU8-ZT-0Fw" id="XyI-Oz-cNr"/>
+                        <outlet property="colorBtn" destination="inc-jS-S2v" id="3e5-Kk-9ek"/>
+                        <outlet property="sizeLbl" destination="4bt-sj-7SR" id="QsX-mx-W9x"/>
                         <outlet property="sizeSlider" destination="uST-If-GG7" id="Bgb-JK-kgk"/>
                         <outlet property="undoBtn" destination="AyI-AQ-a4J" id="Q8p-98-fN9"/>
                     </connections>

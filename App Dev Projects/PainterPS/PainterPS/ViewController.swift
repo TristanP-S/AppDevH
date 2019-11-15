@@ -9,6 +9,8 @@
 import UIKit
 class ViewController: UIViewController {
     //outlets
+    @IBOutlet weak var sizeLbl: UILabel!
+    @IBOutlet weak var colorBtn: UIButton!
     @IBOutlet weak var undoBtn: UIButton!
     @IBOutlet weak var clearBtn: UIButton!
     @IBOutlet weak var sizeSlider: UISlider!
@@ -30,6 +32,14 @@ class ViewController: UIViewController {
     }
     //clear button clicked
     @IBAction func clearClicked(_ sender: Any) {
+        canvas.clear()
+    }
+    @IBAction func colorClicked(_ sender: Any) {
+        let alert = UIAlertController(title: "Color", message: "Set the Color", preferredStyle: UIActionSheetDelegate)
+        
+    }
+    @IBAction func sliderChange(_ sender: Any) {
+        canvas.setSize(size: CGFloat(sizeSlider.value))
     }
 }
 
