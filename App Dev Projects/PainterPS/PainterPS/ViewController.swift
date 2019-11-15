@@ -34,12 +34,18 @@ class ViewController: UIViewController {
     @IBAction func clearClicked(_ sender: Any) {
         canvas.clear()
     }
+    //color change clicked
     @IBAction func colorClicked(_ sender: Any) {
-        let alert = UIAlertController(title: "Color", message: "Set the Color", preferredStyle: UIActionSheetDelegate)
+        var setColor = UIColor.red
+        canvas.setColor(setColor: setColor)
+        colorBtn.setTitle("Color: \(setColor)", for: UIControl.State())
+        //let alert = UIAlertController(title: "Color", message: "Set the Color", preferredStyle: UIActionSheetDelegate)
         
     }
+    //slider value changed
     @IBAction func sliderChange(_ sender: Any) {
-        canvas.setSize(size: CGFloat(sizeSlider.value))
+        canvas.setSize(setSize: CGFloat(sizeSlider.value))
+        sizeLbl.text = "Size: \(Int(sizeSlider.value))"
     }
 }
 

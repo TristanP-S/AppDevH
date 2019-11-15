@@ -5,10 +5,18 @@
 //  Created by Tristan Pudell-Spatscheck on 11/15/19.
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
 //
-
 import UIKit
+struct Line {
+    let color: UIColor
+    let size: CGFloat
+    var points: [CGPoint]
+}
 class Canvas: UIView {
-    var lines = [[CGPoint]]()
+    //variables
+    var lines = [Line]()
+    var color = UIColor.black
+    var size = CGFloat(20)
+    //functions
     override func draw(_ rect:CGRect){
         //custom drawing
         super.draw(rect)
@@ -18,23 +26,24 @@ class Canvas: UIView {
         }
         //draws all lines
         lines.forEach { (line) in
+            //sets up line's aesthetic
+            context.setStrokeColor(line.color.cgColor)
+            context.setLineWidth(line.size)
+            context.setLineCap(.butt) //<- Makes lines end with curves
             //i=index, p=point in line, sets up each line
-            for (i,p) in line.enumerated(){
+            for (i,p) in line.points.enumerated(){
                 if i == 0{
                     context.move(to: p)
                 } else {
                     context.addLine(to: p)
                 }
             }
+            //draws any line with current settings
+            context.strokePath()
         }
-        //sets up line's aesthetic
-        context.setStrokeColor(UIColor.red.cgColor)
-        context.setLineCap(.butt) //<- Makes lines end with curves
-        //draws any line with current settings
-        context.strokePath()
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        lines.append([CGPoint]()) //<- Starts a new line for each new tap
+        lines.append(Line(color: color, size: size, points: [])) //<- Starts a new line for each new tap
     }
     //Finger tracking function
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -46,7 +55,7 @@ class Canvas: UIView {
         guard var lastLn = lines.popLast() else {
             return
         }
-        lastLn.append(point)
+        lastLn.points.append(point)
         lines.append(lastLn)
         //redraws canvas after tracking point
         setNeedsDisplay()
@@ -66,11 +75,11 @@ class Canvas: UIView {
         setNeedsDisplay()
     }
     //sets size of line
-    func setSize(size: CGFloat){
-        context.setLineWidth(size)
+    func setSize(setSize: CGFloat){
+        size = setSize
     }
     //sets color of line
-    func setColor(color : CGColor){
-        context.setStrokeColor(color)
+    func setColor(setColor : UIColor){
+        color = setColor
     }
 }

@@ -19,27 +19,27 @@
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AyI-AQ-a4J">
-                                        <rect key="frame" x="0.0" y="0.0" width="39" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="43" height="50"/>
                                         <state key="normal" title="Undo"/>
                                         <connections>
                                             <action selector="undoClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YJW-6L-Uj0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TU8-ZT-0Fw">
-                                        <rect key="frame" x="39" y="0.0" width="38" height="50"/>
+                                        <rect key="frame" x="43" y="0.0" width="42" height="50"/>
                                         <state key="normal" title="Clear"/>
                                         <connections>
                                             <action selector="clearClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bdB-q3-Lfe"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="inc-jS-S2v">
-                                        <rect key="frame" x="77" y="0.0" width="118" height="50"/>
+                                        <rect key="frame" x="85" y="0.0" width="110" height="50"/>
                                         <state key="normal" title="Color: Black"/>
                                         <connections>
                                             <action selector="colorClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gHs-fW-6UW"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size: Default" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bt-sj-7SR">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size: 20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4bt-sj-7SR">
                                         <rect key="frame" x="195" y="0.0" width="80" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="qSL-3E-nuR"/>
@@ -48,7 +48,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="uST-If-GG7">
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="1" maxValue="99" translatesAutoresizingMaskIntoConstraints="NO" id="uST-If-GG7">
                                         <rect key="frame" x="273" y="0.0" width="104" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="100" id="wF5-tj-y9G"/>
