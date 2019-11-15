@@ -52,10 +52,14 @@ class ViewController: UIViewController {
         let blue = UIAlertAction(title: "Blue", style: .default) { action in
             self.colorSetter(color: .blue, colName: "Blue")
         }
+        let white = UIAlertAction(title: "Eraser", style: .default) { action in
+            self.colorSetter(color: .white, colName: "Eraser")
+        }
         actionSheet.addAction(black)
         actionSheet.addAction(red)
         actionSheet.addAction(green)
         actionSheet.addAction(blue)
+        actionSheet.addAction(white)
         actionSheet.addAction(cancel)
         present(actionSheet, animated: true, completion: nil)
         
