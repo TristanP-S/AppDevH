@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var clearBtn: UIButton!
     @IBOutlet weak var sizeSlider: UISlider!
     @IBOutlet weak var canvasView: UIView!
+    @IBOutlet weak var optionView: UIView!
     //variables
     let canvas = Canvas()
     //functions
@@ -36,7 +37,7 @@ class ViewController: UIViewController {
     }
     //color change clicked
     @IBAction func colorClicked(_ sender: Any) {
-        var setColor = UIColor.red
+        let setColor = UIColor.red
         canvas.setColor(setColor: setColor)
         colorBtn.setTitle("Color: \(setColor)", for: UIControl.State())
         //let alert = UIAlertController(title: "Color", message: "Set the Color", preferredStyle: UIActionSheetDelegate)
