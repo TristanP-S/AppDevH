@@ -37,11 +37,32 @@ class ViewController: UIViewController {
     }
     //color change clicked
     @IBAction func colorClicked(_ sender: Any) {
-        let setColor = UIColor.red
-        canvas.setColor(setColor: setColor)
-        colorBtn.setTitle("Color: \(setColor)", for: UIControl.State())
-        //let alert = UIAlertController(title: "Color", message: "Set the Color", preferredStyle: UIActionSheetDelegate)
+        //sets up color picker
+        let actionSheet = UIAlertController(title: "Select a Color", message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        let red = UIAlertAction(title: "Red", style: .default) { action in
+            self.colorSetter(color: .red, colName: "Red")
+        }
+        let black = UIAlertAction(title: "Black", style: .default) { action in
+            self.colorSetter(color: .black, colName: "Black")
+        }
+        let green = UIAlertAction(title: "Green", style: .default) { action in
+            self.colorSetter(color: .green, colName: "Green")
+        }
+        let blue = UIAlertAction(title: "Blue", style: .default) { action in
+            self.colorSetter(color: .blue, colName: "Blue")
+        }
+        actionSheet.addAction(black)
+        actionSheet.addAction(red)
+        actionSheet.addAction(green)
+        actionSheet.addAction(blue)
+        actionSheet.addAction(cancel)
+        present(actionSheet, animated: true, completion: nil)
         
+    }
+    func colorSetter(color: UIColor, colName: String){
+        canvas.setColor(setColor: color)
+        colorBtn.setTitle("Color: \(colName)", for: UIControl.State())
     }
     //slider value changed
     @IBAction func sliderChange(_ sender: Any) {
