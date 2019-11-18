@@ -16,9 +16,8 @@ class GameScene: SKScene {
     var enemyPaddle = SKSpriteNode()
     var playerScore = SKLabelNode()
     var enemyScore = SKLabelNode()
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
-    
+    //variable to see if player is the one who scored
+    var player = true
     override func didMove(to view: SKView) {
         //connects gamescene to code
         ball = self.childNode(withName: "ball") as! SKSpriteNode
@@ -26,6 +25,7 @@ class GameScene: SKScene {
         enemyPaddle = self.childNode(withName: "enemyPaddle") as! SKSpriteNode
         playerScore = self.childNode(withName: "playerScore") as! SKLabelNode
         enemyScore = self.childNode(withName: "enemyScore") as! SKLabelNode
+        gameStart()
         //pushes ball in one of 4 random directions
         let direction = Int.random(in: 1...4)
         switch direction {
@@ -43,6 +43,28 @@ class GameScene: SKScene {
         border.friction = 0
         border.restitution = 1
         self.physicsBody = border
+    }
+    //resets score a position when the game starts
+    func gameStart(){
+        playerScore.text = "0"
+        enemyScore.text = "0"
+        resetPositions()
+    }
+    //resets all sprite poisitons
+    func resetPositions(){
+        ball.position.x = 0
+        ball.position.y = 0
+        playerPaddle.position.x = 0
+        playerPaddle.position.y = -600
+        enemyPaddle.position.x = 0
+        enemyPaddle.position.y = 600
+    }
+    func addScore(player: Bool){
+        if(player){
+        playerScore.text = String(Int(playerScore.text!)! + 1)
+        } else {
+        enemyScore.text = String(Int(enemyScore.text!)! + 1)
+        }
     }
     //finger touched screen
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -64,5 +86,12 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         //moves the enemy, changes the duration to change the difficulty
         enemyPaddle.run(SKAction.moveTo(x: ball.position.x, duration: 1))
+        if(ball.position.y <= playerPaddle.position.y - 30){
+            addScore(player: false)
+            resetPositions()
+        } else if (ball.position.y >= enemyPaddle.position.y + 30){
+            addScore(player: true)
+            resetPositions()
+        }
     }
 }
