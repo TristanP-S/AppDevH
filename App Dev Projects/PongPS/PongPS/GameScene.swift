@@ -34,6 +34,10 @@ class GameScene: SKScene {
     }
     //resets score a position when the game starts
     func gameStart(){
+        playerPaddle.position.x = 0
+        playerPaddle.position.y = -600
+        enemyPaddle.position.x = 0
+        enemyPaddle.position.y = 600
         playerScore.text = "0"
         enemyScore.text = "0"
         resetPositions()
@@ -43,10 +47,6 @@ class GameScene: SKScene {
         ball.position.x = 0
         ball.position.y = 0
         ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        playerPaddle.position.x = 0
-        playerPaddle.position.y = -600
-        enemyPaddle.position.x = 0
-        enemyPaddle.position.y = 600
         //pushes ball in one of 4 random directions
         let direction = Int.random(in: 1...4)
         switch direction {
@@ -66,6 +66,15 @@ class GameScene: SKScene {
         } else {
         enemyScore.text = String(Int(enemyScore.text!)! + 1)
         }
+    }
+    func reset(){
+        score1 = Int(playerScore.text!)!
+        score2 = Int(enemyScore.text!)!
+        let scene = SKScene(fileNamed: "TitleScene")
+        // Set the scale mode to scale to fit the window
+        scene!.scaleMode = .aspectFill
+        // Present the scene
+        view!.presentScene(scene)
     }
     //finger touched screen
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -94,11 +103,19 @@ class GameScene: SKScene {
             ball.physicsBody?.applyForce(CGVector(dx: 0, dy: -2))
         }
         if(ball.position.y <= playerPaddle.position.y - 30){
+            if(enemyScore.text == "9"){
+                reset()
+            } else {
             addScore(player: false)
             resetPositions()
+            }
         } else if (ball.position.y >= enemyPaddle.position.y + 30){
+            if(playerScore.text == "9"){
+                reset()
+            } else {
             addScore(player: true)
             resetPositions()
+            }
         }
     }
 }
