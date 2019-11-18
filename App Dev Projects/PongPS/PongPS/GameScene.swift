@@ -38,6 +38,11 @@ class GameScene: SKScene {
         default:
             ball.physicsBody?.applyImpulse(CGVector(dx: 20, dy: 20))  //up right
         }
+        //sets boundaries of app to border
+        let border = SKPhysicsBody(edgeLoopFrom: self.frame)
+        border.friction = 0
+        border.restitution = 1
+        self.physicsBody = border
     }
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
