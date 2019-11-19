@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,93 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="PongPS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbi-Jt-zGE">
+                                <rect key="frame" x="137.5" y="597" width="100" height="30"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="wPi-Pn-Uge"/>
+                                </constraints>
+                                <state key="normal" title="Multiplayer">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="multiplayerPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="u0A-s5-loF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjL-Xo-A4U">
+                                <rect key="frame" x="137.5" y="547" width="100" height="30"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="8c6-16-Let"/>
+                                </constraints>
+                                <state key="normal" title="Expert">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="expertPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="jKK-GC-4GZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xA5-1f-59x">
+                                <rect key="frame" x="137.5" y="497" width="100" height="30"/>
+                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="rqB-WQ-fWy"/>
+                                </constraints>
+                                <state key="normal" title="Normal">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="normalPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Mzm-In-UBI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQq-Ag-8DR">
+                                <rect key="frame" x="137.5" y="447" width="100" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="bYN-7r-hRa"/>
+                                </constraints>
+                                <state key="normal" title="Easy">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="easyPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="WVc-ng-s3E"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xA5-1f-59x" firstAttribute="top" secondItem="qQq-Ag-8DR" secondAttribute="bottom" constant="20" id="1hI-ap-NDS"/>
+                            <constraint firstItem="bjL-Xo-A4U" firstAttribute="top" secondItem="xA5-1f-59x" secondAttribute="bottom" constant="20" id="5hg-zs-mch"/>
+                            <constraint firstItem="qQq-Ag-8DR" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="Fqd-AV-2xi"/>
+                            <constraint firstItem="qQq-Ag-8DR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4qk-I5-YsI" secondAttribute="leading" id="OTO-vV-cgY"/>
+                            <constraint firstItem="bjL-Xo-A4U" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="PaN-b8-eYJ"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qQq-Ag-8DR" secondAttribute="trailing" id="SFp-TU-py2"/>
+                            <constraint firstItem="xA5-1f-59x" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4qk-I5-YsI" secondAttribute="leading" id="Tqu-gK-NVO"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="Zbi-Jt-zGE" secondAttribute="bottom" constant="40" id="Z2X-Hs-vZ1"/>
+                            <constraint firstItem="Zbi-Jt-zGE" firstAttribute="top" secondItem="bjL-Xo-A4U" secondAttribute="bottom" constant="20" id="gsr-mD-eTK"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xA5-1f-59x" secondAttribute="trailing" id="jJ6-1T-7LD"/>
+                            <constraint firstItem="bjL-Xo-A4U" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4qk-I5-YsI" secondAttribute="leading" id="nzQ-pU-ZnJ"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bjL-Xo-A4U" secondAttribute="trailing" id="o0H-d2-WBE"/>
+                            <constraint firstItem="xA5-1f-59x" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="rra-2U-9Lp"/>
+                            <constraint firstItem="Zbi-Jt-zGE" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="sjz-Md-P1u"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
+                    <connections>
+                        <outlet property="easyBtn" destination="qQq-Ag-8DR" id="zL6-YX-ngt"/>
+                        <outlet property="expertBtn" destination="bjL-Xo-A4U" id="H3d-jn-9Em"/>
+                        <outlet property="multiplayerBtn" destination="Zbi-Jt-zGE" id="JN9-lA-ibt"/>
+                        <outlet property="normalBtn" destination="xA5-1f-59x" id="W0f-HW-71O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="139" y="91"/>
         </scene>
     </scenes>
 </document>

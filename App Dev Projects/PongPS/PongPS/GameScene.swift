@@ -8,7 +8,6 @@
 
 import SpriteKit
 import GameplayKit
-
 class GameScene: SKScene {
     //sets up variables for each item
     var ball = SKSpriteNode()
@@ -18,6 +17,7 @@ class GameScene: SKScene {
     var enemyScore = SKLabelNode()
     //variable to see if player is the one who scored
     var player = true
+    var difficulty : Double = 0
     override func didMove(to view: SKView) {
         //connects gamescene to code
         ball = self.childNode(withName: "ball") as! SKSpriteNode
@@ -31,6 +31,17 @@ class GameScene: SKScene {
         border.friction = 0
         border.restitution = 1
         self.physicsBody = border
+        //sets difficulty of AI based on 'game mode'
+        switch gamemode {
+        case 1:
+            difficulty = 0.5
+        case 2:
+            difficulty = 0.25
+        case 3:
+            difficulty = 0.1
+        default:
+            difficulty = 0
+        }
     }
     //resets score a position when the game starts
     func gameStart(){
@@ -68,6 +79,7 @@ class GameScene: SKScene {
         }
     }
     func reset(){
+        GameViewController().btnEnable(off: false)
         score1 = Int(playerScore.text!)!
         score2 = Int(enemyScore.text!)!
         let scene = SKScene(fileNamed: "TitleScene")
@@ -81,7 +93,15 @@ class GameScene: SKScene {
         for touch in touches{
             //gets finger location and moves to it with a small delay
             let location = touch.location(in: self)
-            playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+            if(gamemode != 4){ //short circuit for non-multiplayer
+                playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+            } else { //multiplayer
+                if(location.y > 0){ //if top screen player taps
+                    enemyPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+                } else { //if bottom screen player taps
+                   playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+                }
+            }
         }
     }
     //finger moves
@@ -89,13 +109,23 @@ class GameScene: SKScene {
         for touch in touches{
             //gets finger location and moves to it with a small delay
             let location = touch.location(in: self)
-            playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+            if(gamemode != 4){ //short circuit for non-multiplayer
+                playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+            } else { //multiplayer
+                if(location.y > 0){ //if top screen player taps
+                    enemyPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+                } else { //if bottom screen player taps
+                   playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+                }
+            }
         }
     }
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         //moves the enemy, changes the duration to change the difficulty
-        enemyPaddle.run(SKAction.moveTo(x: ball.position.x, duration: 0.5))
+        if(gamemode != 4){
+        enemyPaddle.run(SKAction.moveTo(x: ball.position.x, duration: TimeInterval(difficulty)))
+        }
         //makes the ball slowly get faster
         if(ball.physicsBody!.velocity.dy > 0){
             ball.physicsBody?.applyForce(CGVector(dx: 0, dy: 2))

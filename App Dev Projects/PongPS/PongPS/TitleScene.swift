@@ -12,22 +12,23 @@ var score1 = 0 //player score
 var score2 = 0 //enemy score
 class TitleScene:SKScene{
     var scoreText = SKLabelNode()
+    //Game ending text, set to blank if no game was played
     override func didMove(to view: SKView) {
         scoreText = self.childNode(withName: "resultLbl") as! SKLabelNode
         if(score1 == 9){
-            scoreText.text = "Congrats, You won 10 to \(score2)!"
+            if(gamemode != 4){ //short circuits for non-multiplayer
+                scoreText.text = "Congrats, You won 10 to \(score2)!"
+            } else {
+                scoreText.text = "The bottom player won 10 to \(score2)!"
+            }
         } else if(score2 == 9){
-            scoreText.text = "Darn, You lost 10 to \(score1)!"
+            if(gamemode != 4){
+                scoreText.text = "Darn, You lost 10 to \(score1)!"
+            } else {
+                scoreText.text = "The top player won 10 to \(score1)!"
+            }
         } else {
             scoreText.text = ""
         }
     }
-    //starts game when screen is tapped
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let scene = SKScene(fileNamed: "GameScene") 
-        // Set the scale mode to scale to fit the window
-        scene!.scaleMode = .aspectFill
-        // Present the scene
-        view!.presentScene(scene)
-        }
 }
