@@ -17,6 +17,7 @@ class GameScene: SKScene {
     var enemyScore = SKLabelNode()
     //variable to see if player is the one who scored
     var player = true
+    //difficulty of CPU
     var difficulty : Double = 0
     override func didMove(to view: SKView) {
         //connects gamescene to code
@@ -34,11 +35,11 @@ class GameScene: SKScene {
         //sets difficulty of AI based on 'game mode'
         switch gamemode {
         case 1:
-            difficulty = 0.5
-        case 2:
             difficulty = 0.25
+        case 2:
+            difficulty = 0.16
         case 3:
-            difficulty = 0.1
+            difficulty = 0.13
         default:
             difficulty = 0
         }
@@ -79,7 +80,9 @@ class GameScene: SKScene {
         }
     }
     func reset(){
-        GameViewController().btnEnable(off: false)
+        //notifies GameVC that buttons should toggle on
+        //INSERT SOMETHING HERE btnEnable(off: false)
+        GameViewController()
         score1 = Int(playerScore.text!)!
         score2 = Int(enemyScore.text!)!
         let scene = SKScene(fileNamed: "TitleScene")

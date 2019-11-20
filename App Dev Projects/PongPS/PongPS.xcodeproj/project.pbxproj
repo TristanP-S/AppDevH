@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		020E6F202383098700504075 /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 020E6F1F2383098700504075 /* TitleScene.sks */; };
 		020E6F2223830A3900504075 /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020E6F2123830A3900504075 /* TitleScene.swift */; };
+		02CA9B5623859B5300B0EA73 /* PBRSunnyPark.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02CA9B5523859B5300B0EA73 /* PBRSunnyPark.mp3 */; };
 		02F3DF842382E85900B3D815 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3DF832382E85900B3D815 /* AppDelegate.swift */; };
 		02F3DF862382E85900B3D815 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 02F3DF852382E85900B3D815 /* GameScene.sks */; };
 		02F3DF882382E85900B3D815 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 02F3DF872382E85900B3D815 /* Actions.sks */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		020E6F1F2383098700504075 /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
 		020E6F2123830A3900504075 /* TitleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
+		02CA9B5523859B5300B0EA73 /* PBRSunnyPark.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = PBRSunnyPark.mp3; path = ../../../../Downloads/PBRSunnyPark.mp3; sourceTree = "<group>"; };
 		02F3DF802382E85900B3D815 /* PongPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PongPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F3DF832382E85900B3D815 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02F3DF852382E85900B3D815 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				02F3DF8D2382E85900B3D815 /* Main.storyboard */,
 				02F3DF902382E85C00B3D815 /* Assets.xcassets */,
 				02F3DF922382E85C00B3D815 /* LaunchScreen.storyboard */,
+				02CA9B5523859B5300B0EA73 /* PBRSunnyPark.mp3 */,
 				02F3DF952382E85C00B3D815 /* Info.plist */,
 			);
 			path = PongPS;
@@ -247,6 +250,7 @@
 				02F3DF8F2382E85900B3D815 /* Main.storyboard in Resources */,
 				02F3DF862382E85900B3D815 /* GameScene.sks in Resources */,
 				02F3DF912382E85C00B3D815 /* Assets.xcassets in Resources */,
+				02CA9B5623859B5300B0EA73 /* PBRSunnyPark.mp3 in Resources */,
 				02F3DF942382E85C00B3D815 /* LaunchScreen.storyboard in Resources */,
 				02F3DF882382E85900B3D815 /* Actions.sks in Resources */,
 				020E6F202383098700504075 /* TitleScene.sks in Resources */,
@@ -382,7 +386,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -436,7 +440,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

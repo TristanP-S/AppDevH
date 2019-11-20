@@ -9,14 +9,32 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import AVFoundation
 var gamemode = 1
 class GameViewController: UIViewController {
     @IBOutlet weak var easyBtn: UIButton!
     @IBOutlet weak var normalBtn: UIButton!
     @IBOutlet weak var expertBtn: UIButton!
     @IBOutlet weak var multiplayerBtn: UIButton!
+    var gameMusic: AVAudioPlayer = AVAudioPlayer()
     override func viewDidLoad() {
         super.viewDidLoad()
+        //plays background music infinitely
+        do{
+            let song1 = Bundle.main.path(forResource: "PBRSunnyPark", ofType: "mp3")
+            try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: song1!) as URL)
+        } catch {
+            print("NO SONG FILE")
+        }
+        let session = AVAudioSession.sharedInstance()
+        do{
+            try session.setCategory(AVAudioSession.Category.playback)
+        } catch {
+            print("NO SESSION")
+        }
+        gameMusic.play()
+        //enables buttons
+        btnEnable(off: false)
         if let view = self.view as! SKView? {
             // Load the SKScene from 'TitleScene.sks'
             if let scene = SKScene(fileNamed: "TitleScene") {
