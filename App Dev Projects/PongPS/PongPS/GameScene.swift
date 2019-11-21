@@ -80,9 +80,9 @@ class GameScene: SKScene {
         }
     }
     func reset(){
-        //notifies GameVC that buttons should toggle on
-        //INSERT SOMETHING HERE btnEnable(off: false)
-        GameViewController()
+        //notifies GameVC that buttons should toggle on and music should change
+        GameViewController().restartGame()
+        //resets game
         score1 = Int(playerScore.text!)!
         score2 = Int(enemyScore.text!)!
         let scene = SKScene(fileNamed: "TitleScene")

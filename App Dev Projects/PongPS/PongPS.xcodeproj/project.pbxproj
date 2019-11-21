@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		020E6F202383098700504075 /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 020E6F1F2383098700504075 /* TitleScene.sks */; };
 		020E6F2223830A3900504075 /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020E6F2123830A3900504075 /* TitleScene.swift */; };
+		02BF0CC42386CD5F00DFC652 /* SWSHBattleTower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02BF0CC32386CD5F00DFC652 /* SWSHBattleTower.mp3 */; };
 		02CA9B5623859B5300B0EA73 /* PBRSunnyPark.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02CA9B5523859B5300B0EA73 /* PBRSunnyPark.mp3 */; };
 		02F3DF842382E85900B3D815 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3DF832382E85900B3D815 /* AppDelegate.swift */; };
 		02F3DF862382E85900B3D815 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 02F3DF852382E85900B3D815 /* GameScene.sks */; };
@@ -42,6 +43,7 @@
 /* Begin PBXFileReference section */
 		020E6F1F2383098700504075 /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
 		020E6F2123830A3900504075 /* TitleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
+		02BF0CC32386CD5F00DFC652 /* SWSHBattleTower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = SWSHBattleTower.mp3; path = ../../../../Downloads/SWSHBattleTower.mp3; sourceTree = "<group>"; };
 		02CA9B5523859B5300B0EA73 /* PBRSunnyPark.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = PBRSunnyPark.mp3; path = ../../../../Downloads/PBRSunnyPark.mp3; sourceTree = "<group>"; };
 		02F3DF802382E85900B3D815 /* PongPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PongPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F3DF832382E85900B3D815 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				02F3DF902382E85C00B3D815 /* Assets.xcassets */,
 				02F3DF922382E85C00B3D815 /* LaunchScreen.storyboard */,
 				02CA9B5523859B5300B0EA73 /* PBRSunnyPark.mp3 */,
+				02BF0CC32386CD5F00DFC652 /* SWSHBattleTower.mp3 */,
 				02F3DF952382E85C00B3D815 /* Info.plist */,
 			);
 			path = PongPS;
@@ -250,6 +253,7 @@
 				02F3DF8F2382E85900B3D815 /* Main.storyboard in Resources */,
 				02F3DF862382E85900B3D815 /* GameScene.sks in Resources */,
 				02F3DF912382E85C00B3D815 /* Assets.xcassets in Resources */,
+				02BF0CC42386CD5F00DFC652 /* SWSHBattleTower.mp3 in Resources */,
 				02CA9B5623859B5300B0EA73 /* PBRSunnyPark.mp3 in Resources */,
 				02F3DF942382E85C00B3D815 /* LaunchScreen.storyboard in Resources */,
 				02F3DF882382E85900B3D815 /* Actions.sks in Resources */,

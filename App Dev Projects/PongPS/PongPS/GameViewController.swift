@@ -5,7 +5,7 @@
 //  Created by Tristan Pudell-Spatscheck on 11/18/19.
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
 //
-
+//DEV NOTES: Expert AI has been proven POSSIBLE TO BEAT. It's just very hard. 
 import UIKit
 import SpriteKit
 import GameplayKit
@@ -32,6 +32,7 @@ class GameViewController: UIViewController {
         } catch {
             print("NO SESSION")
         }
+        gameMusic.numberOfLoops = -1
         gameMusic.play()
         //enables buttons
         btnEnable(off: false)
@@ -59,17 +60,37 @@ class GameViewController: UIViewController {
         multiplayerBtn?.isHidden = off
     }
     func startGame(){
-      btnEnable(off: true)
-        if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
-                // Set the scale mode to scale to fit the window
-                scene.scaleMode = .aspectFill
-                // Present the scene
-                view.presentScene(scene)
-            }
-            view.ignoresSiblingOrder = true
+        btnEnable(off: true)
+        //changes song to battle tower music
+        gameMusic.stop()
+        do{
+            let song1 = Bundle.main.path(forResource: "SWSHBattleTower", ofType: "mp3")
+            try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: song1!) as URL)
+        } catch {
+            print("NO SONG FILE")
         }
+        gameMusic.play()
+        if let view = self.view as! SKView? {
+        // Load the SKScene from 'GameScene.sks'
+        if let scene = SKScene(fileNamed: "GameScene") {
+            // Set the scale mode to scale to fit the window
+            scene.scaleMode = .aspectFill
+            // Present the scene
+            view.presentScene(scene)
+        }
+        view.ignoresSiblingOrder = true
+      }
+    }
+    func restartGame(){
+        btnEnable(off: false)
+        gameMusic.stop()
+        do{
+            let song1 = Bundle.main.path(forResource: "PBRSunnyPark", ofType: "mp3")
+            try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: song1!) as URL)
+        } catch {
+            print("NO SONG FILE")
+        }
+        gameMusic.play()
     }
     //all the gamemode selecting options
     @IBAction func easyPressed(_ sender: Any) {
