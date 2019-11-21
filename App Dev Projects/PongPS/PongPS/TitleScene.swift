@@ -19,13 +19,13 @@ class TitleScene:SKScene{
             if(gamemode != 4){ //short circuits for non-multiplayer
                 scoreText.text = "Congrats, You won 10 to \(score2)!"
             } else {
-                scoreText.text = "The bottom player won 10 to \(score2)!"
+                scoreText.text = "Green won 10 to \(score2)!"
             }
         } else if(score2 == 9){
             if(gamemode != 4){
                 scoreText.text = "Darn, You lost 10 to \(score1)!"
             } else {
-                scoreText.text = "The top player won 10 to \(score1)!"
+                scoreText.text = "Red won 10 to \(score1)!"
             }
         } else {
             scoreText.text = ""
