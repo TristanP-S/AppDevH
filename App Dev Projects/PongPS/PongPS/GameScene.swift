@@ -97,12 +97,12 @@ class GameScene: SKScene {
             //gets finger location and moves to it with a small delay
             let location = touch.location(in: self)
             if(gamemode != 4){ //short circuit for non-multiplayer
-                playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+                playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.05))
             } else { //multiplayer
                 if(location.y > 0){ //if top screen player taps
-                    enemyPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+                    enemyPaddle.run(SKAction.moveTo(x: location.x, duration: 0.05))
                 } else { //if bottom screen player taps
-                   playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+                   playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.05))
                 }
             }
         }
@@ -113,12 +113,12 @@ class GameScene: SKScene {
             //gets finger location and moves to it with a small delay
             let location = touch.location(in: self)
             if(gamemode != 4){ //short circuit for non-multiplayer
-                playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+                playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.05))
             } else { //multiplayer
                 if(location.y > 0){ //if top screen player taps
-                    enemyPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+                    enemyPaddle.run(SKAction.moveTo(x: location.x, duration: 0.05))
                 } else { //if bottom screen player taps
-                   playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.1))
+                   playerPaddle.run(SKAction.moveTo(x: location.x, duration: 0.05))
                 }
             }
         }
