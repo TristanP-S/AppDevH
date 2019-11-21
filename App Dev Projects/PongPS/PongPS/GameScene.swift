@@ -81,7 +81,7 @@ class GameScene: SKScene {
     }
     func reset(){
         //notifies GameVC that buttons should toggle on and music should change
-        GameViewController().restartGame()
+        gameVC.restartGame()
         //resets game
         score1 = Int(playerScore.text!)!
         score2 = Int(enemyScore.text!)!

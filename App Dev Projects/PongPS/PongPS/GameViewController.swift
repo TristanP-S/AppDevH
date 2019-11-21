@@ -11,6 +11,7 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 var gamemode = 1
+var gameVC: GameViewController = GameViewController()
 class GameViewController: UIViewController {
     @IBOutlet weak var easyBtn: UIButton!
     @IBOutlet weak var normalBtn: UIButton!
@@ -70,6 +71,8 @@ class GameViewController: UIViewController {
             print("NO SONG FILE")
         }
         gameMusic.play()
+        //sets up gameVC to current VC
+        gameVC = self
         if let view = self.view as! SKView? {
         // Load the SKScene from 'GameScene.sks'
         if let scene = SKScene(fileNamed: "GameScene") {
