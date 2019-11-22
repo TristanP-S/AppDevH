@@ -17,6 +17,7 @@ class GameViewController: UIViewController {
     @IBOutlet weak var normalBtn: UIButton!
     @IBOutlet weak var expertBtn: UIButton!
     @IBOutlet weak var multiplayerBtn: UIButton!
+    @IBOutlet weak var optionsBtn: UIButton!
     var gameMusic: AVAudioPlayer = AVAudioPlayer()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +65,7 @@ class GameViewController: UIViewController {
         normalBtn?.isHidden = off
         expertBtn?.isHidden = off
         multiplayerBtn?.isHidden = off
+        optionsBtn?.isHidden = off
     }
     func startGame(){
         btnEnable(off: true)

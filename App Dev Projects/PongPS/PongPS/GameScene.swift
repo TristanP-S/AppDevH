@@ -48,10 +48,13 @@ class GameScene: SKScene {
     }
     //resets score a position when the game starts
     func gameStart(){
+        ball.color = ballColor
         playerPaddle.position.x = 0
         playerPaddle.position.y = -600
+        playerPaddle.color = bottomColor
         enemyPaddle.position.x = 0
         enemyPaddle.position.y = 600
+        enemyPaddle.color = topColor
         playerScore.text = "0"
         enemyScore.text = "0"
         enemyScore.zRotation = 0
@@ -138,14 +141,15 @@ class GameScene: SKScene {
         } else {
             ball.physicsBody?.applyForce(CGVector(dx: 0, dy: -2))
         }
-        if(ball.position.y <= playerPaddle.position.y - 30){
+        //win conditions / adding points
+        if(ball.position.y <= playerPaddle.position.y - 30 && !god){
             if(enemyScore.text == "9"){
                 reset()
             } else {
             addScore(player: false)
             resetPositions()
             }
-        } else if (ball.position.y >= enemyPaddle.position.y + 30){
+        } else if (ball.position.y >= enemyPaddle.position.y + 30 && !eGod){
             if(playerScore.text == "9"){
                 reset()
             } else {
