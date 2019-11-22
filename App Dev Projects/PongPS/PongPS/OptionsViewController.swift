@@ -13,6 +13,7 @@ var bottomColor: UIColor = UIColor(ciColor: .green)
 var ballColor: UIColor = UIColor(ciColor: .yellow)
 var god = false
 var eGod = false
+var music = true
 class OptionsViewController: UIViewController{
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var topPaddleButton: UIButton!
@@ -20,6 +21,7 @@ class OptionsViewController: UIViewController{
     @IBOutlet weak var ballButton: UIButton!
     @IBOutlet weak var godSwitch: UISwitch!
     @IBOutlet weak var eSwitch: UISwitch!
+    @IBOutlet weak var musicSwitch: UISwitch!
     var choice = "top"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,10 @@ class OptionsViewController: UIViewController{
         ballButton.backgroundColor = ballColor
         godSwitch.isOn = god
         eSwitch.isOn = eGod
+        musicSwitch.isOn = music
+        if(music){
+            gameVC.playSong(song: "ElevatorSong")
+        }
     }
     //lets user pick a color
     func pickAColor(button: UIButton){
@@ -72,6 +78,7 @@ class OptionsViewController: UIViewController{
     }
     //button functions
     @IBAction func backPressed(_ sender: Any) {
+        gameVC.playSong(song: "PBRSunnyPark")
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func topPaddleColorPressed(_ sender: Any) {
@@ -102,4 +109,14 @@ class OptionsViewController: UIViewController{
             eGod = false
         }
     }
+    @IBAction func musicSwitched(_ sender: Any) {
+        if(musicSwitch.isOn){
+            music = true
+        }
+        else{
+            music = false
+        }
+        gameVC.playSong(song: "ElevatorSong")
+    }
+    
 }

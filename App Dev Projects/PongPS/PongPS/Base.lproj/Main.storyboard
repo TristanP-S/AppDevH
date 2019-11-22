@@ -77,6 +77,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
+                                    <action selector="optionsPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="mwL-Fv-09d"/>
                                     <segue destination="qck-BA-i8P" kind="presentation" id="kfo-SZ-odF"/>
                                 </connections>
                             </button>
@@ -217,13 +218,25 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon Battle Revolution - Sunny Park" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27y-78-wCL">
-                                <rect key="frame" x="50" y="191" width="275" height="18"/>
+                                <rect key="frame" x="50" y="184" width="275" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon Sword and Shield - Toby Fox Battle Tower" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2f-Im-436">
-                                <rect key="frame" x="11.5" y="219" width="352" height="18"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9dA-8P-82l">
+                                <rect key="frame" x="163" y="247" width="51" height="31"/>
+                                <connections>
+                                    <action selector="musicSwitched:" destination="qck-BA-i8P" eventType="valueChanged" id="gAY-kU-Hhy"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pokemon Sword and Shield - Battle Tower" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qpB-gw-893">
+                                <rect key="frame" x="44" y="205" width="287" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phillip Schlosser - Generic Elevator Music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CY8-Kl-z6R">
+                                <rect key="frame" x="45.5" y="226" width="284.5" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -234,24 +247,30 @@
                             <constraint firstItem="rVL-n4-wg9" firstAttribute="top" secondItem="iPu-2y-tas" secondAttribute="top" id="0QC-rG-O50"/>
                             <constraint firstItem="AlA-n4-Uxr" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="1H2-hr-zw4"/>
                             <constraint firstItem="27y-78-wCL" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="3yX-rq-FAy"/>
+                            <constraint firstItem="qpB-gw-893" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="6F4-tJ-XsZ"/>
                             <constraint firstItem="oh0-zG-jVZ" firstAttribute="top" secondItem="pnu-rr-O8t" secondAttribute="bottom" constant="20" id="6hS-Lv-Arb"/>
+                            <constraint firstItem="CY8-Kl-z6R" firstAttribute="top" secondItem="qpB-gw-893" secondAttribute="bottom" constant="3" id="7ud-Lg-34S"/>
                             <constraint firstItem="bQ3-zm-Nxh" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="9Gm-TM-aOo"/>
                             <constraint firstItem="iPu-2y-tas" firstAttribute="bottom" secondItem="CgB-g8-0yq" secondAttribute="bottom" constant="40" id="AGA-NF-nhz"/>
-                            <constraint firstItem="27y-78-wCL" firstAttribute="top" secondItem="FRA-I6-To4" secondAttribute="bottom" constant="10" id="G59-xt-XNG"/>
+                            <constraint firstItem="27y-78-wCL" firstAttribute="top" secondItem="FRA-I6-To4" secondAttribute="bottom" constant="3" id="G59-xt-XNG"/>
                             <constraint firstItem="FRA-I6-To4" firstAttribute="top" secondItem="5sK-Mn-Bq5" secondAttribute="bottom" constant="25" id="HBD-xt-MV8"/>
                             <constraint firstItem="AlA-n4-Uxr" firstAttribute="top" secondItem="oh0-zG-jVZ" secondAttribute="bottom" constant="20" id="Jf0-LF-caZ"/>
+                            <constraint firstItem="qpB-gw-893" firstAttribute="top" secondItem="27y-78-wCL" secondAttribute="bottom" constant="3" id="MJy-nX-BxK"/>
                             <constraint firstItem="6wh-WW-Nbs" firstAttribute="top" secondItem="rVL-n4-wg9" secondAttribute="bottom" constant="30" id="OBf-7n-23v"/>
                             <constraint firstItem="6wh-WW-Nbs" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="QSZ-5D-v6b"/>
-                            <constraint firstItem="b2f-Im-436" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="SAU-Ue-hst"/>
+                            <constraint firstItem="9dA-8P-82l" firstAttribute="top" secondItem="CY8-Kl-z6R" secondAttribute="bottom" constant="3" id="Qnn-Nb-xra"/>
                             <constraint firstItem="FRA-I6-To4" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="U5h-dS-vO1"/>
                             <constraint firstItem="ovD-RJ-JmU" firstAttribute="top" secondItem="J8E-SY-Pqd" secondAttribute="bottom" constant="20" id="USR-yO-fhM"/>
                             <constraint firstItem="5sK-Mn-Bq5" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="Vuv-It-hPm"/>
+                            <constraint firstItem="9dA-8P-82l" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="YZO-5m-OMA"/>
                             <constraint firstItem="ovD-RJ-JmU" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="ZA4-hc-PdP"/>
+                            <constraint firstItem="J8E-SY-Pqd" firstAttribute="top" secondItem="9dA-8P-82l" secondAttribute="bottom" constant="9" id="adz-WT-eHp"/>
                             <constraint firstItem="bQ3-zm-Nxh" firstAttribute="top" secondItem="ovD-RJ-JmU" secondAttribute="bottom" constant="20" id="bvF-BD-Lof"/>
                             <constraint firstItem="rVL-n4-wg9" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="fDV-gf-bwi"/>
                             <constraint firstItem="CgB-g8-0yq" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="n66-b6-lIw"/>
-                            <constraint firstItem="b2f-Im-436" firstAttribute="top" secondItem="27y-78-wCL" secondAttribute="bottom" constant="10" id="ots-bp-LTa"/>
                             <constraint firstItem="pnu-rr-O8t" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="tUi-3h-BLV"/>
+                            <constraint firstItem="9dA-8P-82l" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="vAl-hj-d7f"/>
+                            <constraint firstItem="CY8-Kl-z6R" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="wBt-16-32v"/>
                             <constraint firstItem="pnu-rr-O8t" firstAttribute="top" secondItem="bQ3-zm-Nxh" secondAttribute="bottom" constant="20" id="wIv-C3-NdF"/>
                             <constraint firstItem="CgB-g8-0yq" firstAttribute="top" secondItem="AlA-n4-Uxr" secondAttribute="bottom" constant="20" id="xHT-An-8KN"/>
                             <constraint firstItem="J8E-SY-Pqd" firstAttribute="centerX" secondItem="upC-If-vSp" secondAttribute="centerX" id="xtn-SK-NOl"/>
@@ -266,6 +285,7 @@
                         <outlet property="bottomPaddleButton" destination="AlA-n4-Uxr" id="8KR-HR-inX"/>
                         <outlet property="eSwitch" destination="ovD-RJ-JmU" id="bDP-Hj-Dn2"/>
                         <outlet property="godSwitch" destination="pnu-rr-O8t" id="xPK-1U-7ro"/>
+                        <outlet property="musicSwitch" destination="9dA-8P-82l" id="2zS-o7-8Lt"/>
                         <outlet property="topPaddleButton" destination="oh0-zG-jVZ" id="QRc-0L-dMa"/>
                     </connections>
                 </viewController>

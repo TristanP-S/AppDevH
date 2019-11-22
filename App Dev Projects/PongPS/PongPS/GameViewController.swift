@@ -49,15 +49,17 @@ class GameViewController: UIViewController {
     }
     //sets song to title given
     func playSong(song: String){
-      gameMusic.stop()
-        do{
-            let song1 = Bundle.main.path(forResource: song, ofType: "mp3")
-            try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: song1!) as URL)
-        } catch {
-            print("NO SONG FILE for \(song)")
+        gameMusic.stop()
+        if(music){
+            do{
+                let song1 = Bundle.main.path(forResource: song, ofType: "mp3")
+                try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: song1!) as URL)
+            } catch {
+                print("NO SONG FILE for \(song)")
+            }
+            gameMusic.numberOfLoops = -1
+            gameMusic.play()
         }
-        gameMusic.numberOfLoops = -1
-        gameMusic.play()
     }
     //enables/disables the buttons
     func btnEnable(off: Bool){
@@ -104,6 +106,9 @@ class GameViewController: UIViewController {
     @IBAction func multiplayerPressed(_ sender: Any) {
         gamemode = 4
         startGame()
+    }
+    @IBAction func optionsPressed(_ sender: Any) {
+        gameMusic.stop()
     }
     //default spritekit stuff
     override var shouldAutorotate: Bool {
