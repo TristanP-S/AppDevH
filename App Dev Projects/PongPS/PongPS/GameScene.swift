@@ -42,6 +42,8 @@ class GameScene: SKScene {
             difficulty = 0.13
         default:
             difficulty = 0
+            //FLIPS SCORE FOR "ENEMY" by settings its rotation to pi degrees
+            enemyScore.zRotation = CGFloat(Double.pi)
         }
     }
     //resets score a position when the game starts
@@ -52,6 +54,7 @@ class GameScene: SKScene {
         enemyPaddle.position.y = 600
         playerScore.text = "0"
         enemyScore.text = "0"
+        enemyScore.zRotation = 0
         resetPositions()
     }
     //resets all sprite poisitons

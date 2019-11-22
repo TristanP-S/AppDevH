@@ -21,20 +21,13 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //plays background music infinitely
-        do{
-            let song1 = Bundle.main.path(forResource: "PBRSunnyPark", ofType: "mp3")
-            try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: song1!) as URL)
-        } catch {
-            print("NO SONG FILE")
-        }
         let session = AVAudioSession.sharedInstance()
         do{
             try session.setCategory(AVAudioSession.Category.playback)
         } catch {
             print("NO SESSION")
         }
-        gameMusic.numberOfLoops = -1
-        gameMusic.play()
+        playSong(song: "PBRSunnyPark")
         //enables buttons
         btnEnable(off: false)
         if let view = self.view as! SKView? {
@@ -53,6 +46,18 @@ class GameViewController: UIViewController {
             //view.showsNodeCount = true
         }
     }
+    //sets song to title given
+    func playSong(song: String){
+      gameMusic.stop()
+        do{
+            let song1 = Bundle.main.path(forResource: song, ofType: "mp3")
+            try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: song1!) as URL)
+        } catch {
+            print("NO SONG FILE for \(song)")
+        }
+        gameMusic.numberOfLoops = -1
+        gameMusic.play()
+    }
     //enables/disables the buttons
     func btnEnable(off: Bool){
         easyBtn?.isHidden = off
@@ -63,14 +68,7 @@ class GameViewController: UIViewController {
     func startGame(){
         btnEnable(off: true)
         //changes song to battle tower music
-        gameMusic.stop()
-        do{
-            let song1 = Bundle.main.path(forResource: "SWSHBattleTower", ofType: "mp3")
-            try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: song1!) as URL)
-        } catch {
-            print("NO SONG FILE")
-        }
-        gameMusic.play()
+        playSong(song: "SWSHBattleTower")
         //sets up gameVC to current VC
         gameVC = self
         if let view = self.view as! SKView? {
@@ -86,14 +84,7 @@ class GameViewController: UIViewController {
     }
     func restartGame(){
         btnEnable(off: false)
-        gameMusic.stop()
-        do{
-            let song1 = Bundle.main.path(forResource: "PBRSunnyPark", ofType: "mp3")
-            try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: song1!) as URL)
-        } catch {
-            print("NO SONG FILE")
-        }
-        gameMusic.play()
+        playSong(song: "PBRSunnyPark")
     }
     //all the gamemode selecting options
     @IBAction func easyPressed(_ sender: Any) {
