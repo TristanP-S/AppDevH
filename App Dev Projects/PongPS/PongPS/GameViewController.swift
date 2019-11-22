@@ -5,7 +5,7 @@
 //  Created by Tristan Pudell-Spatscheck on 11/18/19.
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
 //
-//DEV NOTES: Expert AI has been proven POSSIBLE TO BEAT. It's just very hard. 
+//DEV NOTES: Expert AI has been proven POSSIBLE TO BEAT. It's just very hard. Also, if there is NO music, it either means your iOS is under 13.2 (which this was built for), OR you need to go to the .mp3 files in this project and change their "location" to the music folder in the PongPS file
 import UIKit
 import SpriteKit
 import GameplayKit
