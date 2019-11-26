@@ -13,13 +13,13 @@ var selected = -1
 var mazes = [SKTexture(image: UIImage(named: "maze1")!)]
 class GameScene: SKScene {
     var mazeImg = SKSpriteNode()
-    var ball = SKSpriteNode()
+    var player = SKSpriteNode()
     var timeLbl = SKLabelNode()
     override func didMove(to view: SKView) {
         //sets background to white
         scene?.backgroundColor = UIColor(ciColor: .white)
         //attatches sprites to variables
-        ball = self.childNode(withName: "ball") as! SKSpriteNode
+        player = self.childNode(withName: "player") as! SKSpriteNode
         mazeImg = self.childNode(withName: "mazeBckg") as! SKSpriteNode
         timeLbl = self.childNode(withName: "timeLbl") as! SKLabelNode
         //sets up border of screen as border
@@ -33,8 +33,8 @@ class GameScene: SKScene {
     }
     func nextLv(){
         selected += 1
-        ball.position.y = -640
-        ball.position.x = 0
+        player.position.y = -640
+        player.position.x = 0
         mazeImg.texture = mazes[selected]
         mazeImg.position.x = 0
         mazeImg.position.y = 0
