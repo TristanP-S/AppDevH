@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021CAB242397891B00DCA59C /* SOS.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 021CAB232397891A00DCA59C /* SOS.mp3 */; };
 		027F9E58238D58BD0006D3B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 027F9E57238D58BD0006D3B4 /* AppDelegate.swift */; };
 		027F9E5A238D58BD0006D3B4 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 027F9E59238D58BD0006D3B4 /* GameScene.sks */; };
 		027F9E5C238D58BD0006D3B4 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 027F9E5B238D58BD0006D3B4 /* Actions.sks */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		021CAB232397891A00DCA59C /* SOS.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SOS.mp3; sourceTree = SOURCE_ROOT; };
 		027F9E54238D58BD0006D3B4 /* MazePS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MazePS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		027F9E57238D58BD0006D3B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		027F9E59238D58BD0006D3B4 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				027F9E61238D58BD0006D3B4 /* Main.storyboard */,
 				027F9E64238D58BF0006D3B4 /* Assets.xcassets */,
 				027F9E66238D58BF0006D3B4 /* LaunchScreen.storyboard */,
+				021CAB232397891A00DCA59C /* SOS.mp3 */,
 				027F9E69238D58BF0006D3B4 /* Info.plist */,
 			);
 			path = MazePS;
@@ -238,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				021CAB242397891B00DCA59C /* SOS.mp3 in Resources */,
 				027F9E63238D58BD0006D3B4 /* Main.storyboard in Resources */,
 				027F9E5A238D58BD0006D3B4 /* GameScene.sks in Resources */,
 				027F9E65238D58BF0006D3B4 /* Assets.xcassets in Resources */,

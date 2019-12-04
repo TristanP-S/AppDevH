@@ -22,6 +22,15 @@ class GameScene: SKScene {
         gameScene = self
         //attatches sprites to variables
         player = self.childNode(withName: "player") as! SKSpriteNode
+        //sets up physics so player doesn't bounce, rotate, be affected by friction/gravity, not tilted
+        player.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 25, height: 25))
+        player.physicsBody?.isDynamic = true
+        player.physicsBody?.affectedByGravity = false
+        player.physicsBody?.allowsRotation = false
+        player.physicsBody?.angularDamping = 0
+        player.physicsBody?.restitution = 0
+        player.physicsBody?.friction = 0
+        player.zRotation = 0
         mazeImg = self.childNode(withName: "mazeBckg") as! SKSpriteNode
         timeLbl = self.childNode(withName: "timeLbl") as! SKLabelNode
         //sets up border of screen as border
@@ -37,6 +46,7 @@ class GameScene: SKScene {
         selected += 1
         player.position.y = -640
         player.position.x = 0
+        player.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         mazeImg.texture = mazes[selected]
         mazeImg.position.x = 0
         mazeImg.position.y = 0
@@ -44,16 +54,15 @@ class GameScene: SKScene {
         mazeImg.size.width = 750
     }
     func movePlayer(direction : Int){
-        print("called")
         switch direction {
             case 1: //up
                 self.player.physicsBody?.applyForce(CGVector(dx: 0, dy: 5))
             case 2: //down
                 self.player.physicsBody?.applyForce(CGVector(dx: 0, dy: -5))
             case 3: //left
-                self.player.physicsBody?.applyForce(CGVector(dx: -5, dy: 0))
-            default: //right
                 self.player.physicsBody?.applyForce(CGVector(dx: 5, dy: 0))
+            default: //right
+                self.player.physicsBody?.applyForce(CGVector(dx: -5, dy: 0))
         }
         print("moved")
     }
