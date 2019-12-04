@@ -14,4 +14,4 @@ Most projects have their assignment pdf attached, and other than the first few, 
 9. PongApp - Pong Recreation Application
 10. MazeApp - Maze Game Application
 ## Warning Notice
-These projects are publicly visible for future reference. I do not consent to, nor am responsible for, anyone who decides to use my code for school projects / assignments. 
+These projects are publicly visible for future reference. Anyone who copies my code for their class is plagiurising. This code is 100% mine, feel free to use it. I personally won't come after you for using this, but your boss/administration might.
