@@ -11,13 +11,16 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 class GameViewController: UIViewController {
+    //MARK - Outlet Vars
     @IBOutlet weak var upArrow: UIButton!
     @IBOutlet weak var downArrow: UIButton!
     @IBOutlet weak var rightArrow: UIButton!
     @IBOutlet weak var leftArrow: UIButton!
+    //MARK - Normal Vars/Setup
     var musicPlayer : AVAudioPlayer = AVAudioPlayer()
     override func viewDidLoad() {
         super.viewDidLoad()
+        gameVC = self
         //loads music
         let session = AVAudioSession.sharedInstance()
                do{
@@ -43,7 +46,7 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
-    //normal functions
+    //MARK - Normal Functions
     //sets song to title given
     func playSong(song: String){
         musicPlayer.stop()
@@ -72,7 +75,23 @@ class GameViewController: UIViewController {
     @IBAction func leftPressed(_ sender: Any) {
         gameScene.movePlayer(direction: 4)
     }
-    //default functions
+    //up buttons stopped being pressed
+    @IBAction func upStopped(_ sender: Any) {
+        gameScene.movePlayer(direction: 0)
+    }
+    //down button stopped being pressed
+    @IBAction func downStopped(_ sender: Any) {
+        gameScene.movePlayer(direction: 0)
+    }
+    //right button stopped being pressed
+    @IBAction func rightStopped(_ sender: Any) {
+        gameScene.movePlayer(direction: 0)
+    }
+    //left button stopped being pressed
+    @IBAction func leftStopped(_ sender: Any) {
+        gameScene.movePlayer(direction: 0)
+    }
+    //MARK - Default Functions
     override var shouldAutorotate: Bool {
         return true
     }

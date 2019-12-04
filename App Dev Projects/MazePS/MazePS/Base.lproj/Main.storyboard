@@ -16,47 +16,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hX-sO-qUT">
-                                <rect key="frame" x="177.5" y="627" width="20" height="20"/>
+                                <rect key="frame" x="175" y="622" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="MVC-CL-PXl"/>
-                                    <constraint firstAttribute="height" constant="20" id="wFw-WB-JCx"/>
+                                    <constraint firstAttribute="width" constant="25" id="MVC-CL-PXl"/>
+                                    <constraint firstAttribute="height" constant="25" id="wFw-WB-JCx"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="arrow.down" catalog="system"/>
+                                <state key="normal" title="Button" image="arrow.down" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
+                                </state>
                                 <connections>
-                                    <action selector="downPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="fzd-wp-9JV"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYs-uK-7aM">
-                                <rect key="frame" x="177.5" y="597" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="1pF-aj-goc"/>
-                                    <constraint firstAttribute="width" constant="20" id="QAs-FY-4Vs"/>
-                                </constraints>
-                                <state key="normal" title="Button" image="arrow.up" catalog="system"/>
-                                <connections>
-                                    <action selector="upPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="QZM-if-kp1"/>
+                                    <action selector="downPressed:" destination="BV1-FR-VrT" eventType="touchDown" id="PFK-uN-jnU"/>
+                                    <action selector="downStopped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="cFO-f3-EWs"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLb-BL-nCa">
-                                <rect key="frame" x="207.5" y="627" width="20" height="20"/>
+                                <rect key="frame" x="210" y="622" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="HZw-25-1Y0"/>
-                                    <constraint firstAttribute="height" constant="20" id="UCh-BD-NYc"/>
+                                    <constraint firstAttribute="width" constant="25" id="HZw-25-1Y0"/>
+                                    <constraint firstAttribute="height" constant="25" id="UCh-BD-NYc"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="arrow.right" catalog="system"/>
+                                <state key="normal" title="Button" image="arrow.right" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
+                                </state>
                                 <connections>
-                                    <action selector="rightPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="o76-Ch-bxT"/>
+                                    <action selector="rightPressed:" destination="BV1-FR-VrT" eventType="touchDown" id="FhS-Qe-5Ii"/>
+                                    <action selector="rightStopped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="fVi-9A-9xy"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFM-6S-2NZ">
-                                <rect key="frame" x="147.5" y="627" width="20" height="20"/>
+                                <rect key="frame" x="140" y="622" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="bL9-IL-8WE"/>
-                                    <constraint firstAttribute="height" constant="20" id="eqi-MW-D2Z"/>
+                                    <constraint firstAttribute="width" constant="25" id="bL9-IL-8WE"/>
+                                    <constraint firstAttribute="height" constant="25" id="eqi-MW-D2Z"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="arrow.left" catalog="system"/>
+                                <state key="normal" title="Button" image="arrow.left" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
+                                </state>
                                 <connections>
-                                    <action selector="leftPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="WMX-f9-0pd"/>
+                                    <action selector="leftPressed:" destination="BV1-FR-VrT" eventType="touchDown" id="Snb-dx-R4l"/>
+                                    <action selector="leftStopped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="WzV-Q2-U5D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYs-uK-7aM">
+                                <rect key="frame" x="175" y="587" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="VKW-DX-meK"/>
+                                    <constraint firstAttribute="width" constant="25" id="u4h-bx-2yA"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="arrow.up" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="black"/>
+                                </state>
+                                <connections>
+                                    <action selector="upPressed:" destination="BV1-FR-VrT" eventType="touchDown" id="SjP-EV-uxO"/>
+                                    <action selector="upStopped:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Tpf-0r-OqA"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -64,6 +76,7 @@
                         <constraints>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="hFM-6S-2NZ" secondAttribute="bottom" constant="20" id="9Le-Z6-ZVX"/>
                             <constraint firstItem="6hX-sO-qUT" firstAttribute="top" secondItem="tYs-uK-7aM" secondAttribute="bottom" constant="10" id="GtZ-3b-i23"/>
+                            <constraint firstItem="tYs-uK-7aM" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="W04-KU-rUz"/>
                             <constraint firstItem="6hX-sO-qUT" firstAttribute="leading" secondItem="hFM-6S-2NZ" secondAttribute="trailing" constant="10" id="Ylo-ES-d1G"/>
                             <constraint firstItem="lLb-BL-nCa" firstAttribute="leading" secondItem="6hX-sO-qUT" secondAttribute="trailing" constant="10" id="eE5-hR-mqC"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="lLb-BL-nCa" secondAttribute="bottom" constant="20" id="hsq-2m-dkN"/>
