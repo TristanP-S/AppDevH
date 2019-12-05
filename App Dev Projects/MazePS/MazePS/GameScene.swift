@@ -21,7 +21,7 @@ class GameScene: SKScene {
     var player = SKSpriteNode()
     var timeLbl = SKLabelNode()
     //size of maze set here
-    var maze = [SKSpriteNode?](repeating: nil, count: mazeSize^2)
+    var maze = [SKSpriteNode?](repeating: nil, count: mazeSize*mazeSize)
     var TwoDmaze = [[Bool]]()
     //MARK - Setup
     override func didMove(to view: SKView) {
@@ -72,6 +72,7 @@ class GameScene: SKScene {
     }
     //generates a maze
     func genMaze(){
+        print(maze.count)
         var i = 0
         //actually makes maze
         while(i <= maze.count - 1){
