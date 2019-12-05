@@ -27,6 +27,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCF-gk-lQa">
+                                <rect key="frame" x="150" y="422.5" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -34,6 +40,8 @@
                             <constraint firstItem="MX9-Yf-PNf" firstAttribute="top" secondItem="XVs-Xf-Xpu" secondAttribute="bottom" constant="10" id="TKn-iZ-c4k"/>
                             <constraint firstItem="MX9-Yf-PNf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="aR3-yx-hhZ"/>
                             <constraint firstItem="XVs-Xf-Xpu" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="uh1-2E-wLc"/>
+                            <constraint firstItem="QCF-gk-lQa" firstAttribute="top" secondItem="MX9-Yf-PNf" secondAttribute="bottom" constant="10" id="xLK-pM-CuP"/>
+                            <constraint firstItem="QCF-gk-lQa" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="y34-t9-QM1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

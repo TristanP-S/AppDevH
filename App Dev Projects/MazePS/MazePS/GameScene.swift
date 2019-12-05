@@ -164,7 +164,7 @@ class GameScene: SKScene {
         var j = 0
         while(i <= 4){
             while(j <= 4){
-                if(TwoDmaze[i][j] = false){ //if not supposed to exist
+                if(!TwoDmaze[i][j]){ //if not supposed to exist
                     maze[(i+1)*(j+1) - 1].isHidden = true
                 } else {
                     maze[(i+1)*(j+1) - 1].isHidden = false
