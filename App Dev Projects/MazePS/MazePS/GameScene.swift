@@ -67,7 +67,7 @@ class GameScene: SKScene {
         mazeBckg.position.x = 0
         mazeBckg.position.y = 0
         mazeBckg.size.height = 1334
-        mazeBckg.size.width = 750
+        mazeBckg.size.width = 760
         //setupMaze()
     }
     //generates a maze
@@ -76,8 +76,8 @@ class GameScene: SKScene {
         //actually makes maze
         while(i <= maze.count - 1){
             //Takes screen size / width to make each piece one/(value set by "maze" at top) of the screen
-            let width: CGFloat = (UIScreen.main.bounds.width) / CGFloat(mazeSize)
-            let height: CGFloat = (UIScreen.main.bounds.height - 134) / CGFloat(mazeSize) //subtract so there's extra room on top+bottom of screen
+            let width: CGFloat = 750 / CGFloat(mazeSize)
+            let height: CGFloat = 25 //set size because it works better, causes issues w/ small screens + large mazes
             let wall = SKSpriteNode(color: .black, size: CGSize(width: width, height: height))
             wall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             wall.isHidden = false
@@ -88,8 +88,8 @@ class GameScene: SKScene {
             wall.physicsBody?.isDynamic = false
             //sets up x+y location based on row count and which row this is on
             //locations (ONLY positive)
-            let xLoc: CGFloat = ((UIScreen.main.bounds.width) / CGFloat((mazeSize/2))) * CGFloat(i/mazeSize)
-            let yLoc: CGFloat = ((UIScreen.main.bounds.height - 134) / CGFloat(mazeSize/2)) * CGFloat(i/mazeSize)
+            let xLoc: CGFloat = (mazeBckg.size.width / CGFloat((mazeSize/2))) * CGFloat(i/mazeSize)
+            let yLoc: CGFloat = (mazeBckg.size.height / CGFloat(mazeSize/2)) * CGFloat(i/mazeSize)
             if((i/mazeSize) > (mazeSize/2)){ //if positive on x
                 wall.position.x = xLoc
             }
