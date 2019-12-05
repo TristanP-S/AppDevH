@@ -75,18 +75,17 @@ class GameScene: SKScene {
         var i = 0
         //actually makes maze
         while(i <= maze.count - 1){
-            let wall = SKSpriteNode()
-            wall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             //Takes screen size / width to make each piece one/(value set by "maze" at top) of the screen
             let width: CGFloat = (UIScreen.main.bounds.width) / CGFloat(mazeSize)
             let height: CGFloat = (UIScreen.main.bounds.height - 134) / CGFloat(mazeSize) //subtract so there's extra room on top+bottom of screen
-            wall.color = UIColor(ciColor: .black)
+            let wall = SKSpriteNode(color: .black, size: CGSize(width: width, height: height))
+            wall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             wall.isHidden = false
+            wall.zPosition = 4
             wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height))
             wall.physicsBody?.restitution = 0
             wall.physicsBody?.friction = 0
             wall.physicsBody?.isDynamic = false
-            wall.zPosition = 4
             //sets up x+y location based on row count and which row this is on
             //locations (ONLY positive)
             let xLoc: CGFloat = ((UIScreen.main.bounds.width) / CGFloat((mazeSize/2))) * CGFloat(i/mazeSize)
