@@ -14,13 +14,15 @@ var selected = -1
 var winner = false
 var gameScene = GameScene()
 var gameVC = GameViewController()
+var mazeSize: Int = 5
 class GameScene: SKScene {
     //MARK - Nodes
     var mazeBckg = SKSpriteNode()
     var player = SKSpriteNode()
     var timeLbl = SKLabelNode()
     //size of maze set here
-    var maze = [SKSpriteNode?](repeating: nil, count: 5*5)
+    var maze = [SKSpriteNode?](repeating: nil, count: mazeSize^2)
+    var TwoDmaze = [[Bool]]()
     //MARK - Setup
     override func didMove(to view: SKView) {
         //sets background to white and this to gameScene
@@ -76,10 +78,25 @@ class GameScene: SKScene {
             let wall = SKSpriteNode()
             wall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             //Takes screen size / width to make each piece one/(value set by "maze" at top) of the screen
-            var width: CGFloat = (UIScreen.main.bounds.width) / (sqrt(CGFloat(maze.count)))
-            var height: CGFloat = (UIScreen.main.bounds.height - 134) / (sqrt(CGFloat(maze.count))) //subtract so there's extra room on top+bottom of screen
+            var width: CGFloat = (UIScreen.main.bounds.width) / CGFloat(mazeSize)
+            var height: CGFloat = (UIScreen.main.bounds.height - 134) / CGFloat(mazeSize) //subtract so there's extra room on top+bottom of screen
             width *= CGFloat(i+1)
-            height *= 1
+            let row = (Int(i/5))
+            if(row == 0){ //bottom row
+                height *= 1
+            }
+            else if(row == 1){ //second from bottom row
+                height *= 2
+            }
+            else if(row == 2){ //middle row
+                height *= 3
+            }
+            else if(row == 3){ //second from top row
+                height *= 4
+            }
+            else { //top row
+                height *= 5
+            }
             wall.position.y = 0
             wall.position.x = 0
             wall.color = UIColor(ciColor: .black)
@@ -94,16 +111,66 @@ class GameScene: SKScene {
         }
         //adds all walls that were generated
         for wall in maze{
-            if(wall != nil){
+            if(wall != nil){ //failsafe (wall improperly generated)
             addChild(wall!)
             }
         }
     }
     //sets up the generated maze
     func setupMaze(){
-        var i = 0
+        //makes 5*5 maze all set to true
+        var TwoDmaze = [Array](repeating: [Bool](repeating: true, count: mazeSize), count: mazeSize)
+        var win = false
+        var row = Int.random(in: 0...mazeSize - 1) // starts from bottom
+        var column = 0
         //deletes certain walls to allow player through maze
-        while(i < maze.count){
+        while(!win){
+            //deleted wall selected
+            TwoDmaze[row][column] = false
+            if(column == 4){ // if top row
+                win = true
+            } else { //if not top row (end)
+                if(row != 0 && row != 4){ //if not on sides of maze
+                    var delWal = Int.random(in: 1...3)
+                    if(delWal == 1){
+                        column += 1
+                    }
+                    else if(delWal == 2){
+                        row += 1
+                    }
+                    else{
+                        row += -1
+                    }
+                } else if(row != 0){ //if on right side of maze
+                    var delWal = Int.random(in: 1...2)
+                    if(delWal == 1){
+                        column += 1
+                    } else {
+                        row += -1
+                    }
+                }
+                else{ //if on left side of maze
+                    var delWal = Int.random(in: 1...2)
+                    if(delWal == 1){
+                        column += 1
+                    } else {
+                        row += 1
+                    }
+                }
+            }
+        }
+        //sets value set in 2dmaze in place
+        var i = 0
+        var j = 0
+        while(i <= 4){
+            while(j <= 4){
+                if(TwoDmaze[i][j] = false){ //if not supposed to exist
+                    maze[(i+1)*(j+1) - 1].isHidden = true
+                } else {
+                    maze[(i+1)*(j+1) - 1].isHidden = false
+                }
+                j += 1
+            }
             i += 1
         }
     }
