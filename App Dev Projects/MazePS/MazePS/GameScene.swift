@@ -81,7 +81,6 @@ class GameScene: SKScene {
             //Takes screen size / width to make each piece one/(value set by "maze" at top) of the screen
             let width: CGFloat = (UIScreen.main.bounds.width) / CGFloat(mazeSize)
             let height: CGFloat = (UIScreen.main.bounds.height - 134) / CGFloat(mazeSize) //subtract so there's extra room on top+bottom of screen
-            wall.position.y = 0
             wall.color = UIColor(ciColor: .black)
             wall.isHidden = false
             wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height))
@@ -90,7 +89,7 @@ class GameScene: SKScene {
             wall.physicsBody?.isDynamic = false
             wall.zPosition = 4
             //sets up x+y location based on row count and which row this is on
-            //x location
+            //locations (ONLY positive)
             let xLoc: CGFloat = ((UIScreen.main.bounds.width) / CGFloat((mazeSize/2))) * CGFloat(i/mazeSize)
             let yLoc: CGFloat = ((UIScreen.main.bounds.height - 134) / CGFloat(mazeSize/2)) * CGFloat(i/mazeSize)
             if((i/mazeSize) > (mazeSize/2)){ //if positive on x
@@ -99,20 +98,19 @@ class GameScene: SKScene {
             else{ //if negative on x
                 wall.position.x = -xLoc
             }
-            //y location
-            maze[i] = wall
-            i += 1
             if(i > ((mazeSize^2)/2)){ //if positive on y
                 wall.position.x = yLoc
             }
             else{ //if negative on y
                 wall.position.y = yLoc
             }
+            //adds wall to maze array
+            maze[i] = wall
+            i += 1
         }
-        i = 0
         //adds all walls that were generated
         for wall in maze{
-            if(wall != nil){ //failsafe (wall improperly generated)
+            if(wall != nil){ //failsafe (if wall improperly generated)
             addChild(wall!)
             }
         }
