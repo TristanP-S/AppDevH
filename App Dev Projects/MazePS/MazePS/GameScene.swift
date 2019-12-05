@@ -19,6 +19,8 @@ class GameScene: SKScene {
     var mazeBckg = SKSpriteNode()
     var player = SKSpriteNode()
     var timeLbl = SKLabelNode()
+    //size of maze set here
+    var maze = [SKSpriteNode?](repeating: nil, count: 5*5)
     //MARK - Setup
     override func didMove(to view: SKView) {
         //sets background to white and this to gameScene
@@ -45,15 +47,16 @@ class GameScene: SKScene {
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
         border.friction = 0
         border.restitution = 0
+        border.isDynamic = false
         self.physicsBody = border
         //loads "next level" (first level), resets since this func. is only called in first time load
         selected = -1
+        genMaze()
         nextLv()
     }
     //MARK - Normal functions
     //loads next level
     func nextLv(){
-        time = 0
         winner = false
         player.position.y = -640
         player.position.x = 0
@@ -63,19 +66,54 @@ class GameScene: SKScene {
         mazeBckg.position.y = 0
         mazeBckg.size.height = 1334
         mazeBckg.size.width = 750
+        setupMaze()
     }
     //generates a maze
     func genMaze(){
-        
+        var i = 0
+        //actually makes maze
+        while(i <= maze.count - 1){
+            let wall = SKSpriteNode()
+            wall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            //Takes screen size / width to make each piece one/(value set by "maze" at top) of the screen
+            var width: CGFloat = (UIScreen.main.bounds.width) / (sqrt(CGFloat(maze.count)))
+            var height: CGFloat = (UIScreen.main.bounds.height - 134) / (sqrt(CGFloat(maze.count))) //subtract so there's extra room on top+bottom of screen
+            width *= CGFloat(i+1)
+            height *= 1
+            wall.position.y = 0
+            wall.position.x = 0
+            wall.color = UIColor(ciColor: .black)
+            wall.isHidden = false
+            wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height))
+            wall.physicsBody?.restitution = 0
+            wall.physicsBody?.friction = 0
+            wall.physicsBody?.isDynamic = false
+            wall.zPosition = 4
+            maze[i] = wall
+            i += 1
+        }
+        //adds all walls that were generated
+        for wall in maze{
+            if(wall != nil){
+            addChild(wall!)
+            }
+        }
+    }
+    //sets up the generated maze
+    func setupMaze(){
+        var i = 0
+        //deletes certain walls to allow player through maze
+        while(i < maze.count){
+            i += 1
+        }
     }
     //makes a basic alert with an ok button and presents it
     func makeAlert(message: String){
-        winner = true
         let alertMessage = UIAlertController(title: message, message: nil, preferredStyle: .alert)
         let okayAction = UIAlertAction(title: "OK", style: .default) { action in
             //call any needed functions here
             print("OK pressed")
-            self.nextLv()
+            time = 0
         }
         alertMessage.addAction(okayAction)
         gameVC.present(alertMessage, animated: true)
@@ -99,11 +137,13 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         time += 1/60
+        if(player.position.y > 605){
+            winner = true
+            makeAlert(message: "You beat the Maze with a time of \(Int(time)) seeconds!")
+            self.nextLv()
+        }
         if(!winner){
         timeLbl.text = "Time: \(Int(time))"
-        }
-        if(player.position.y > 605){
-            makeAlert(message: "You beat the Maze with a time of \(Int(time))!")
         }
     }
 }
