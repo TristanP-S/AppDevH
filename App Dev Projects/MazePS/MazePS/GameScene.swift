@@ -131,27 +131,27 @@ class GameScene: SKScene {
                 win = true
             } else { //if not top row (end)
                 if(row != 0 && row != 4){ //if not on sides of maze
-                    var delWal = Int.random(in: 1...3)
-                    if(delWal == 1){
+                    let delWall = Int.random(in: 1...3)
+                    if(delWall == 1){
                         column += 1
                     }
-                    else if(delWal == 2){
+                    else if(delWall == 2){
                         row += 1
                     }
                     else{
                         row += -1
                     }
                 } else if(row != 0){ //if on right side of maze
-                    var delWal = Int.random(in: 1...2)
-                    if(delWal == 1){
+                    let delWall = Int.random(in: 1...2)
+                    if(delWall == 1){
                         column += 1
                     } else {
                         row += -1
                     }
                 }
                 else{ //if on left side of maze
-                    var delWal = Int.random(in: 1...2)
-                    if(delWal == 1){
+                    let delWall = Int.random(in: 1...2)
+                    if(delWall == 1){
                         column += 1
                     } else {
                         row += 1
@@ -162,12 +162,13 @@ class GameScene: SKScene {
         //sets value set in 2dmaze in place
         var i = 0
         var j = 0
-        while(i <= 4){
-            while(j <= 4){
+        while(i < 4){
+            while(j < 4){
+                let location = ((i+1)*(j+1) - 1)
                 if(!TwoDmaze[i][j]){ //if not supposed to exist
-                    maze[(i+1)*(j+1) - 1].isHidden = true
+                    maze[location]!.isHidden = true
                 } else {
-                    maze[(i+1)*(j+1) - 1].isHidden = false
+                    maze[location]!.isHidden = false
                 }
                 j += 1
             }
