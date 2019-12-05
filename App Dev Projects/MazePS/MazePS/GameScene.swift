@@ -68,37 +68,20 @@ class GameScene: SKScene {
         mazeBckg.position.y = 0
         mazeBckg.size.height = 1334
         mazeBckg.size.width = 750
-        setupMaze()
+        //setupMaze()
     }
     //generates a maze
     func genMaze(){
         var i = 0
+        let rows = maze.count / mazeSize
         //actually makes maze
         while(i <= maze.count - 1){
             let wall = SKSpriteNode()
             wall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             //Takes screen size / width to make each piece one/(value set by "maze" at top) of the screen
-            var width: CGFloat = (UIScreen.main.bounds.width) / CGFloat(mazeSize)
-            var height: CGFloat = (UIScreen.main.bounds.height - 134) / CGFloat(mazeSize) //subtract so there's extra room on top+bottom of screen
-            width *= CGFloat(i+1)
-            let row = (Int(i/5))
-            if(row == 0){ //bottom row
-                height *= 1
-            }
-            else if(row == 1){ //second from bottom row
-                height *= 2
-            }
-            else if(row == 2){ //middle row
-                height *= 3
-            }
-            else if(row == 3){ //second from top row
-                height *= 4
-            }
-            else { //top row
-                height *= 5
-            }
+            let width: CGFloat = (UIScreen.main.bounds.width) / CGFloat(mazeSize)
+            let height: CGFloat = (UIScreen.main.bounds.height - 134) / CGFloat(mazeSize) //subtract so there's extra room on top+bottom of screen
             wall.position.y = 0
-            wall.position.x = 0
             wall.color = UIColor(ciColor: .black)
             wall.isHidden = false
             wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height))
@@ -106,9 +89,27 @@ class GameScene: SKScene {
             wall.physicsBody?.friction = 0
             wall.physicsBody?.isDynamic = false
             wall.zPosition = 4
+            //sets up x+y location based on row count and which row this is on
+            //x location
+            let xLoc: CGFloat = ((UIScreen.main.bounds.width) / CGFloat((mazeSize/2))) * CGFloat(i/mazeSize)
+            let yLoc: CGFloat = ((UIScreen.main.bounds.height - 134) / CGFloat(mazeSize/2)) * CGFloat(i/mazeSize)
+            if((i/mazeSize) > (mazeSize/2)){ //if positive on x
+                wall.position.x = xLoc
+            }
+            else{ //if negative on x
+                wall.position.x = -xLoc
+            }
+            //y location
             maze[i] = wall
             i += 1
+            if(i > ((mazeSize^2)/2)){ //if positive on y
+                wall.position.x = yLoc
+            }
+            else{ //if negative on y
+                wall.position.y = yLoc
+            }
         }
+        i = 0
         //adds all walls that were generated
         for wall in maze{
             if(wall != nil){ //failsafe (wall improperly generated)
@@ -162,8 +163,8 @@ class GameScene: SKScene {
         //sets value set in 2dmaze in place
         var i = 0
         var j = 0
-        while(i < 4){
-            while(j < 4){
+        while(i < mazeSize - 1){
+            while(j < mazeSize - 1){
                 let location = ((i+1)*(j+1) - 1)
                 if(!TwoDmaze[i][j]){ //if not supposed to exist
                     maze[location]!.isHidden = true
