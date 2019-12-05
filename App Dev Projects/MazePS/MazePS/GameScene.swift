@@ -73,7 +73,6 @@ class GameScene: SKScene {
     //generates a maze
     func genMaze(){
         var i = 0
-        let rows = maze.count / mazeSize
         //actually makes maze
         while(i <= maze.count - 1){
             let wall = SKSpriteNode()
