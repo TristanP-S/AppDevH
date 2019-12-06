@@ -74,7 +74,6 @@ class GameScene: SKScene {
     func genMaze(){
         var i = 0
         let halfMaze: Int = Int(mazeSize / 2) //halfMaze is just 1/2 of the maze. It is used to calculate a lot.
-        print("halfMaze: \(halfMaze)")
         //actually makes maze
         while(i <= maze.count - 1){
             //Takes screen size / width to make each piece one/(value set by "maze" at top) of the screen
@@ -90,6 +89,9 @@ class GameScene: SKScene {
             wall.physicsBody?.friction = 0
             wall.physicsBody?.affectedByGravity = false
             wall.physicsBody?.isDynamic = false
+            wall.physicsBody?.collisionBitMask = 0
+            wall.physicsBody?.contactTestBitMask = 0
+            wall.isHidden = true
             //sets up x+y location based on row count and which row this is on
             if((i%mazeSize) > halfMaze){ //if positive on x
                 //position set to 1/column # of positive side * column - 1/2(column #)
@@ -128,7 +130,7 @@ class GameScene: SKScene {
         var TwoDmaze = [Array](repeating: [Bool](repeating: true, count: mazeSize), count: mazeSize)
         var win = false
         var column = Int.random(in: 0...mazeSize - 1) // starts from random selection in bottom
-        var row = 0
+        var row = 0 //row 1 is the "bottom" because of how I developed my maze in actual maze
         //deletes certain walls to allow player through maze
         while(!win){
             //deleted wall selected
@@ -169,17 +171,28 @@ class GameScene: SKScene {
         var i = 0
         var j = 0
         var a = 0
-        while(i < mazeSize - 1){
-            while(j < mazeSize - 1){
-                let location = a
+        while(i < mazeSize){
+            j = 0
+            while(j < mazeSize){
+                //conversion from TwoDMaze(2d array) to maze(1d array)
+                var location = 0
+                if(a > (mazeSize * 2)){
+                    location = a
+                }
+                else if(a < mazeSize){ //row 0 in maze, row 1 in 2d
+                    location = j + mazeSize
+                }
+                else{ //row 1 in maze, row 0 in 2d
+                    location = j
+                }
                 if(!TwoDmaze[i][j]){ //if not supposed to exist
                     maze[location]!.isHidden = true
-                    //maze[location]!.physicsBody?.collisionBitMask = 0
-                    //maze[location]!.physicsBody?.contactTestBitMask = 0
+                    maze[location]!.physicsBody?.collisionBitMask = 0
+                    maze[location]!.physicsBody?.contactTestBitMask = 0
                 } else {
                     maze[location]!.isHidden = false
-                    //maze[location]!.physicsBody?.collisionBitMask = 1
-                    //maze[location]!.physicsBody?.contactTestBitMask = 1
+                    maze[location]!.physicsBody?.collisionBitMask = 1
+                    maze[location]!.physicsBody?.contactTestBitMask = 1
                 }
                 a += 1
                 j += 1
