@@ -68,7 +68,7 @@ class GameScene: SKScene {
         mazeBckg.position.y = 0
         mazeBckg.size.height = 1334
         mazeBckg.size.width = 760
-        //setupMaze() //actually sets up a real maze
+        setupMaze() //actually sets up a real maze
     }
     //generates a maze
     func genMaze(){
@@ -104,15 +104,12 @@ class GameScene: SKScene {
             }
             if(i/mazeSize > halfMaze){ //if positive on y
                 wall.position.y = CGFloat((500 / halfMaze) * ((i / mazeSize) / 2))
-                print("plus: \(wall.position.y)")
             }
             else if(i/mazeSize == 0){ //if middle of x(0), only for odd# sizes
                 wall.position.y = 0
-                print("0")
             }
             else{ //if negative on y
                 wall.position.y = -CGFloat((500 / halfMaze) * (((i / mazeSize) / 2) + 1))
-                print("minus: \(wall.position.y)")
             }
             //adds wall to maze array
             maze[i] = wall
@@ -130,40 +127,40 @@ class GameScene: SKScene {
         //makes 5*5 maze all set to true
         var TwoDmaze = [Array](repeating: [Bool](repeating: true, count: mazeSize), count: mazeSize)
         var win = false
-        var row = Int.random(in: 0...mazeSize - 1) // starts from bottom
-        var column = 0
+        var column = Int.random(in: 0...mazeSize - 1) // starts from random selection in bottom
+        var row = 0
         //deletes certain walls to allow player through maze
         while(!win){
             //deleted wall selected
             TwoDmaze[row][column] = false
-            if(column == 4){ // if top row
+            if(row == mazeSize - 1){ // if top row
                 win = true
             } else { //if not top row (end)
-                if(row != 0 && row != 4){ //if not on sides of maze
+                if(column != 0 && column != mazeSize - 1){ //if not on sides of maze
                     let delWall = Int.random(in: 1...3)
                     if(delWall == 1){
-                        column += 1
-                    }
-                    else if(delWall == 2){
                         row += 1
                     }
-                    else{
-                        row += -1
+                    else if(delWall == 2){
+                        column += 1
                     }
-                } else if(row != 0){ //if on right side of maze
+                    else{
+                        column += -1
+                    }
+                } else if(column != 0){ //if on right side of maze
                     let delWall = Int.random(in: 1...2)
                     if(delWall == 1){
-                        column += 1
+                        row += 1
                     } else {
-                        row += -1
+                        column += -1
                     }
                 }
                 else{ //if on left side of maze
                     let delWall = Int.random(in: 1...2)
                     if(delWall == 1){
-                        column += 1
-                    } else {
                         row += 1
+                    } else {
+                        column += 1
                     }
                 }
             }
@@ -171,18 +168,25 @@ class GameScene: SKScene {
         //sets value set in 2dmaze in place
         var i = 0
         var j = 0
+        var a = 0
         while(i < mazeSize - 1){
             while(j < mazeSize - 1){
-                let location = ((i+1)*(j+1) - 1)
+                let location = a
                 if(!TwoDmaze[i][j]){ //if not supposed to exist
                     maze[location]!.isHidden = true
+                    //maze[location]!.physicsBody?.collisionBitMask = 0
+                    //maze[location]!.physicsBody?.contactTestBitMask = 0
                 } else {
                     maze[location]!.isHidden = false
+                    //maze[location]!.physicsBody?.collisionBitMask = 1
+                    //maze[location]!.physicsBody?.contactTestBitMask = 1
                 }
+                a += 1
                 j += 1
             }
             i += 1
         }
+        print(TwoDmaze)
     }
     //makes a basic alert with an ok button and presents it
     func makeAlert(message: String){
