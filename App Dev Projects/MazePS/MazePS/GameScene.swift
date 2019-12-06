@@ -68,11 +68,10 @@ class GameScene: SKScene {
         mazeBckg.position.y = 0
         mazeBckg.size.height = 1334
         mazeBckg.size.width = 760
-        //setupMaze()
+        //setupMaze() //actually sets up a real maze
     }
     //generates a maze
     func genMaze(){
-        print(maze.count)
         var i = 0
         //actually makes maze
         while(i <= maze.count - 1){
@@ -80,17 +79,21 @@ class GameScene: SKScene {
             let width: CGFloat = 750 / CGFloat(mazeSize)
             let height: CGFloat = 25 //set size because it works better, causes issues w/ small screens + large mazes
             let wall = SKSpriteNode(color: .black, size: CGSize(width: width, height: height))
+            wall.name = "wall\(i)"
             wall.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
             wall.isHidden = false
             wall.zPosition = 4
             wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height))
             wall.physicsBody?.restitution = 0
             wall.physicsBody?.friction = 0
-            wall.physicsBody?.isDynamic = false
+            wall.physicsBody?.affectedByGravity = true
+            wall.physicsBody?.isDynamic = true
             //sets up x+y location based on row count and which row this is on
             //locations (ONLY positive)
-            let xLoc: CGFloat = (mazeBckg.size.width / CGFloat((mazeSize/2))) * CGFloat(i/mazeSize)
-            let yLoc: CGFloat = (mazeBckg.size.height / CGFloat(mazeSize/2)) * CGFloat(i/mazeSize)
+            let xLoc: CGFloat = CGFloat(1)
+            print("x: \(xLoc)")
+            let yLoc: CGFloat = CGFloat(1)
+            print(yLoc)
             if((i/mazeSize) > (mazeSize/2)){ //if positive on x
                 wall.position.x = xLoc
             }
@@ -113,6 +116,7 @@ class GameScene: SKScene {
             addChild(wall!)
             }
         }
+        print(maze)
     }
     //sets up the generated maze
     func setupMaze(){
