@@ -14,7 +14,7 @@ var selected = -1
 var winner = false
 var gameScene = GameScene()
 var gameVC = GameViewController()
-var mazeSize: Int = 11
+var mazeSize: Int = 5
 var delIndexes: [Int] = []
 var highScore = 99999999999
 class GameScene: SKScene {
