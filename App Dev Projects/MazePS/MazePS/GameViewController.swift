@@ -5,7 +5,7 @@
 //  Created by Tristan Pudell-Spatscheck on 11/26/19.
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
 //
-//PLEASE NOTE FOR MUSIC TO WORK YOU MIGHT HAVE TO CLICK 'SOS.mp3' and change its 'full path' to its location in the project folder for music to work
+//PLEASE NOTE FOR MUSIC TO WORK YOU MIGHT HAVE TO CLICK 'SOS.mp3' and change its 'full path' to its location in the project folder for music to work, also only odd numbered values for length/width work
 import UIKit
 import SpriteKit
 import GameplayKit

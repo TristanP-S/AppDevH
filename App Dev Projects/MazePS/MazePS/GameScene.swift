@@ -73,10 +73,12 @@ class GameScene: SKScene {
     //generates a maze
     func genMaze(){
         var i = 0
+        let halfMaze: Int = Int(mazeSize / 2) //halfMaze is just 1/2 of the maze. It is used to calculate a lot.
+        print("halfMaze: \(halfMaze)")
         //actually makes maze
         while(i <= maze.count - 1){
             //Takes screen size / width to make each piece one/(value set by "maze" at top) of the screen
-            let width: CGFloat = 750 / CGFloat(mazeSize)
+            let width: CGFloat = 760 / CGFloat(mazeSize)
             let height: CGFloat = 25 //set size because it works better, causes issues w/ small screens + large mazes
             let wall = SKSpriteNode(color: .black, size: CGSize(width: width, height: height))
             wall.name = "wall\(i)"
@@ -86,25 +88,31 @@ class GameScene: SKScene {
             wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height))
             wall.physicsBody?.restitution = 0
             wall.physicsBody?.friction = 0
-            wall.physicsBody?.affectedByGravity = true
-            wall.physicsBody?.isDynamic = true
+            wall.physicsBody?.affectedByGravity = false
+            wall.physicsBody?.isDynamic = false
             //sets up x+y location based on row count and which row this is on
-            //locations (ONLY positive)
-            let xLoc: CGFloat = CGFloat(1)
-            print("x: \(xLoc)")
-            let yLoc: CGFloat = CGFloat(1)
-            print(yLoc)
-            if((i/mazeSize) > (mazeSize/2)){ //if positive on x
-                wall.position.x = xLoc
+            if((i%mazeSize) > halfMaze){ //if positive on x
+                //position set to 1/column # of positive side * column - 1/2(column #)
+                wall.position.x = CGFloat((355 / halfMaze) * ((i % mazeSize) - halfMaze))
+            }
+            else if((i % mazeSize) == 0){ //if middle of x (0), only for odd # sizes
+                wall.position.x = 0
             }
             else{ //if negative on x
-                wall.position.x = -xLoc
+                //position set to 1/column # of negative side * column
+                wall.position.x = -1 * CGFloat((355 / halfMaze) * (i % mazeSize))
             }
-            if(i > ((mazeSize^2)/2)){ //if positive on y
-                wall.position.x = yLoc
+            if(i/mazeSize > halfMaze){ //if positive on y
+                wall.position.y = CGFloat((500 / halfMaze) * ((i / mazeSize) / 2))
+                print("plus: \(wall.position.y)")
+            }
+            else if(i/mazeSize == 0){ //if middle of x(0), only for odd# sizes
+                wall.position.y = 0
+                print("0")
             }
             else{ //if negative on y
-                wall.position.y = yLoc
+                wall.position.y = -CGFloat((500 / halfMaze) * (((i / mazeSize) / 2) + 1))
+                print("minus: \(wall.position.y)")
             }
             //adds wall to maze array
             maze[i] = wall
@@ -116,7 +124,6 @@ class GameScene: SKScene {
             addChild(wall!)
             }
         }
-        print(maze)
     }
     //sets up the generated maze
     func setupMaze(){
