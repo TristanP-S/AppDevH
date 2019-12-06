@@ -15,6 +15,7 @@ var winner = false
 var gameScene = GameScene()
 var gameVC = GameViewController()
 var mazeSize: Int = 5
+var delIndexes: [Int] = []
 class GameScene: SKScene {
     //MARK - Nodes
     var mazeBckg = SKSpriteNode()
@@ -126,6 +127,8 @@ class GameScene: SKScene {
     }
     //sets up the generated maze
     func setupMaze(){
+        //sets delIndex to clear so only newly deleted indexes will be affected.
+        delIndexes = []
         //makes 5*5 maze all set to true
         var TwoDmaze = [Array](repeating: [Bool](repeating: true, count: mazeSize), count: mazeSize)
         var win = false
@@ -176,7 +179,7 @@ class GameScene: SKScene {
             while(j < mazeSize){
                 //conversion from TwoDMaze(2d array) to maze(1d array)
                 var location = 0
-                if(a > (mazeSize * 2)){
+                if(a >= (mazeSize * 2)){
                     location = a
                 }
                 else if(a < mazeSize){ //row 0 in maze, row 1 in 2d
@@ -187,19 +190,15 @@ class GameScene: SKScene {
                 }
                 if(!TwoDmaze[i][j]){ //if not supposed to exist
                     maze[location]!.isHidden = true
-                    maze[location]!.physicsBody?.collisionBitMask = 0
-                    maze[location]!.physicsBody?.contactTestBitMask = 0
+                    delIndexes.append(location)
                 } else {
                     maze[location]!.isHidden = false
-                    maze[location]!.physicsBody?.collisionBitMask = 1
-                    maze[location]!.physicsBody?.contactTestBitMask = 1
                 }
                 a += 1
                 j += 1
             }
             i += 1
         }
-        print(TwoDmaze)
     }
     //makes a basic alert with an ok button and presents it
     func makeAlert(message: String){
@@ -238,6 +237,9 @@ class GameScene: SKScene {
         }
         if(!winner){
         timeLbl.text = "Time: \(Int(time))"
+        }
+        for index in delIndexes{
+            maze[index]!.physicsBody = nil
         }
     }
 }
