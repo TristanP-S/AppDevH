@@ -14,8 +14,9 @@ var selected = -1
 var winner = false
 var gameScene = GameScene()
 var gameVC = GameViewController()
-var mazeSize: Int = 5
+var mazeSize: Int = 11
 var delIndexes: [Int] = []
+var highScore = 99999999999
 class GameScene: SKScene {
     //MARK - Nodes
     var mazeBckg = SKSpriteNode()
@@ -230,9 +231,14 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         time += 1/60
-        if(player.position.y > 605){
+        if(player.position.y > 505){
             winner = true
-            makeAlert(message: "You beat the Maze with a time of \(Int(time)) seeconds!")
+            if(Int(time) < highScore){
+            makeAlert(message: "You beat the Maze with a time of \(Int(time)) seeconds and set a new highschore!")
+            }
+            else{
+               makeAlert(message: "You beat the Maze with a time of \(Int(time)) seeconds, but didn't beat you highschore of \(highScore)!")
+            }
             self.nextLv()
         }
         if(!winner){

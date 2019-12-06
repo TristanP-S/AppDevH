@@ -5,7 +5,10 @@
 //  Created by Tristan Pudell-Spatscheck on 11/26/19.
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
 //
-//PLEASE NOTE FOR MUSIC TO WORK YOU MIGHT HAVE TO CLICK 'SOS.mp3' and change its 'full path' to its location in the project folder for music to work, also only odd numbered values for length/width work
+/*PLEASE NOTE FOR MUSIC TO WORK YOU MIGHT HAVE TO CLICK 'SOS.mp3' and change its 'full path' to its location in the project folder for music to work, also only odd numbered values for length/width work (in the scrapped settings menu)
+ Notes for grading: The rubric didn't ask for a proper 'maze' algorithm, so I attempted to build my own, which didn't go to well due to me not figuring out my own (without help from the internet) in the time constraints, but this still classifies as a maze. It fufills fluid movement + no weird wall interactions, which are the only things similar to that. In terms of extra stuff, highscore is included, but only in alerts. Multiple levels / Mazes is also included, as every time a maze is beat, or the app is loaded it generates a new 'maze'.
+ 
+ */
 import UIKit
 import SpriteKit
 import GameplayKit
