@@ -26,15 +26,15 @@ class GameScene: SKScene {
         ball.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100))
         disableDefaults(sprite: ball)
         pin1 = self.childNode(withName: "pin1") as! SKSpriteNode
-        pin2 = self.childNode(withName: "pin1") as! SKSpriteNode
-        pin3 = self.childNode(withName: "pin1") as! SKSpriteNode
-        pin4 = self.childNode(withName: "pin1") as! SKSpriteNode
-        pin5 = self.childNode(withName: "pin1") as! SKSpriteNode
-        pin6 = self.childNode(withName: "pin1") as! SKSpriteNode
-        pin7 = self.childNode(withName: "pin1") as! SKSpriteNode
-        pin8 = self.childNode(withName: "pin1") as! SKSpriteNode
-        pin9 = self.childNode(withName: "pin1") as! SKSpriteNode
-        pin10 = self.childNode(withName: "pin1") as! SKSpriteNode
+        pin2 = self.childNode(withName: "pin2") as! SKSpriteNode
+        pin3 = self.childNode(withName: "pin3") as! SKSpriteNode
+        pin4 = self.childNode(withName: "pin4") as! SKSpriteNode
+        pin5 = self.childNode(withName: "pin5") as! SKSpriteNode
+        pin6 = self.childNode(withName: "pin6") as! SKSpriteNode
+        pin7 = self.childNode(withName: "pin7") as! SKSpriteNode
+        pin8 = self.childNode(withName: "pin8") as! SKSpriteNode
+        pin9 = self.childNode(withName: "pin9") as! SKSpriteNode
+        pin10 = self.childNode(withName: "pin10") as! SKSpriteNode
         //sets up border of screen as border
         let border = SKPhysicsBody(edgeLoopFrom: self.frame)
         border.friction = 0
@@ -49,13 +49,13 @@ class GameScene: SKScene {
         pinSetup(pin: pin1, xPos: 0, yPos: 0)
         pinSetup(pin: pin2, xPos: -100, yPos: 160)
         pinSetup(pin: pin3, xPos: 100, yPos: 160)
-        pinSetup(pin: pin4, xPos: -250, yPos: 300)
+        pinSetup(pin: pin4, xPos: -200, yPos: 300)
         pinSetup(pin: pin5, xPos: 0, yPos: 300)
-        pinSetup(pin: pin6, xPos: 250, yPos: 300)
-        pinSetup(pin: pin7, xPos: -300, yPos: 500)
-        pinSetup(pin: pin8, xPos: -100, yPos: 500)
-        pinSetup(pin: pin9, xPos: 100, yPos: 500)
-        pinSetup(pin: pin10, xPos: 300, yPos: 500)
+        pinSetup(pin: pin6, xPos: 200, yPos: 300)
+        pinSetup(pin: pin7, xPos: -280, yPos: 450)
+        pinSetup(pin: pin8, xPos: -100, yPos: 450)
+        pinSetup(pin: pin9, xPos: 100, yPos: 450)
+        pinSetup(pin: pin10, xPos: 280, yPos: 450)
     }
     //used to make resetPins concise (actual setup per pin)
     func pinSetup(pin: SKSpriteNode, xPos: CGFloat, yPos: CGFloat){
