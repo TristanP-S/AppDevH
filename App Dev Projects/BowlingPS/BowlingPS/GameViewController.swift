@@ -9,12 +9,18 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class GameViewController: UIViewController {
-
+    //MARK - Variables
+    //music Player
+    var musicPlayer : AVAudioPlayer = AVAudioPlayer()
+    //MARK - Loading
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        //Loads scene
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
@@ -31,7 +37,20 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
-
+    //MARK - Normal Functions
+    //sets song to title given
+    func playSong(song: String){
+        musicPlayer.stop()
+            do{
+                let song1 = Bundle.main.path(forResource: song, ofType: "mp3")
+                try musicPlayer = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: song1!) as URL)
+            } catch {
+                print("NO SONG FILE for \(song)")
+            }
+            musicPlayer.numberOfLoops = -1
+            musicPlayer.play()
+    }
+    //MARK - Default
     override var shouldAutorotate: Bool {
         return true
     }
