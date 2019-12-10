@@ -26,6 +26,7 @@ class GameScene: SKScene {
         gameSC = self
         ball = self.childNode(withName: "bowlingBall") as! SKSpriteNode
         ball.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100))
+        ball.physicsBody?.mass = 10
         disableDefaults(sprite: ball)
         pin1 = self.childNode(withName: "pin1") as! SKSpriteNode
         pin2 = self.childNode(withName: "pin2") as! SKSpriteNode
@@ -68,6 +69,7 @@ class GameScene: SKScene {
         pin.zRotation = 0
         pin.texture = SKTexture(imageNamed: "bowlingPin")
         pin.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+        pin.physicsBody?.mass = 1
         disableDefaults(sprite: pin)
     }
     //disables some default physics stuff that isn't needed
@@ -84,6 +86,8 @@ class GameScene: SKScene {
     func moveBall(change: CGPoint){
         print("x: \(change.x)")
         print("y: \(change.y)")
+        //moves ball based on change
+        ball.physicsBody?.applyForce(CGVector(dx: CGFloat(0 + (500 * (change.x))), dy: CGFloat(0 + (500 * (change.y)))))
     }
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
