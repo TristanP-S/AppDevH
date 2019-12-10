@@ -11,7 +11,6 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 //MARK - Global Variables
-var rolling = false //wether ball is currently rolling
 var gameVC = GameViewController()
 class GameViewController: UIViewController {
     //MARK - Variables
