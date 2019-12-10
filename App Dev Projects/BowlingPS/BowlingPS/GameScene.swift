@@ -7,7 +7,8 @@
 //
 import SpriteKit
 import GameplayKit
-
+//MARK - Global Variables
+var gameSC = GameScene()
 class GameScene: SKScene {
     //MARK - Sprites
     var ball = SKSpriteNode()
@@ -22,6 +23,7 @@ class GameScene: SKScene {
     var pin9 = SKSpriteNode()
     var pin10 = SKSpriteNode()
     override func didMove(to view: SKView) {
+        gameSC = self
         ball = self.childNode(withName: "bowlingBall") as! SKSpriteNode
         ball.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100))
         disableDefaults(sprite: ball)
@@ -77,6 +79,11 @@ class GameScene: SKScene {
         sprite.physicsBody?.friction = 0
         sprite.physicsBody?.linearDamping = 0
         sprite.physicsBody?.angularDamping = 0
+    }
+    //moves ball in a direction
+    func moveBall(change: CGPoint){
+        print("x: \(change.x)")
+        print("y: \(change.y)")
     }
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
