@@ -130,7 +130,7 @@ class GameScene: SKScene {
                 points += -1
             }
         }
-        print("Points: \(points)")
+        gameVC.makeAlert(message: "You knocked down \(points) pins!")
         delPins()
         //resetBall() <- Broken, code below is a temp solution
         ball.position.x = 0

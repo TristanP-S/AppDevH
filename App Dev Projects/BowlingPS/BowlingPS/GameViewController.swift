@@ -68,6 +68,17 @@ class GameViewController: UIViewController {
             gameSC.moveBall(change: changePt)
         }
     }
+    //makes a basic alert with an ok button and presents it
+    func makeAlert(message: String){
+        let alertMessage = UIAlertController(title: message, message: nil, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "OK", style: .default) { action in
+            //call any needed functions here
+            print("OK pressed")
+            time = 0
+        }
+        alertMessage.addAction(okayAction)
+        gameVC.present(alertMessage, animated: true)
+    }
     //MARK - Default
     override var shouldAutorotate: Bool {
         return true
