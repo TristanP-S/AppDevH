@@ -58,17 +58,16 @@ class GameViewController: UIViewController {
     }
     //handles each swipe
     @objc func handlePan(recognizer: UISwipeGestureRecognizer) {
-    if recognizer.state == .began {
-        lastSwipeBeginningPoint = recognizer.location(in: recognizer.view)
-    } else if recognizer.state == .ended {
-        guard let startPt = lastSwipeBeginningPoint else { //start of swipe
-            return
+        if recognizer.state == .began {
+            lastSwipeBeginningPoint = recognizer.location(in: recognizer.view)
+        } else if recognizer.state == .ended {
+            guard let startPt = lastSwipeBeginningPoint else { //start of swipe
+                return
+            }
+            let endPt = recognizer.location(in: recognizer.view) //end of swipe
+            let changePt = CGPoint(x: endPt.x - startPt.x, y: startPt.y - endPt.y)
+            gameSC.moveBall(change: changePt)
         }
-        let endPt = recognizer.location(in: recognizer.view) //end of swipe
-        // TODO: use the x and y coordinates of endPoint and beginPoint to determine which direction the swipe occurred.
-        let changePt = CGPoint(x: endPt.x - startPt.x, y: startPt.y - endPt.y)
-        gameSC.moveBall(change: changePt)
-    }
     }
     //MARK - Default
     override var shouldAutorotate: Bool {
