@@ -10,20 +10,23 @@ import GameplayKit
 //MARK - Global Variables
 var rolling = false //wether ball is currently rolling
 var points: Int = 10
-var pins = [SKSpriteNode](repeating: SKSpriteNode(), count: 10)
 var gameSC = GameScene()
 var time: Double = 0
+var difficulty = 0 //easy mode (kid walls), 1 is hard mode (gutters)
 class GameScene: SKScene {
     //MARK - Variables
     var ball = SKSpriteNode()
     var locations: [CGPoint] = []
+    var pins = [SKSpriteNode](repeating: SKSpriteNode(), count: 10)
+    var gutterWall1 = SKSpriteNode()
+    var gutterWall2 = SKSpriteNode()
     override func didMove(to view: SKView) {
         gameSC = self
         //sets up sprite physics
         ball = self.childNode(withName: "bowlingBall") as! SKSpriteNode
         ball.texture = SKTexture(imageNamed: "bowlingBall")
         ball.physicsBody = SKPhysicsBody(circleOfRadius: 50)
-        ball.physicsBody?.mass = 5
+        ball.physicsBody?.mass = 20
         disableDefaults(sprite: ball)
         ball.physicsBody?.restitution = 1 // makes ball bounce off walls
         for i in 0...9{ //sets up pins
@@ -36,8 +39,35 @@ class GameScene: SKScene {
         border.restitution = 1 //makes ball bounce off walls
         border.isDynamic = false
         self.physicsBody = border
+        //sets up guttons/kid walls
+        gutterWall1 = self.childNode(withName: "gutterWall1") as! SKSpriteNode
+        gutterWall2 = self.childNode(withName: "gutterWall2") as! SKSpriteNode
+        setBorders(wall: gutterWall1, positive: false)
+        setBorders(wall: gutterWall2, positive: true)
         //sets up pins
         resetPins()
+    }
+    func setBorders(wall: SKSpriteNode, positive: Bool){
+        //sets up gutters / kid walls
+        wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 1340))
+        wall.size = CGSize(width: 50, height: 1334)
+        if(positive){
+            wall.position.x = 350
+        }
+        else{
+            wall.position.x = -350
+        }
+        wall.position.y = 0
+        disableDefaults(sprite: wall)
+        wall.physicsBody?.isDynamic = false
+        if(difficulty == 0){ //kid walls / easy mode
+            wall.color = UIColor(ciColor: .white)
+            wall.physicsBody?.restitution = 1
+        }
+        else{
+            wall.color = UIColor(ciColor: .white)
+            wall.physicsBody?.restitution = 0
+        }
     }
     //resets pins to original spots + sizes
     func resetPins(){
@@ -99,12 +129,20 @@ class GameScene: SKScene {
     }
     //moves ball in a direction
     func moveBall(change: CGPoint){
-        if(!rolling && change != CGPoint(x: 0, y: 0)){
-        print("x: \(change.x)")
-        print("y: \(change.y)")
-        //moves ball based on change and tells game it is "rollling"
-        ball.physicsBody?.applyForce(CGVector(dx: CGFloat(0 + (500 * (change.x))), dy: CGFloat(0 + (500 * (change.y)))))
-        rolling = true
+        var rChange: CGPoint = change
+        if(!rolling){
+            if(change.y <= 0 || (change == CGPoint(x: 0, y: 0))){
+                gameVC.makeAlert(message: "You need to fling the ball FORWARD")
+            }
+            else{
+            print("Force multiplyers; x: \(change.x) , y: \(change.y)")
+            if(change.y > 250){ //makes sure ball isn't too fast
+                rChange.y = 200
+            }
+            //moves ball based on change and tells game it is "rollling"
+            ball.physicsBody?.applyForce(CGVector(dx: CGFloat(0 + (5000 * (rChange.x))), dy: CGFloat(0 + (5000  * (rChange.y)))))
+            rolling = true
+            }
         }
     }    //"ends" round, resets balls to their original position
     func gameEnd(){
@@ -146,7 +184,7 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         if(rolling){ //if ball is at end, time is a failsafe if pins are weird
             time += 1/60
-            if(ball.position.y > 500 || time > 5){
+            if(((ball.position.y > 500 || time > 10) && difficulty == 0) || (time > 5 && difficulty == 1)){ //ball end condition based on difficulty
                 ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 gameEnd()
             }

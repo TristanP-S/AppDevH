@@ -5,7 +5,7 @@
 //  Created by Tristan Pudell-Spatscheck on 12/9/19.
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
 //
-
+//NOTE: Ball going straight forward makes pins + ball not move, but there's a timeout for problems like that
 import UIKit
 import SpriteKit
 import GameplayKit

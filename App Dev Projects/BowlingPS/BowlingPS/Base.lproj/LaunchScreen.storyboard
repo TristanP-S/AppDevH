@@ -14,7 +14,35 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bowling" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4K-Zs-XgI">
+                                <rect key="frame" x="86" y="300.5" width="203" height="66"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="55"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By: Tristan P.-S." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uw8-aE-imd">
+                                <rect key="frame" x="97.5" y="376.5" width="180" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHK-39-klW">
+                                <rect key="frame" x="150" y="416.5" width="75" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="F4K-Zs-XgI" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="24m-oZ-I28"/>
+                            <constraint firstItem="F4K-Zs-XgI" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="AzO-aj-8w0"/>
+                            <constraint firstItem="oHK-39-klW" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="DUc-f4-57f"/>
+                            <constraint firstItem="oHK-39-klW" firstAttribute="top" secondItem="uw8-aE-imd" secondAttribute="bottom" constant="10" id="XTp-dn-SVH"/>
+                            <constraint firstItem="uw8-aE-imd" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="ieM-Le-t7i"/>
+                            <constraint firstItem="uw8-aE-imd" firstAttribute="top" secondItem="F4K-Zs-XgI" secondAttribute="bottom" constant="10" id="rtf-dS-Py9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
