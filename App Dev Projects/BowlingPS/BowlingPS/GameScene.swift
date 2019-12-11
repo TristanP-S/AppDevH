@@ -52,25 +52,7 @@ class GameScene: SKScene {
         //sets up pins
         resetPins()
     }
-    //moves ball in a direction
-    func moveBall(change: CGPoint){
-        var rChange: CGPoint = change
-        if(!rolling){
-            if(change.y <= 0 || (change == CGPoint(x: 0, y: 0))){
-                gameVC.makeAlert(message: "You need to fling the ball FORWARD")
-            }
-            else{
-            print("Force multiplyers; x: \(change.x) , y: \(change.y)")
-            if(change.y > 250){ //makes sure ball isn't too fast
-                rChange.y = 200
-            }
-            //moves ball based on change and tells game it is "rollling"
-            ball.physicsBody?.applyForce(CGVector(dx: CGFloat(0 + (5000 * (rChange.x))), dy: CGFloat(0 + (5000  * (rChange.y)))))
-            rolling = true
-            animateBall = true
-            }
-        }
-    }
+    //MARK - Normal Functions
     //collision detection for gutters (uses zPos to set ball to firstBody)
     func didBeginContact(contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
@@ -87,9 +69,30 @@ class GameScene: SKScene {
                 print ("Contact detected")
         }
     }
+    //moves ball in a direction
+    func moveBall(change: CGPoint){
+        var rChange: CGPoint = change
+        if(!rolling){
+            if(change.y <= 0 || (change == CGPoint(x: 0, y: 0))){
+                gameVC.makeAlert(message: "You need to fling the ball FORWARD")
+            }
+            else{
+            print("Force multiplyers; x: \(change.x) , y: \(change.y)")
+            if(change.y > 250){ //makes sure ball isn't too fast
+                rChange.y = 200
+                
+            }
+            //moves ball based on change and tells game it is "rollling"
+            ball.physicsBody?.applyForce(CGVector(dx: CGFloat(0 + (5000 * (rChange.x))), dy: CGFloat(0 + (5000  * (rChange.y)))))
+            rolling = true
+            animateBall = true
+            }
+        }
+    }
     func setBall(){ //sets up ball's physics body
         ball.texture = SKTexture(imageNamed: "bowlingBall")
-        ball.physicsBody = SKPhysicsBody(circleOfRadius: 50)
+        ball.physicsBody = SKPhysicsBody(circleOfRadius: 37.5)
+        ball.size = CGSize(width: 75, height: 75)
         ball.physicsBody?.mass = 20
         disableDefaults(sprite: ball)
         ball.physicsBody?.restitution = 1 // makes ball bounce off walls
@@ -106,12 +109,12 @@ class GameScene: SKScene {
         var moveToTop = SKAction()
         var moveToBottom = SKAction()
         if(ball.position.x > 0){ //goes right if ball on right
-            moveToTop = SKAction.move(to: CGPoint(x: 300, y: 550), duration: 3)
-            moveToBottom = SKAction.move(to: CGPoint(x: 300, y: -550), duration: 3)
+            moveToTop = SKAction.move(to: CGPoint(x: 335, y: 600), duration: 3)
+            moveToBottom = SKAction.move(to: CGPoint(x: 335, y: -550), duration: 3)
         }
         else{ //goes left if ball on left
-            moveToTop = SKAction.move(to: CGPoint(x: -300, y: 550), duration: 3)
-            moveToBottom = SKAction.move(to: CGPoint(x: -300, y: -550), duration: 3)
+            moveToTop = SKAction.move(to: CGPoint(x: -335, y: 600), duration: 3)
+            moveToBottom = SKAction.move(to: CGPoint(x: -335, y: -550), duration: 3)
         }
         let moveToStart = SKAction.move(to: CGPoint(x: 0, y: -535), duration: 3)
         ball.physicsBody = nil
@@ -121,8 +124,8 @@ class GameScene: SKScene {
     //helps set up borders based on settings
     func setBorders(wall: SKSpriteNode, positive: Bool){
         //sets up gutters / kid walls
-        wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 1340))
-        wall.size = CGSize(width: 50, height: 1334)
+        wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 1340))
+        wall.size = CGSize(width: 100, height: 1334)
         if(positive){
             wall.position.x = 350
         }
@@ -148,26 +151,26 @@ class GameScene: SKScene {
     }
     //resets pins to original spots + sizes
     func resetPins(){
-        pinSetup(pin: pins[0], xPos: 0, yPos: 0)
-        pinSetup(pin: pins[1], xPos: -100, yPos: 160)
-        pinSetup(pin: pins[2], xPos: 100, yPos: 160)
-        pinSetup(pin: pins[3], xPos: -200, yPos: 300)
-        pinSetup(pin: pins[4], xPos: 0, yPos: 300)
-        pinSetup(pin: pins[5], xPos: 200, yPos: 300)
-        pinSetup(pin: pins[6], xPos: -280, yPos: 450)
-        pinSetup(pin: pins[7], xPos: -100, yPos: 450)
-        pinSetup(pin: pins[8], xPos: 100, yPos: 450)
-        pinSetup(pin: pins[9], xPos: 280, yPos: 450)
+        pinSetup(pin: pins[0], xPos: 0, yPos: 100)
+        pinSetup(pin: pins[1], xPos: -70, yPos: 250)
+        pinSetup(pin: pins[2], xPos: 70, yPos: 250)
+        pinSetup(pin: pins[3], xPos: -140, yPos: 400)
+        pinSetup(pin: pins[4], xPos: 0, yPos: 400)
+        pinSetup(pin: pins[5], xPos: 140, yPos: 400)
+        pinSetup(pin: pins[6], xPos: -210, yPos: 550)
+        pinSetup(pin: pins[7], xPos: -70, yPos: 550)
+        pinSetup(pin: pins[8], xPos: 70, yPos: 550)
+        pinSetup(pin: pins[9], xPos: 210, yPos: 550)
     }
     //used to make resetPins concise (actual setup per pin)
     func pinSetup(pin: SKSpriteNode, xPos: CGFloat, yPos: CGFloat){
         pin.position.x = xPos
         pin.position.y = yPos
-        pin.size.width = 50
-        pin.size.height = 100
+        pin.size.width = 40
+        pin.size.height = 80
         pin.zRotation = 0
         pin.texture = SKTexture(imageNamed: "bowlingPin")
-        pin.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 100))
+        pin.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 40, height: 80))
         pin.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         pin.physicsBody?.mass = 1
         disableDefaults(sprite: pin)
@@ -230,10 +233,10 @@ class GameScene: SKScene {
         if(rolling){ //if ball is at end, time is a failsafe if pins are weird
             time += 1/60
             //checks the boolean values
-            pos5 = ball.position.y > 500
+            pos5 = ball.position.y > 575
             if(!pos5){ //short circuit
                 if(difficulty == 0){
-                    td = time > 10
+                    td = time > 8
                 }
                 else{
                     td = time > 5
