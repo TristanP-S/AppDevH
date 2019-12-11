@@ -13,14 +13,18 @@ var points: Int = 10
 var gameSC = GameScene()
 var time: Double = 0
 var difficulty = 0 // 0: easy mode (kid walls), 1: hard mode (gutters)
+var scorePos = 0
 class GameScene: SKScene {
     //MARK - Variables
     var td: Bool = false
     var pos5: Bool = false
     var animateBall = false
     var ball = SKSpriteNode()
+    var bowlingSheet = SKSpriteNode()
     var locations: [CGPoint] = []
     var pins = [SKSpriteNode](repeating: SKSpriteNode(), count: 10)
+    var scores: [SKLabelNode] = [] //scores on top of bowlingSheet
+    var rScores: [SKLabelNode] = [] //scores on bottom of bowlingSheet
     var gutterWall1 = SKSpriteNode()
     var gutterWall2 = SKSpriteNode()
     let ballCategory: UInt32 = 0x1 << 1
@@ -31,6 +35,7 @@ class GameScene: SKScene {
         gameSC = self
         //sets up sprite physics
         ball = self.childNode(withName: "bowlingBall") as! SKSpriteNode
+        ball.position = CGPoint(x: 0, y: -500)
         setBall()
         for i in 0...9{ //sets up pins
             pins[i] = self.childNode(withName: "pin\(i+1)") as! SKSpriteNode
@@ -49,6 +54,24 @@ class GameScene: SKScene {
         gutterWall2 = self.childNode(withName: "gutterWall2") as! SKSpriteNode
         setBorders(wall: gutterWall1, positive: false)
         setBorders(wall: gutterWall2, positive: true)
+        //sets up score sheet
+        bowlingSheet.position = CGPoint(x: 0, y: -600)
+        bowlingSheet.texture = SKTexture(imageNamed: "bowlingSheet")
+        bowlingSheet.zPosition = 999999
+        bowlingSheet.size = CGSize(width: 500, height: 100)
+        for i in 0...20{
+            scores.append(SKLabelNode(text: "-"))
+            scores[i].fontSize = 30
+            scores[i].zPosition = 1000000
+            self.addChild(scores[i])
+        }
+        for i in 0...9{
+            rScores.append(SKLabelNode(text: "-"))
+            rScores[i].fontSize = 30
+            rScores[i].zPosition = 1000000
+            self.addChild(rScores[i])
+        }
+        setupScores()
         //sets up pins
         resetPins()
     }
@@ -116,7 +139,7 @@ class GameScene: SKScene {
             moveToTop = SKAction.move(to: CGPoint(x: -335, y: 600), duration: 3)
             moveToBottom = SKAction.move(to: CGPoint(x: -335, y: -550), duration: 3)
         }
-        let moveToStart = SKAction.move(to: CGPoint(x: 0, y: -535), duration: 3)
+        let moveToStart = SKAction.move(to: CGPoint(x: 0, y: -501), duration: 3)
         ball.physicsBody = nil
         let resetBall = SKAction.sequence([moveToTop, moveToBottom, moveToStart])
         ball.run(resetBall) //moves ball back to start
@@ -183,6 +206,48 @@ class GameScene: SKScene {
             pin.physicsBody = nil
         }
     }
+    func setupScores(){
+        for tScore in scores{ //for each element in top row of scores
+            tScore.text = "-"
+            tScore.color = UIColor(ciColor: .white)
+        }
+        //easiest way I found to set label position right
+        scores[0].position = CGPoint(x: -260, y: -620)
+        scores[1].position = CGPoint(x: -235, y: -620)
+        scores[2].position = CGPoint(x: -210, y: -620)
+        scores[3].position = CGPoint(x: -185, y: -620)
+        scores[4].position = CGPoint(x: -160, y: -620)
+        scores[5].position = CGPoint(x: -130, y: -620)
+        scores[6].position = CGPoint(x: -105, y: -620)
+        scores[7].position = CGPoint(x: -80, y: -620)
+        scores[8].position = CGPoint(x: -55, y: -620)
+        scores[9].position = CGPoint(x: -25, y: -620)
+        scores[10].position = CGPoint(x: 0, y: -620)
+        scores[11].position = CGPoint(x: 25, y: -620)
+        scores[12].position = CGPoint(x: 55, y: -620)
+        scores[13].position = CGPoint(x: 80, y: -620)
+        scores[14].position = CGPoint(x: 105, y: -620)
+        scores[15].position = CGPoint(x: 130, y: -620)
+        scores[16].position = CGPoint(x: 155, y: -620)
+        scores[17].position = CGPoint(x: 185, y: -620)
+        scores[18].position = CGPoint(x: 210, y: -620)
+        scores[19].position = CGPoint(x: 235, y: -620)
+        scores[20].position = CGPoint(x: 260, y: -620)
+        for bScore in rScores{ //for each element in bottom row of scores
+            bScore.text = "-"
+            bScore.color = UIColor(ciColor: .white)
+        }
+        rScores[0].position = CGPoint(x: -250, y: -660)
+        rScores[1].position = CGPoint(x: -195, y: -660)
+        rScores[2].position = CGPoint(x: -145, y: -660)
+        rScores[3].position = CGPoint(x: -92, y: -660)
+        rScores[4].position = CGPoint(x: -38, y: -660)
+        rScores[5].position = CGPoint(x: 14, y: -660)
+        rScores[6].position = CGPoint(x: 65, y: -660)
+        rScores[7].position = CGPoint(x: 118, y: -660)
+        rScores[8].position = CGPoint(x: 170, y: -660)
+        rScores[9].position = CGPoint(x: 240, y: -660)
+    }
     //disables some default physics stuff that isn't needed
     func disableDefaults(sprite: SKSpriteNode){
         sprite.isHidden = false
@@ -219,7 +284,9 @@ class GameScene: SKScene {
             }
         }
         gameVC.makeAlert(message: "You knocked down \(points) pins!")
+        scores[scorePos].text = String(points)
         delPins()
+        scorePos += 1
         //sets everything back to initial values
         resetBall()
         locations = []
@@ -249,7 +316,8 @@ class GameScene: SKScene {
                 gameEnd()
             }
         }
-        if(ball.position == CGPoint(x: 0, y: -535) && rolling){ //gives the ball its physics again after being reset
+        if(ball.position == CGPoint(x: 0, y: -501) && rolling){ //gives the ball its physics again after being reset
+            ball.position = CGPoint(x:0, y: -500)
             setBall()
         }
     }
