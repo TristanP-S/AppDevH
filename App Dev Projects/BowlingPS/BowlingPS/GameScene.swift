@@ -17,6 +17,7 @@ class GameScene: SKScene {
     //MARK - Variables
     var td: Bool = false
     var pos5: Bool = false
+    var animateBall = false
     var ball = SKSpriteNode()
     var locations: [CGPoint] = []
     var pins = [SKSpriteNode](repeating: SKSpriteNode(), count: 10)
@@ -66,6 +67,7 @@ class GameScene: SKScene {
             //moves ball based on change and tells game it is "rollling"
             ball.physicsBody?.applyForce(CGVector(dx: CGFloat(0 + (5000 * (rChange.x))), dy: CGFloat(0 + (5000  * (rChange.y)))))
             rolling = true
+            animateBall = true
             }
         }
     }
@@ -96,11 +98,11 @@ class GameScene: SKScene {
         ball.physicsBody?.collisionBitMask = wallCategory | pinCategory
         ball.zPosition = 2
         rolling = false
+        animateBall = false
     }
     //ball rolls to gutter to get back to start
     func resetBall(){
         ball.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
-        ball.physicsBody = nil
         var moveToTop = SKAction()
         var moveToBottom = SKAction()
         if(ball.position.x > 0){ //goes right if ball on right
@@ -108,10 +110,11 @@ class GameScene: SKScene {
             moveToBottom = SKAction.move(to: CGPoint(x: 300, y: -550), duration: 3)
         }
         else{ //goes left if ball on left
-            moveToTop = SKAction.move(to: CGPoint(x: 300, y: 550), duration: 3)
-            moveToBottom = SKAction.move(to: CGPoint(x: 300, y: -550), duration: 3)
+            moveToTop = SKAction.move(to: CGPoint(x: -300, y: 550), duration: 3)
+            moveToBottom = SKAction.move(to: CGPoint(x: -300, y: -550), duration: 3)
         }
         let moveToStart = SKAction.move(to: CGPoint(x: 0, y: -535), duration: 3)
+        ball.physicsBody = nil
         let resetBall = SKAction.sequence([moveToTop, moveToBottom, moveToStart])
         ball.run(resetBall) //moves ball back to start
     }
