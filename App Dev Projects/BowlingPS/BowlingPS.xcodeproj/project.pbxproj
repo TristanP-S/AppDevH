@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0243B81923A29BEE008E6814 /* bowlingFloor.png in Resources */ = {isa = PBXBuildFile; fileRef = 0243B81823A29BEE008E6814 /* bowlingFloor.png */; };
 		0258B1B323A2865700F32F31 /* gutter1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1B223A2865700F32F31 /* gutter1.mp4 */; };
 		0258B1B523A2865D00F32F31 /* gutter2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1B423A2865D00F32F31 /* gutter2.mp4 */; };
 		0258B1B723A2866500F32F31 /* 1pin1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1B623A2866500F32F31 /* 1pin1.mp4 */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0243B81823A29BEE008E6814 /* bowlingFloor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bowlingFloor.png; sourceTree = "<group>"; };
 		0258B1B223A2865700F32F31 /* gutter1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gutter1.mp4; sourceTree = "<group>"; };
 		0258B1B423A2865D00F32F31 /* gutter2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gutter2.mp4; sourceTree = "<group>"; };
 		0258B1B623A2866500F32F31 /* 1pin1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1pin1.mp4; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 		02B64AD723A273E00079AFFD /* Extra Assets */ = {
 			isa = PBXGroup;
 			children = (
+				0243B81823A29BEE008E6814 /* bowlingFloor.png */,
 				0258B1B223A2865700F32F31 /* gutter1.mp4 */,
 				0258B1B423A2865D00F32F31 /* gutter2.mp4 */,
 				0258B1B623A2866500F32F31 /* 1pin1.mp4 */,
@@ -328,6 +331,7 @@
 				02B8870B239EC3C900FFF53E /* GameScene.sks in Resources */,
 				02B88716239EC3CB00FFF53E /* Assets.xcassets in Resources */,
 				0258B1BD23A2867400F32F31 /* 4pin1.mp4 in Resources */,
+				0243B81923A29BEE008E6814 /* bowlingFloor.png in Resources */,
 				0258B1C123A2867E00F32F31 /* 6pin1.mp4 in Resources */,
 				0258B1CF23A2869F00F32F31 /* strike2.mp4 in Resources */,
 				0258B1C523A2868600F32F31 /* 8pin1.mp4 in Resources */,

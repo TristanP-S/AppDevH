@@ -29,6 +29,7 @@ class GameScene: SKScene {
     var rScores: [SKLabelNode] = [] //scores on bottom of bowlingSheet
     var gutterWall1 = SKSpriteNode()
     var gutterWall2 = SKSpriteNode()
+    var floor = SKSpriteNode()
     let ballCategory: UInt32 = 0x1 << 1
     let pinCategory: UInt32 = 0x1 << 2
     let gutterCategory: UInt32 = 0x1 << 3
@@ -59,21 +60,28 @@ class GameScene: SKScene {
         //sets up score sheet
         bowlingSheet.position = CGPoint(x: 0, y: -600)
         bowlingSheet.texture = SKTexture(imageNamed: "bowlingSheet")
-        bowlingSheet.zPosition = 999999
+        bowlingSheet.zPosition = 4
         bowlingSheet.size = CGSize(width: 500, height: 100)
         for i in 0...20{
             scores.append(SKLabelNode(text: "-"))
             scores[i].fontSize = 30
-            scores[i].zPosition = 1000000
+            scores[i].zPosition = 5
+            scores[i].fontColor = UIColor(ciColor: .black)
             self.addChild(scores[i])
         }
         for i in 0...9{
             rScores.append(SKLabelNode(text: "-"))
             rScores[i].fontSize = 30
-            rScores[i].zPosition = 1000000
+            rScores[i].zPosition = 5
+            rScores[i].fontColor = UIColor(ciColor: .black)
             self.addChild(rScores[i])
         }
         setupScores()
+        //sets up wood floor
+        floor = self.childNode(withName: "backgroundNode") as! SKSpriteNode
+        floor.zPosition = -1
+        floor.position = CGPoint(x: 0, y: 0)
+        floor.size = CGSize(width: 750, height: 1334)
         //sets up pins
         resetPins()
     }
@@ -149,7 +157,7 @@ class GameScene: SKScene {
     //helps set up borders based on settings
     func setBorders(wall: SKSpriteNode, positive: Bool){
         //sets up gutters / kid walls
-        wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 1340))
+        wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 1334))
         wall.size = CGSize(width: 100, height: 1334)
         if(positive){
             wall.position.x = 350
@@ -162,13 +170,13 @@ class GameScene: SKScene {
         disableDefaults(sprite: wall)
         wall.physicsBody?.isDynamic = false
         if(difficulty == 0){ //kid walls / easy mode
-            wall.color = UIColor(ciColor: .white)
+            wall.color = UIColor(ciColor: .gray)
             wall.physicsBody?.restitution = 1
             wall.physicsBody?.categoryBitMask = wallCategory
             wall.physicsBody?.collisionBitMask = wallCategory
         }
         else{
-            wall.color = UIColor(ciColor: .red)
+            wall.color = UIColor(ciColor: .gray)
             wall.physicsBody?.restitution = 0
             wall.physicsBody?.categoryBitMask = gutterCategory
             wall.physicsBody?.contactTestBitMask = ballCategory //only needed for gutters
@@ -211,7 +219,6 @@ class GameScene: SKScene {
     func setupScores(){
         for tScore in scores{ //for each element in top row of scores
             tScore.text = "-"
-            tScore.color = UIColor(ciColor: .white)
         }
         //easiest way I found to set label position right
         scores[0].position = CGPoint(x: -260, y: -620)
@@ -237,7 +244,6 @@ class GameScene: SKScene {
         scores[20].position = CGPoint(x: 260, y: -620)
         for bScore in rScores{ //for each element in bottom row of scores
             bScore.text = "-"
-            bScore.color = UIColor(ciColor: .white)
         }
         rScores[0].position = CGPoint(x: -250, y: -660)
         rScores[1].position = CGPoint(x: -195, y: -660)
@@ -265,6 +271,7 @@ class GameScene: SKScene {
     //disables some default physics stuff that isn't needed
     func disableDefaults(sprite: SKSpriteNode){
         sprite.isHidden = false
+        sprite.zPosition = 1
         sprite.physicsBody?.affectedByGravity = false
         sprite.physicsBody?.allowsRotation = true
         sprite.physicsBody?.isDynamic = true
