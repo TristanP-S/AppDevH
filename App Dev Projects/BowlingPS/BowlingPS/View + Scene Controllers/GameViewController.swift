@@ -5,7 +5,13 @@
 //  Created by Tristan Pudell-Spatscheck on 12/9/19.
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
 //
-//NOTES: Ball  may make pins + ball keep floating and not end the game, but there's a timeout for problems like that, Ball takes 2 swipes after the first throw to work properly (no fix atm), ONLY tested on iPhone 8, might have issues on others, sometimes an extra pin or two is spawned after this first "turn" in a block
+/* NOTES/BUGS
+ -Ball  may make pins + ball keep floating and not end the game, but there's a timeout for problems like that,
+ -Ball takes 2 swipes after the first throw to work properly (no fix atm)
+ -ONLY tested on iPhone 8 emulator and real iPhone 7, might have issues on others
+ -Sometimes an extra pin or two is spawned after this first "turn" in a block
+ -I gave up on animating the ball, but the remenants are still there
+ */
 import UIKit
 import SpriteKit
 import GameplayKit
@@ -19,6 +25,7 @@ class GameViewController: UIViewController {
     var musicPlayer : AVAudioPlayer = AVAudioPlayer()
     var panRec : UIPanGestureRecognizer!
     var lastSwipeBeginningPoint: CGPoint?
+    @IBOutlet weak var diffButton: UIButton!
     //MARK - Loading
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +100,30 @@ class GameViewController: UIViewController {
     //closes video when finished playing
     @objc func vidDone(){
         dismiss(animated: true, completion: nil)
+    }
+    //difficulty changed
+    @IBAction func changeDiff(_ sender: Any) {
+        if(difficulty == 0){
+            difficulty = 1
+            diffButton.setTitle("Difficulty: Normal", for: .normal)
+        }
+        else{
+            difficulty = 0
+            diffButton.setTitle("Difficulty: Child", for: .normal)
+        }
+        totalPoints = 0
+        points = 10
+        time = 0
+        rolling = false
+        gameSC.spare = false
+        gameSC.locations = []
+        scorePos = 0
+        rScorePos = 0
+        gameSC.setupScores()
+        gameSC.setBall()
+        gameSC.setBorders(wall: gameSC.gutterWall1, positive: true)
+        gameSC.setBorders(wall: gameSC.gutterWall2, positive: false)
+        gameSC.resetPins()
     }
     //MARK - Default
     override var shouldAutorotate: Bool {

@@ -20,6 +20,7 @@ class GameScene: SKScene {
     //MARK - Variables
     var td: Bool = false
     var pos5: Bool = false
+    var spare = false
     var animateBall = false
     var ball = SKSpriteNode()
     var bowlingSheet = SKSpriteNode()
@@ -162,9 +163,21 @@ class GameScene: SKScene {
         wall.size = CGSize(width: 100, height: 1334)
         if(positive){
             wall.position.x = 350
+            if(difficulty == 0){
+                wall.texture = SKTexture(imageNamed: "kidRight")
+            }
+            else{
+                wall.texture = SKTexture(imageNamed: "gutterLeft")
+            }
         }
         else{
             wall.position.x = -350
+            if(difficulty == 0){
+                wall.texture = SKTexture(imageNamed: "kidLeft")
+            }
+            else{
+                wall.texture = SKTexture(imageNamed: "gutterLeft")
+            }
         }
         wall.position.y = 0
         wall.zPosition = 1
@@ -264,7 +277,7 @@ class GameScene: SKScene {
     //plays animation according to pins hit
     func playAnimation(){
         var ranNum: Int = 1
-        if(points == 10 && rScorePos % 2 != 0){
+        if(spare){
             ranNum = Int.random(in: 1 ..< 3)
             gameVC.playVid(vidName: "spare\(ranNum)")
         }
@@ -349,13 +362,10 @@ class GameScene: SKScene {
         }
         //gameVC.makeAlert(message: "You knocked down \(points) pins!")
         //sets top text + animation
-        playAnimation()
         totalPoints += points
-        if(points == 10 && scorePos % 2 == 0){ //If spare
-            scores[scorePos].text = "/"
-        }
-        if(points == 10){
+        if(points == 10 && scorePos % 2 == 0){ //if strike
             scores[scorePos].text = "X"
+            totalPoints += 10 //adds 10 instead of calculating strike
             scorePos += 1
         }
         else{
@@ -364,14 +374,24 @@ class GameScene: SKScene {
         scorePos += 1
         //sets bottom text
         if(scorePos % 2 == 0){
+            //checks for spare
+            let lastScore: Int = Int(scores[scorePos-2].text!)!
+            print(lastScore)
+            if(lastScore + points == 10){
+                scores[scorePos - 1].text = "/"
+                totalPoints += 5 //adds 5 instead of calculating spare
+                spare = true
+            }
             rScores[rScorePos].text = String(totalPoints)
             rScorePos += 1
             hiddenPins = [SKSpriteNode?](repeating: nil, count: 10)
         }
+        playAnimation()
         //sets everything back to initial values
         resetBall()
         locations = []
         rolling = false
+        spare = false
         delPins()
         resetPins()
         if(scorePos % 2 != 0){ //gets rid of the first turn of pins
@@ -391,12 +411,15 @@ class GameScene: SKScene {
             time += 1/60
             //checks the boolean values
             pos5 = ball.position.y > 575 || ball.position.y < -501
+            if(difficulty == 1){
+                pos5 = ball.position.y > 575 || ball.position.y < -501 || ball.position.x > 300 || ball.position.x < -300
+            }
             if(!pos5){ //short circuit
                 if(difficulty == 0){
                     td = time > 8
                 }
                 else{
-                    td = time > 5
+                    td = time > 4
                 }
             }
             if(pos5 || td){ //ball end condition based on difficulty
