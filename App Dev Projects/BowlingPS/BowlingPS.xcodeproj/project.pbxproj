@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		02B64ADB23A275E30079AFFD /* strike1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 02B64ADA23A275E30079AFFD /* strike1.mp4 */; };
 		02B88709239EC3C900FFF53E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B88708239EC3C900FFF53E /* AppDelegate.swift */; };
 		02B8870B239EC3C900FFF53E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 02B8870A239EC3C900FFF53E /* GameScene.sks */; };
 		02B8870D239EC3C900FFF53E /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 02B8870C239EC3C900FFF53E /* Actions.sks */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02B64ADA23A275E30079AFFD /* strike1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = strike1.mp4; sourceTree = "<group>"; };
 		02B88705239EC3C900FFF53E /* BowlingPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BowlingPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02B88708239EC3C900FFF53E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02B8870A239EC3C900FFF53E /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -80,6 +82,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02B64AD423A273690079AFFD /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				02B88717239EC3CB00FFF53E /* LaunchScreen.storyboard */,
+				02B88712239EC3C900FFF53E /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		02B64AD523A273780079AFFD /* SK Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				02B8870C239EC3C900FFF53E /* Actions.sks */,
+				02B8870A239EC3C900FFF53E /* GameScene.sks */,
+			);
+			path = "SK Scenes";
+			sourceTree = "<group>";
+		};
+		02B64AD623A273890079AFFD /* View + Scene Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				02B8870E239EC3C900FFF53E /* GameScene.swift */,
+				02B88710239EC3C900FFF53E /* GameViewController.swift */,
+			);
+			path = "View + Scene Controllers";
+			sourceTree = "<group>";
+		};
+		02B64AD723A273E00079AFFD /* Extra Assets */ = {
+			isa = PBXGroup;
+			children = (
+				02B64ADA23A275E30079AFFD /* strike1.mp4 */,
+			);
+			path = "Extra Assets";
+			sourceTree = "<group>";
+		};
 		02B886FC239EC3C800FFF53E = {
 			isa = PBXGroup;
 			children = (
@@ -104,13 +141,11 @@
 			isa = PBXGroup;
 			children = (
 				02B88708239EC3C900FFF53E /* AppDelegate.swift */,
-				02B8870A239EC3C900FFF53E /* GameScene.sks */,
-				02B8870C239EC3C900FFF53E /* Actions.sks */,
-				02B8870E239EC3C900FFF53E /* GameScene.swift */,
-				02B88710239EC3C900FFF53E /* GameViewController.swift */,
-				02B88712239EC3C900FFF53E /* Main.storyboard */,
+				02B64AD623A273890079AFFD /* View + Scene Controllers */,
+				02B64AD523A273780079AFFD /* SK Scenes */,
+				02B64AD423A273690079AFFD /* Storyboards */,
 				02B88715239EC3CB00FFF53E /* Assets.xcassets */,
-				02B88717239EC3CB00FFF53E /* LaunchScreen.storyboard */,
+				02B64AD723A273E00079AFFD /* Extra Assets */,
 				02B8871A239EC3CB00FFF53E /* Info.plist */,
 			);
 			path = BowlingPS;
@@ -243,6 +278,7 @@
 				02B88716239EC3CB00FFF53E /* Assets.xcassets in Resources */,
 				02B88719239EC3CB00FFF53E /* LaunchScreen.storyboard in Resources */,
 				02B8870D239EC3C900FFF53E /* Actions.sks in Resources */,
+				02B64ADB23A275E30079AFFD /* strike1.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
