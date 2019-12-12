@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0258B1B323A2865700F32F31 /* gutter1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1B223A2865700F32F31 /* gutter1.mp4 */; };
+		0258B1B523A2865D00F32F31 /* gutter2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1B423A2865D00F32F31 /* gutter2.mp4 */; };
+		0258B1B723A2866500F32F31 /* 1pin1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1B623A2866500F32F31 /* 1pin1.mp4 */; };
+		0258B1B923A2866A00F32F31 /* 2pin1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1B823A2866A00F32F31 /* 2pin1.mp4 */; };
+		0258B1BB23A2866E00F32F31 /* 3pin1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1BA23A2866E00F32F31 /* 3pin1.mp4 */; };
+		0258B1BD23A2867400F32F31 /* 4pin1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1BC23A2867400F32F31 /* 4pin1.mp4 */; };
+		0258B1BF23A2867A00F32F31 /* 5pin1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1BE23A2867A00F32F31 /* 5pin1.mp4 */; };
+		0258B1C123A2867E00F32F31 /* 6pin1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1C023A2867E00F32F31 /* 6pin1.mp4 */; };
+		0258B1C323A2868200F32F31 /* 7pin1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1C223A2868200F32F31 /* 7pin1.mp4 */; };
+		0258B1C523A2868600F32F31 /* 8pin1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1C423A2868600F32F31 /* 8pin1.mp4 */; };
+		0258B1C723A2868A00F32F31 /* 9pin1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1C623A2868A00F32F31 /* 9pin1.mp4 */; };
+		0258B1C923A2869000F32F31 /* spare1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1C823A2869000F32F31 /* spare1.mp4 */; };
+		0258B1CB23A2869400F32F31 /* spare2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1CA23A2869400F32F31 /* spare2.mp4 */; };
+		0258B1CD23A2869900F32F31 /* spare3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1CC23A2869900F32F31 /* spare3.mp4 */; };
+		0258B1CF23A2869F00F32F31 /* strike2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1CE23A2869F00F32F31 /* strike2.mp4 */; };
+		0258B1D123A286A400F32F31 /* strike3.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1D023A286A400F32F31 /* strike3.mp4 */; };
 		02B64ADB23A275E30079AFFD /* strike1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 02B64ADA23A275E30079AFFD /* strike1.mp4 */; };
 		02B88709239EC3C900FFF53E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B88708239EC3C900FFF53E /* AppDelegate.swift */; };
 		02B8870B239EC3C900FFF53E /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 02B8870A239EC3C900FFF53E /* GameScene.sks */; };
@@ -38,6 +54,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0258B1B223A2865700F32F31 /* gutter1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gutter1.mp4; sourceTree = "<group>"; };
+		0258B1B423A2865D00F32F31 /* gutter2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gutter2.mp4; sourceTree = "<group>"; };
+		0258B1B623A2866500F32F31 /* 1pin1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1pin1.mp4; sourceTree = "<group>"; };
+		0258B1B823A2866A00F32F31 /* 2pin1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 2pin1.mp4; sourceTree = "<group>"; };
+		0258B1BA23A2866E00F32F31 /* 3pin1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 3pin1.mp4; sourceTree = "<group>"; };
+		0258B1BC23A2867400F32F31 /* 4pin1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 4pin1.mp4; sourceTree = "<group>"; };
+		0258B1BE23A2867A00F32F31 /* 5pin1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 5pin1.mp4; sourceTree = "<group>"; };
+		0258B1C023A2867E00F32F31 /* 6pin1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 6pin1.mp4; sourceTree = "<group>"; };
+		0258B1C223A2868200F32F31 /* 7pin1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 7pin1.mp4; sourceTree = "<group>"; };
+		0258B1C423A2868600F32F31 /* 8pin1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 8pin1.mp4; sourceTree = "<group>"; };
+		0258B1C623A2868A00F32F31 /* 9pin1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 9pin1.mp4; sourceTree = "<group>"; };
+		0258B1C823A2869000F32F31 /* spare1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = spare1.mp4; sourceTree = "<group>"; };
+		0258B1CA23A2869400F32F31 /* spare2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = spare2.mp4; sourceTree = "<group>"; };
+		0258B1CC23A2869900F32F31 /* spare3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = spare3.mp4; sourceTree = "<group>"; };
+		0258B1CE23A2869F00F32F31 /* strike2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = strike2.mp4; sourceTree = "<group>"; };
+		0258B1D023A286A400F32F31 /* strike3.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = strike3.mp4; sourceTree = "<group>"; };
 		02B64ADA23A275E30079AFFD /* strike1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = strike1.mp4; sourceTree = "<group>"; };
 		02B88705239EC3C900FFF53E /* BowlingPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BowlingPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02B88708239EC3C900FFF53E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -112,7 +144,23 @@
 		02B64AD723A273E00079AFFD /* Extra Assets */ = {
 			isa = PBXGroup;
 			children = (
+				0258B1B223A2865700F32F31 /* gutter1.mp4 */,
+				0258B1B423A2865D00F32F31 /* gutter2.mp4 */,
+				0258B1B623A2866500F32F31 /* 1pin1.mp4 */,
+				0258B1B823A2866A00F32F31 /* 2pin1.mp4 */,
+				0258B1BA23A2866E00F32F31 /* 3pin1.mp4 */,
+				0258B1BC23A2867400F32F31 /* 4pin1.mp4 */,
+				0258B1BE23A2867A00F32F31 /* 5pin1.mp4 */,
+				0258B1C023A2867E00F32F31 /* 6pin1.mp4 */,
+				0258B1C223A2868200F32F31 /* 7pin1.mp4 */,
+				0258B1C423A2868600F32F31 /* 8pin1.mp4 */,
+				0258B1C623A2868A00F32F31 /* 9pin1.mp4 */,
+				0258B1C823A2869000F32F31 /* spare1.mp4 */,
+				0258B1CA23A2869400F32F31 /* spare2.mp4 */,
+				0258B1CC23A2869900F32F31 /* spare3.mp4 */,
 				02B64ADA23A275E30079AFFD /* strike1.mp4 */,
+				0258B1CE23A2869F00F32F31 /* strike2.mp4 */,
+				0258B1D023A286A400F32F31 /* strike3.mp4 */,
 			);
 			path = "Extra Assets";
 			sourceTree = "<group>";
@@ -273,12 +321,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0258B1C323A2868200F32F31 /* 7pin1.mp4 in Resources */,
+				0258B1BF23A2867A00F32F31 /* 5pin1.mp4 in Resources */,
+				0258B1B323A2865700F32F31 /* gutter1.mp4 in Resources */,
 				02B88714239EC3C900FFF53E /* Main.storyboard in Resources */,
 				02B8870B239EC3C900FFF53E /* GameScene.sks in Resources */,
 				02B88716239EC3CB00FFF53E /* Assets.xcassets in Resources */,
+				0258B1BD23A2867400F32F31 /* 4pin1.mp4 in Resources */,
+				0258B1C123A2867E00F32F31 /* 6pin1.mp4 in Resources */,
+				0258B1CF23A2869F00F32F31 /* strike2.mp4 in Resources */,
+				0258B1C523A2868600F32F31 /* 8pin1.mp4 in Resources */,
+				0258B1CB23A2869400F32F31 /* spare2.mp4 in Resources */,
+				0258B1D123A286A400F32F31 /* strike3.mp4 in Resources */,
+				0258B1C923A2869000F32F31 /* spare1.mp4 in Resources */,
 				02B88719239EC3CB00FFF53E /* LaunchScreen.storyboard in Resources */,
+				0258B1BB23A2866E00F32F31 /* 3pin1.mp4 in Resources */,
 				02B8870D239EC3C900FFF53E /* Actions.sks in Resources */,
+				0258B1B923A2866A00F32F31 /* 2pin1.mp4 in Resources */,
+				0258B1CD23A2869900F32F31 /* spare3.mp4 in Resources */,
+				0258B1C723A2868A00F32F31 /* 9pin1.mp4 in Resources */,
 				02B64ADB23A275E30079AFFD /* strike1.mp4 in Resources */,
+				0258B1B523A2865D00F32F31 /* gutter2.mp4 in Resources */,
+				0258B1B723A2866500F32F31 /* 1pin1.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

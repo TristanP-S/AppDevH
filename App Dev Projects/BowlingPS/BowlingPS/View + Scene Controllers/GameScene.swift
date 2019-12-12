@@ -14,6 +14,7 @@ var gameSC = GameScene()
 var time: Double = 0
 var difficulty = 0 // 0: easy mode (kid walls), 1: hard mode (gutters)
 var scorePos = 0
+var rScorePos = 0
 class GameScene: SKScene {
     //MARK - Variables
     var td: Bool = false
@@ -248,6 +249,18 @@ class GameScene: SKScene {
         rScores[8].position = CGPoint(x: 170, y: -660)
         rScores[9].position = CGPoint(x: 240, y: -660)
     }
+    //plays animation according to pins hit
+    func playAnimation(){
+        if(points == 10){
+            gameVC.playVid(vidName: "strike1")
+        }
+        else if(points > 0){
+            gameVC.playVid(vidName: "\(points)pin1")
+        }
+        else{
+            gameVC.playVid(vidName: "gutter1")
+        }
+    }
     //disables some default physics stuff that isn't needed
     func disableDefaults(sprite: SKSpriteNode){
         sprite.isHidden = false
@@ -288,6 +301,7 @@ class GameScene: SKScene {
             }
         }
         //gameVC.makeAlert(message: "You knocked down \(points) pins!")
+        //sets top text
         if(points == 10){
             scores[scorePos].text = "X"
             scorePos += 1
@@ -296,7 +310,21 @@ class GameScene: SKScene {
             scores[scorePos].text = String(points)
             scorePos += 1
         }
-        gameVC.playVid(vidName: "strike1")
+        /*
+        //sets bottom text
+        if(scorePos % 2 == 0 && rScorePos == 0){
+            let lastScore: Int = Int(scores[scorePos - 1].text!)!
+            let lastrScore: Int = Int(rScores[rScorePos - 1].text!)!
+            rScores[rScorePos].text = String(points + lastScore + lastrScore)
+            rScorePos += 1
+        }
+        else if(scorePos % 2 == 0){
+            let lastScore: Int = Int(scores[scorePos - 1].text!)!
+            rScores[rScorePos].text = String(points + lastScore)
+            rScorePos += 1
+        }
+        */
+        playAnimation()
         delPins()
         //sets everything back to initial values
         resetBall()

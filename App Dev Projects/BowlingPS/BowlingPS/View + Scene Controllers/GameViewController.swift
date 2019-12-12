@@ -5,7 +5,7 @@
 //  Created by Tristan Pudell-Spatscheck on 12/9/19.
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
 //
-//NOTE: Ball going straight forward may make pins + ball not move, but there's a timeout for problems like that, Ball takes 2 swipes after the first throw to work properly (no fix atm)
+//NOTE: Ball going straight forward may make pins + ball not move, but there's a timeout for problems like that, Ball takes 2 swipes after the first throw to work properly (no fix atm), ONLY tested on iPhone 8, might have issues on others
 import UIKit
 import SpriteKit
 import GameplayKit
