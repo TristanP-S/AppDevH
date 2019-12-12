@@ -25,6 +25,7 @@ class GameScene: SKScene {
     var bowlingSheet = SKSpriteNode()
     var locations: [CGPoint] = []
     var pins = [SKSpriteNode](repeating: SKSpriteNode(), count: 10)
+    var hiddenPins = [SKSpriteNode?](repeating: nil, count: 10)
     var scores: [SKLabelNode] = [] //scores on top of bowlingSheet
     var rScores: [SKLabelNode] = [] //scores on bottom of bowlingSheet
     var gutterWall1 = SKSpriteNode()
@@ -216,6 +217,10 @@ class GameScene: SKScene {
             pin.physicsBody = nil
         }
     }
+    func delPin(pin: SKSpriteNode){
+        pin.isHidden = true
+        pin.physicsBody = nil
+    }
     func setupScores(){
         for tScore in scores{ //for each element in top row of scores
             tScore.text = "-"
@@ -259,13 +264,12 @@ class GameScene: SKScene {
     //plays animation according to pins hit
     func playAnimation(){
         var ranNum: Int = 1
-        if(points == 11){
+        if(points == 10 && rScorePos % 2 != 0){
             ranNum = Int.random(in: 1 ..< 3)
             gameVC.playVid(vidName: "spare\(ranNum)")
         }
         else if(points == 10){
             ranNum = Int.random(in: 1 ..< 3)
-            print(ranNum)
             gameVC.playVid(vidName: "strike\(ranNum)")
         }
         else if(points == 9){
@@ -318,6 +322,7 @@ class GameScene: SKScene {
             setupScores()
             scorePos = 0
             rScorePos = 0
+            totalPoints = 0
         }
         //checks position vs. location to check the pins knocked down, then resets them
         for n in 0...9{
@@ -338,34 +343,47 @@ class GameScene: SKScene {
                 locY = Int(locations[n].y + 1)
             }
             if((intPins == CGPoint(x: locX, y: locY)) || (intPins == CGPoint(x: CGFloat(locX), y: locations[n].y)) || (intPins == CGPoint(x: locations[n].x, y: CGFloat(locY))) || (intPins == locations[n])){
+                hiddenPins[n] = pins[n]
                 points += -1
             }
         }
         //gameVC.makeAlert(message: "You knocked down \(points) pins!")
-        //sets top text
+        //sets top text + animation
+        playAnimation()
         totalPoints += points
+        if(points == 10 && scorePos % 2 == 0){ //If spare
+            scores[scorePos].text = "/"
+        }
         if(points == 10){
             scores[scorePos].text = "X"
-            scorePos += 2
+            scorePos += 1
         }
         else{
             scores[scorePos].text = String(points)
-            scorePos += 1
         }
+        scorePos += 1
         //sets bottom text
         if(scorePos % 2 == 0){
             rScores[rScorePos].text = String(totalPoints)
             rScorePos += 1
+            hiddenPins = [SKSpriteNode?](repeating: nil, count: 10)
         }
-        playAnimation()
-        delPins()
         //sets everything back to initial values
         resetBall()
         locations = []
         rolling = false
+        delPins()
         resetPins()
-        time = 0
+        if(scorePos % 2 != 0){ //gets rid of the first turn of pins
+            for i in 0...9{
+                if(hiddenPins[i] == nil){
+                    delPin(pin: pins[i])
+                }
+            }
+        }
+        print("Points: \(points), Total: \(totalPoints)")
         points = 10
+        time = 0
     }
     override func update(_ currentTime: TimeInterval) { //asumed to run 60 FPS
         // Called before each frame is rendered

@@ -5,7 +5,7 @@
 //  Created by Tristan Pudell-Spatscheck on 12/9/19.
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
 //
-//NOTE: Ball going straight forward may make pins + ball not move, but there's a timeout for problems like that, Ball takes 2 swipes after the first throw to work properly (no fix atm), ONLY tested on iPhone 8, might have issues on others
+//NOTES: Ball  may make pins + ball keep floating and not end the game, but there's a timeout for problems like that, Ball takes 2 swipes after the first throw to work properly (no fix atm), ONLY tested on iPhone 8, might have issues on others, sometimes an extra pin or two is spawned after this first "turn" in a block
 import UIKit
 import SpriteKit
 import GameplayKit
@@ -84,10 +84,15 @@ class GameViewController: UIViewController {
             let videoPlayer = AVPlayerViewController()
             videoPlayer.player = video
             videoPlayer.player?.isMuted = true
+            NotificationCenter.default.addObserver(self, selector: #selector(vidDone), name: .AVPlayerItemDidPlayToEndTime, object: nil)
             present(videoPlayer, animated: true, completion:{
                 video.play()
             })
         }
+    }
+    //closes video when finished playing
+    @objc func vidDone(){
+        dismiss(animated: true, completion: nil)
     }
     //MARK - Default
     override var shouldAutorotate: Bool {
