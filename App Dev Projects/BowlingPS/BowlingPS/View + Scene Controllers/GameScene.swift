@@ -10,6 +10,7 @@ import GameplayKit
 //MARK - Global Variables
 var rolling = false //wether ball is currently rolling
 var points: Int = 10
+var totalPoints: Int = 0
 var gameSC = GameScene()
 var time: Double = 0
 var difficulty = 0 // 0: easy mode (kid walls), 1: hard mode (gutters)
@@ -302,28 +303,19 @@ class GameScene: SKScene {
         }
         //gameVC.makeAlert(message: "You knocked down \(points) pins!")
         //sets top text
+        totalPoints += points
         if(points == 10){
             scores[scorePos].text = "X"
-            scorePos += 1
         }
         else{
             scores[scorePos].text = String(points)
-            scorePos += 1
         }
-        /*
+        scorePos += 1
         //sets bottom text
-        if(scorePos % 2 == 0 && rScorePos == 0){
-            let lastScore: Int = Int(scores[scorePos - 1].text!)!
-            let lastrScore: Int = Int(rScores[rScorePos - 1].text!)!
-            rScores[rScorePos].text = String(points + lastScore + lastrScore)
+        if(scorePos % 2 == 0){
+            rScores[rScorePos].text = String(totalPoints)
             rScorePos += 1
         }
-        else if(scorePos % 2 == 0){
-            let lastScore: Int = Int(scores[scorePos - 1].text!)!
-            rScores[rScorePos].text = String(points + lastScore)
-            rScorePos += 1
-        }
-        */
         playAnimation()
         delPins()
         //sets everything back to initial values
