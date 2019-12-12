@@ -133,11 +133,11 @@ class GameScene: SKScene {
         var moveToBottom = SKAction()
         if(ball.position.x > 0){ //goes right if ball on right
             moveToTop = SKAction.move(to: CGPoint(x: 335, y: 600), duration: 3)
-            moveToBottom = SKAction.move(to: CGPoint(x: 335, y: -550), duration: 3)
+            moveToBottom = SKAction.move(to: CGPoint(x: 335, y: -501), duration: 3)
         }
         else{ //goes left if ball on left
             moveToTop = SKAction.move(to: CGPoint(x: -335, y: 600), duration: 3)
-            moveToBottom = SKAction.move(to: CGPoint(x: -335, y: -550), duration: 3)
+            moveToBottom = SKAction.move(to: CGPoint(x: -335, y: -501), duration: 3)
         }
         let moveToStart = SKAction.move(to: CGPoint(x: 0, y: -501), duration: 3)
         ball.physicsBody = nil
@@ -261,6 +261,10 @@ class GameScene: SKScene {
     }
     //"ends" round, resets balls to their original position
     func gameEnd(){
+        if(scorePos > 20){
+            setupScores()
+            scorePos = 0
+        }
         //checks position vs. location to check the pins knocked down, then resets them
         for n in 0...9{
             //sets to Ints to correct the doubles being .000000001 off, also affects if statement
@@ -283,10 +287,16 @@ class GameScene: SKScene {
                 points += -1
             }
         }
-        gameVC.makeAlert(message: "You knocked down \(points) pins!")
-        scores[scorePos].text = String(points)
+        //gameVC.makeAlert(message: "You knocked down \(points) pins!")
+        if(points == 10){
+            scores[scorePos].text = "X"
+            scorePos += 1
+        }
+        else{
+            scores[scorePos].text = String(points)
+            scorePos += 1
+        }
         delPins()
-        scorePos += 1
         //sets everything back to initial values
         resetBall()
         locations = []
@@ -300,7 +310,7 @@ class GameScene: SKScene {
         if(rolling){ //if ball is at end, time is a failsafe if pins are weird
             time += 1/60
             //checks the boolean values
-            pos5 = ball.position.y > 575
+            pos5 = ball.position.y > 575 || ball.position.y < -501
             if(!pos5){ //short circuit
                 if(difficulty == 0){
                     td = time > 8
