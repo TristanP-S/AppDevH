@@ -83,6 +83,7 @@ class GameViewController: UIViewController {
             let video = AVPlayer(url: URL(fileURLWithPath: path))
             let videoPlayer = AVPlayerViewController()
             videoPlayer.player = video
+            videoPlayer.player?.isMuted = true
             present(videoPlayer, animated: true, completion:{
                 video.play()
             })

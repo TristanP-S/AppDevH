@@ -258,13 +258,45 @@ class GameScene: SKScene {
     }
     //plays animation according to pins hit
     func playAnimation(){
-        if(points == 10){
-            gameVC.playVid(vidName: "strike1")
+        var ranNum: Int = 1
+        if(points == 11){
+            ranNum = Int.random(in: 1 ..< 3)
+            gameVC.playVid(vidName: "spare\(ranNum)")
         }
-        else if(points > 0){
-            gameVC.playVid(vidName: "\(points)pin1")
+        else if(points == 10){
+            ranNum = Int.random(in: 1 ..< 3)
+            print(ranNum)
+            gameVC.playVid(vidName: "strike\(ranNum)")
+        }
+        else if(points == 9){
+            gameVC.playVid(vidName: "\(points)pin\(ranNum)")
+        }
+        else if(points == 8){
+            gameVC.playVid(vidName: "\(points)pin\(ranNum)")
+        }
+        else if(points == 7){
+            gameVC.playVid(vidName: "\(points)pin\(ranNum)")
+        }
+        else if(points == 6){
+            gameVC.playVid(vidName: "\(points)pin\(ranNum)")
+        }
+        else if(points == 5){
+            gameVC.playVid(vidName: "\(points)pin\(ranNum)")
+        }
+        else if(points == 4){
+            gameVC.playVid(vidName: "\(points)pin\(ranNum)")
+        }
+        else if(points == 3){
+            gameVC.playVid(vidName: "\(points)pin\(ranNum)")
+        }
+        else if(points == 2){
+            gameVC.playVid(vidName: "\(points)pin\(ranNum)")
+        }
+        else if(points == 1){
+            gameVC.playVid(vidName: "\(points)pin\(ranNum)")
         }
         else{
+            ranNum = Int.random(in: 1 ..< 2)
             gameVC.playVid(vidName: "gutter1")
         }
     }
@@ -285,6 +317,7 @@ class GameScene: SKScene {
         if(scorePos > 20){
             setupScores()
             scorePos = 0
+            rScorePos = 0
         }
         //checks position vs. location to check the pins knocked down, then resets them
         for n in 0...9{
@@ -313,11 +346,12 @@ class GameScene: SKScene {
         totalPoints += points
         if(points == 10){
             scores[scorePos].text = "X"
+            scorePos += 2
         }
         else{
             scores[scorePos].text = String(points)
+            scorePos += 1
         }
-        scorePos += 1
         //sets bottom text
         if(scorePos % 2 == 0){
             rScores[rScorePos].text = String(totalPoints)
