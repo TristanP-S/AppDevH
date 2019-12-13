@@ -10,6 +10,8 @@ import GameplayKit
 //MARK - Global Variables
 var rolling = false //wether ball is currently rolling
 var backShot = false
+var gameOver = false
+var animations = true
 var points: Int = 10
 var totalPoints: Int = 0
 var gameSC = GameScene()
@@ -280,11 +282,11 @@ class GameScene: SKScene {
     func playAnimation(){
         var ranNum: Int = 1
         if(spare){
-            ranNum = Int.random(in: 1 ..< 3)
+            ranNum = Int.random(in: 1 ..< 4)
             gameVC.playVid(vidName: "spare\(ranNum)")
         }
         else if(points == 10){
-            ranNum = Int.random(in: 1 ..< 4)
+            ranNum = Int.random(in: 1 ..< 5)
             gameVC.playVid(vidName: "strike\(ranNum)")
         }
         else if(points == 9){
@@ -315,7 +317,7 @@ class GameScene: SKScene {
             gameVC.playVid(vidName: "\(points)pin\(ranNum)")
         }
         else{
-            ranNum = Int.random(in: 1 ..< 2)
+            ranNum = Int.random(in: 1 ..< 3)
             gameVC.playVid(vidName: "gutter\(ranNum)")
         }
     }
@@ -330,6 +332,32 @@ class GameScene: SKScene {
         sprite.physicsBody?.friction = 0
         sprite.physicsBody?.linearDamping = 0
         sprite.physicsBody?.angularDamping = 0
+    }
+    //takes screenshot of results
+    func takeResults(){
+        //makes new image the size of the view
+        UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 0)
+        //renders new image
+        self.view!.drawHierarchy(in: self.view!.bounds, afterScreenUpdates: true)
+        //saves new image
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        //stops rendering new image
+        UIGraphicsEndImageContext()
+        //shows popup asking for what to do with iamge
+        let alertMessage = UIAlertController(title: "Game Complete", message: nil, preferredStyle: .alert)
+        let okayAction = UIAlertAction(title: "OK", style: .default) { action in
+            
+            //call any needed functions here
+            print("OK pressed")
+        }
+        let shareAction = UIAlertAction(title: "Share/Save", style: .default) { action in
+            //call any needed functions here
+            print("Share pressed")
+            gameVC.shareImg(image: image)
+        }
+        alertMessage.addAction(okayAction)
+        alertMessage.addAction(shareAction)
+        gameVC.present(alertMessage, animated: true)
     }
     //"ends" round, resets balls to their original position
     func gameEnd(){
@@ -393,7 +421,13 @@ class GameScene: SKScene {
             scorePos += 1
             strike = false
         }
+        if(scorePos == 20){
+            rScores[rScorePos].text = String(totalPoints)
+            gameOver = true
+        }
+        if(animations){
         playAnimation()
+        }
         //sets everything back to initial values
         resetBall()
         locations = []

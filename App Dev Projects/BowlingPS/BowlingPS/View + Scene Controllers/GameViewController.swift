@@ -27,6 +27,7 @@ class GameViewController: UIViewController {
     var lastSwipeBeginningPoint: CGPoint?
     @IBOutlet weak var diffButton: UIButton!
     @IBOutlet weak var musicButton: UIButton!
+    @IBOutlet weak var animationButton: UIButton!
     //MARK - Loading
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,6 +107,10 @@ class GameViewController: UIViewController {
             gameVC.makeAlert(message: "You need to fling the ball FORWARD")
             backShot = false
         }
+        if(gameOver){
+            gameSC.takeResults()
+            gameOver = false
+        }
     }
     //difficulty changed
     @IBAction func changeDiff(_ sender: Any) {
@@ -134,6 +139,7 @@ class GameViewController: UIViewController {
         gameSC.resetBall()
         gameSC.hiddenPins = [SKSpriteNode?](repeating: nil, count: 10)
     }
+    //toggles music
     @IBAction func musicToggled(_ sender: Any) {
         if(musicButton.titleLabel!.text == "Music: Off"){
             playSong(song: "wiiBowl")
@@ -143,6 +149,27 @@ class GameViewController: UIViewController {
             musicPlayer.stop()
             musicButton.setTitle("Music: Off", for: .normal)
         }
+    }
+    //toggles animations
+    @IBAction func animationToggle(_ sender: Any) {
+        if(animationButton.titleLabel!.text == "| Animations: On |"){
+            animations = false
+            animationButton.setTitle("| Animations: Off |", for: .normal)
+        }
+        else{
+            animations = true
+            animationButton.setTitle("| Animations: On |", for: .normal)
+        }
+    }
+    //shares image
+    func shareImg(image: UIImage){
+        // set up activity view controller
+        let imageToShare = [ image ] //converts image to "Any"
+        //sets up VC so it works for all devices
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
     }
     //MARK - Default
     override var shouldAutorotate: Bool {

@@ -16,7 +16,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ysy-TQ-0dA">
-                                <rect key="frame" x="78.5" y="0.0" width="105" height="30"/>
+                                <rect key="frame" x="69" y="0.0" width="75" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" title="Difficulty: Child">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
@@ -24,8 +25,19 @@
                                     <action selector="changeDiff:" destination="BV1-FR-VrT" eventType="touchUpInside" id="Rva-c3-PXR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mji-l4-Gch">
+                                <rect key="frame" x="144" y="0.0" width="87" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="| Animations: On |">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="animationToggle:" destination="BV1-FR-VrT" eventType="touchUpInside" id="uez-cw-j95"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tYb-zN-AE3">
-                                <rect key="frame" x="192" y="0.0" width="71" height="30"/>
+                                <rect key="frame" x="231" y="0.0" width="50" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <state key="normal" title="Music: Off">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
@@ -33,25 +45,20 @@
                                     <action selector="musicToggled:" destination="BV1-FR-VrT" eventType="touchUpInside" id="sLJ-gu-8aQ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="|" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2xq-Ni-O1A">
-                                <rect key="frame" x="183.5" y="0.0" width="8.5" height="25.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="tYb-zN-AE3" firstAttribute="leading" secondItem="Mji-l4-Gch" secondAttribute="trailing" id="1MP-Oy-daa"/>
                             <constraint firstItem="Ysy-TQ-0dA" firstAttribute="top" secondItem="3se-qz-xqx" secondAttribute="top" id="9bv-ws-g5L"/>
-                            <constraint firstItem="2xq-Ni-O1A" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="DUa-wR-cCA"/>
-                            <constraint firstItem="2xq-Ni-O1A" firstAttribute="leading" secondItem="Ysy-TQ-0dA" secondAttribute="trailing" id="eCd-vv-8Ei"/>
-                            <constraint firstItem="2xq-Ni-O1A" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="p15-8T-nSD"/>
-                            <constraint firstItem="tYb-zN-AE3" firstAttribute="leading" secondItem="2xq-Ni-O1A" secondAttribute="trailing" id="uqr-bm-hhO"/>
+                            <constraint firstItem="Mji-l4-Gch" firstAttribute="leading" secondItem="Ysy-TQ-0dA" secondAttribute="trailing" id="CEh-dh-pjp"/>
+                            <constraint firstItem="Mji-l4-Gch" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="k80-LB-Tgd"/>
+                            <constraint firstItem="Mji-l4-Gch" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="xJ5-uh-nBX"/>
                             <constraint firstItem="tYb-zN-AE3" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="yK3-hm-0Lc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                     <connections>
+                        <outlet property="animationButton" destination="Mji-l4-Gch" id="buR-iB-fyH"/>
                         <outlet property="diffButton" destination="Ysy-TQ-0dA" id="P4o-5d-WfD"/>
                         <outlet property="musicButton" destination="tYb-zN-AE3" id="rSk-rk-UQs"/>
                     </connections>
