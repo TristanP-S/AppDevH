@@ -116,15 +116,14 @@ class GameScene: SKScene {
                 backShot = true
             }
             else{
-            print("Force multiplyers; x: \(change.x) , y: \(change.y)")
-            if(change.y > 250){ //makes sure ball isn't too fast
-                rChange.y = 200
-                
-            }
-            //moves ball based on change and tells game it is "rollling"
-            rolling = true
-            animateBall = true
-            ball.physicsBody?.applyForce(CGVector(dx: CGFloat(0 + (5000 * (rChange.x))), dy: CGFloat(0 + (5000  * (rChange.y)))))
+                print("Force multiplyers; x: \(change.x) , y: \(change.y)")
+                if(change.y > 250){ //makes sure ball isn't too fast
+                    rChange.y = 200
+                }
+                //moves ball based on change and tells game it is "rollling"
+                rolling = true
+                animateBall = true
+                ball.physicsBody?.applyForce(CGVector(dx: CGFloat(0 + (5000 * (rChange.x))), dy: CGFloat(0 + (5000  * (rChange.y)))))
             }
         }
     }

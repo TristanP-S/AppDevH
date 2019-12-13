@@ -6,10 +6,9 @@
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
 //
 /* NOTES/BUGS
- -Ball  may make pins + ball keep floating and not end the game, but there's a timeout for problems like that,
+ -Ball  may make pins + ball keep floating and not end the game, but there's a timeout for problems like that
  -Ball takes 2 swipes after the first throw to work properly (no fix atm)
  -ONLY tested on iPhone 8 emulator and real iPhone 7, might have issues on others
- -Sometimes an extra pin or two is spawned after this first "turn" in a block
  -I gave up on animating the ball, but the remenants are still there
  */
 import UIKit
