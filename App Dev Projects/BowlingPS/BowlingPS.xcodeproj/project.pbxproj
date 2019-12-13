@@ -36,6 +36,8 @@
 		02B88719239EC3CB00FFF53E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02B88717239EC3CB00FFF53E /* LaunchScreen.storyboard */; };
 		02B88724239EC3CB00FFF53E /* BowlingPSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B88723239EC3CB00FFF53E /* BowlingPSTests.swift */; };
 		02B8872F239EC3CB00FFF53E /* BowlingPSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B8872E239EC3CB00FFF53E /* BowlingPSUITests.swift */; };
+		02D7211423A3D0D900D11445 /* strike4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 02D7211323A3D0D900D11445 /* strike4.mp4 */; };
+		02D7211623A3D3C400D11445 /* backShot.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 02D7211523A3D3C400D11445 /* backShot.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		02B8872A239EC3CB00FFF53E /* BowlingPSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BowlingPSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02B8872E239EC3CB00FFF53E /* BowlingPSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BowlingPSUITests.swift; sourceTree = "<group>"; };
 		02B88730239EC3CB00FFF53E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02D7211323A3D0D900D11445 /* strike4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = strike4.mp4; sourceTree = "<group>"; };
+		02D7211523A3D3C400D11445 /* backShot.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = backShot.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,7 @@
 			children = (
 				0243B81823A29BEE008E6814 /* bowlingFloor.png */,
 				0228AF6E23A3C1AB00575B17 /* wiiBowl.mp3 */,
+				02D7211523A3D3C400D11445 /* backShot.mp4 */,
 				0258B1B223A2865700F32F31 /* gutter1.mp4 */,
 				0258B1B423A2865D00F32F31 /* gutter2.mp4 */,
 				0258B1B623A2866500F32F31 /* 1pin1.mp4 */,
@@ -167,6 +172,7 @@
 				02B64ADA23A275E30079AFFD /* strike1.mp4 */,
 				0258B1CE23A2869F00F32F31 /* strike2.mp4 */,
 				0258B1D023A286A400F32F31 /* strike3.mp4 */,
+				02D7211323A3D0D900D11445 /* strike4.mp4 */,
 			);
 			path = "Extra Assets";
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02D7211623A3D3C400D11445 /* backShot.mp4 in Resources */,
 				0258B1C323A2868200F32F31 /* 7pin1.mp4 in Resources */,
 				0258B1BF23A2867A00F32F31 /* 5pin1.mp4 in Resources */,
 				0258B1B323A2865700F32F31 /* gutter1.mp4 in Resources */,
@@ -335,6 +342,7 @@
 				02B88716239EC3CB00FFF53E /* Assets.xcassets in Resources */,
 				0258B1BD23A2867400F32F31 /* 4pin1.mp4 in Resources */,
 				0243B81923A29BEE008E6814 /* bowlingFloor.png in Resources */,
+				02D7211423A3D0D900D11445 /* strike4.mp4 in Resources */,
 				0258B1C123A2867E00F32F31 /* 6pin1.mp4 in Resources */,
 				0258B1CF23A2869F00F32F31 /* strike2.mp4 in Resources */,
 				0258B1C523A2868600F32F31 /* 8pin1.mp4 in Resources */,

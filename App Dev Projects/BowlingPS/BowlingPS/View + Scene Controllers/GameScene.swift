@@ -9,6 +9,7 @@ import SpriteKit
 import GameplayKit
 //MARK - Global Variables
 var rolling = false //wether ball is currently rolling
+var backShot = false
 var points: Int = 10
 var totalPoints: Int = 0
 var gameSC = GameScene()
@@ -109,7 +110,8 @@ class GameScene: SKScene {
         var rChange: CGPoint = change
         if(!rolling){
             if(change.y <= 0 || (change == CGPoint(x: 0, y: 0))){
-                gameVC.makeAlert(message: "You need to fling the ball FORWARD")
+                gameVC.playVid(vidName: "backShot")
+                backShot = true
             }
             else{
             print("Force multiplyers; x: \(change.x) , y: \(change.y)")
@@ -118,9 +120,9 @@ class GameScene: SKScene {
                 
             }
             //moves ball based on change and tells game it is "rollling"
-            ball.physicsBody?.applyForce(CGVector(dx: CGFloat(0 + (5000 * (rChange.x))), dy: CGFloat(0 + (5000  * (rChange.y)))))
             rolling = true
             animateBall = true
+            ball.physicsBody?.applyForce(CGVector(dx: CGFloat(0 + (5000 * (rChange.x))), dy: CGFloat(0 + (5000  * (rChange.y)))))
             }
         }
     }
@@ -144,14 +146,14 @@ class GameScene: SKScene {
         var moveToTop = SKAction()
         var moveToBottom = SKAction()
         if(ball.position.x > 0){ //goes right if ball on right
-            moveToTop = SKAction.move(to: CGPoint(x: 335, y: 600), duration: 3)
-            moveToBottom = SKAction.move(to: CGPoint(x: 335, y: -501), duration: 3)
+            moveToTop = SKAction.move(to: CGPoint(x: 335, y: 600), duration: 2)
+            moveToBottom = SKAction.move(to: CGPoint(x: 335, y: -501), duration: 2)
         }
         else{ //goes left if ball on left
-            moveToTop = SKAction.move(to: CGPoint(x: -335, y: 600), duration: 3)
-            moveToBottom = SKAction.move(to: CGPoint(x: -335, y: -501), duration: 3)
+            moveToTop = SKAction.move(to: CGPoint(x: -335, y: 600), duration: 2)
+            moveToBottom = SKAction.move(to: CGPoint(x: -335, y: -501), duration: 2)
         }
-        let moveToStart = SKAction.move(to: CGPoint(x: 0, y: -501), duration: 3)
+        let moveToStart = SKAction.move(to: CGPoint(x: 0, y: -501), duration: 2)
         ball.physicsBody = nil
         let resetBall = SKAction.sequence([moveToTop, moveToBottom, moveToStart])
         ball.run(resetBall) //moves ball back to start
@@ -282,7 +284,7 @@ class GameScene: SKScene {
             gameVC.playVid(vidName: "spare\(ranNum)")
         }
         else if(points == 10){
-            ranNum = Int.random(in: 1 ..< 3)
+            ranNum = Int.random(in: 1 ..< 4)
             gameVC.playVid(vidName: "strike\(ranNum)")
         }
         else if(points == 9){
@@ -314,7 +316,7 @@ class GameScene: SKScene {
         }
         else{
             ranNum = Int.random(in: 1 ..< 2)
-            gameVC.playVid(vidName: "gutter1")
+            gameVC.playVid(vidName: "gutter\(ranNum)")
         }
     }
     //disables some default physics stuff that isn't needed
@@ -331,6 +333,7 @@ class GameScene: SKScene {
     }
     //"ends" round, resets balls to their original position
     func gameEnd(){
+        var strike = false
         if(scorePos > 20){
             setupScores()
             scorePos = 0
@@ -366,7 +369,7 @@ class GameScene: SKScene {
         if(points == 10 && scorePos % 2 == 0){ //if strike
             scores[scorePos].text = "X"
             totalPoints += 10 //adds 10 instead of calculating strike
-            scorePos += 1
+            strike = true
         }
         else{
             scores[scorePos].text = String(points)
@@ -385,6 +388,10 @@ class GameScene: SKScene {
             rScores[rScorePos].text = String(totalPoints)
             rScorePos += 1
             hiddenPins = [SKSpriteNode?](repeating: nil, count: 10)
+        }
+        if(strike){
+            scorePos += 1
+            strike = false
         }
         playAnimation()
         //sets everything back to initial values
@@ -412,7 +419,7 @@ class GameScene: SKScene {
             //checks the boolean values
             pos5 = ball.position.y > 575 || ball.position.y < -501
             if(difficulty == 1){
-                pos5 = ball.position.y > 575 || ball.position.y < -501 || ball.position.x > 300 || ball.position.x < -300
+                pos5 = ball.position.y > 575 || ball.position.y < -501 || ball.position.x > 320 || ball.position.x < -320
             }
             if(!pos5){ //short circuit
                 if(difficulty == 0){

@@ -92,6 +92,7 @@ class GameViewController: UIViewController {
             let videoPlayer = AVPlayerViewController()
             videoPlayer.player = video
             videoPlayer.player?.isMuted = true
+            videoPlayer.showsPlaybackControls = false
             NotificationCenter.default.addObserver(self, selector: #selector(vidDone), name: .AVPlayerItemDidPlayToEndTime, object: nil)
             present(videoPlayer, animated: true, completion:{
                 video.play()
@@ -101,6 +102,10 @@ class GameViewController: UIViewController {
     //closes video when finished playing
     @objc func vidDone(){
         dismiss(animated: true, completion: nil)
+        if(backShot){
+            gameVC.makeAlert(message: "You need to fling the ball FORWARD")
+            backShot = false
+        }
     }
     //difficulty changed
     @IBAction func changeDiff(_ sender: Any) {
@@ -124,7 +129,10 @@ class GameViewController: UIViewController {
         gameSC.setBall()
         gameSC.setBorders(wall: gameSC.gutterWall1, positive: true)
         gameSC.setBorders(wall: gameSC.gutterWall2, positive: false)
+        gameSC.delPins()
         gameSC.resetPins()
+        gameSC.resetBall()
+        gameSC.hiddenPins = [SKSpriteNode?](repeating: nil, count: 10)
     }
     @IBAction func musicToggled(_ sender: Any) {
         if(musicButton.titleLabel!.text == "Music: Off"){
