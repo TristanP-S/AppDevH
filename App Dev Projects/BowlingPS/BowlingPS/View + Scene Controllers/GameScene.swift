@@ -17,8 +17,8 @@ var totalPoints: Int = 0
 var gameSC = GameScene()
 var time: Double = 0
 var difficulty = 0 // 0: easy mode (kid walls), 1: hard mode (gutters)
-var scorePos = 0
-var rScorePos = 0
+var scorePos = 18
+var rScorePos = 9
 class GameScene: SKScene {
     //MARK - Variables
     var td: Bool = false
@@ -357,16 +357,15 @@ class GameScene: SKScene {
         alertMessage.addAction(okayAction)
         alertMessage.addAction(shareAction)
         gameVC.present(alertMessage, animated: true)
+        setupScores()
+        scorePos = 0
+        rScorePos = 0
+        totalPoints = 0
+        points = 10
     }
     //"ends" round, resets balls to their original position
     func gameEnd(){
         var strike = false
-        if(scorePos > 20){
-            setupScores()
-            scorePos = 0
-            rScorePos = 0
-            totalPoints = 0
-        }
         //checks position vs. location to check the pins knocked down, then resets them
         for n in 0...9{
             //sets to Ints to correct the doubles being .000000001 off, also affects if statement
@@ -416,12 +415,16 @@ class GameScene: SKScene {
             rScorePos += 1
             hiddenPins = [SKSpriteNode?](repeating: nil, count: 10)
         }
-        if(strike){
+        if(strike && scorePos != 21){
+            rScores[rScorePos].text = String(totalPoints)
+            rScorePos += 1
+            hiddenPins = [SKSpriteNode?](repeating: nil, count: 10)
             scorePos += 1
             strike = false
         }
-        if(scorePos == 20){
-            rScores[rScorePos].text = String(totalPoints)
+        if(scorePos == 21){
+            hiddenPins = [SKSpriteNode?](repeating: nil, count: 10)
+            rScores[rScorePos - 1].text = String(totalPoints)
             gameOver = true
         }
         if(animations){
