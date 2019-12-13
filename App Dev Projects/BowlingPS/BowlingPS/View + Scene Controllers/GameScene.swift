@@ -427,6 +427,10 @@ class GameScene: SKScene {
         if(animations){
         playAnimation()
         }
+        else if(gameOver){ //present game over if animations are off
+            gameSC.takeResults()
+            gameOver = false
+        }
         //sets everything back to initial values
         resetBall()
         locations = []
