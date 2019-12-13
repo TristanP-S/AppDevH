@@ -26,6 +26,7 @@ class GameViewController: UIViewController {
     var panRec : UIPanGestureRecognizer!
     var lastSwipeBeginningPoint: CGPoint?
     @IBOutlet weak var diffButton: UIButton!
+    @IBOutlet weak var musicButton: UIButton!
     //MARK - Loading
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -124,6 +125,16 @@ class GameViewController: UIViewController {
         gameSC.setBorders(wall: gameSC.gutterWall1, positive: true)
         gameSC.setBorders(wall: gameSC.gutterWall2, positive: false)
         gameSC.resetPins()
+    }
+    @IBAction func musicToggled(_ sender: Any) {
+        if(musicButton.titleLabel!.text == "Music: Off"){
+            playSong(song: "wiiBowl")
+            musicButton.setTitle("Music: On", for: .normal)
+        }
+        else{
+            musicPlayer.stop()
+            musicButton.setTitle("Music: Off", for: .normal)
+        }
     }
     //MARK - Default
     override var shouldAutorotate: Bool {

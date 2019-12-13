@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0228AF6F23A3C1AB00575B17 /* wiiBowl.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0228AF6E23A3C1AB00575B17 /* wiiBowl.mp3 */; };
 		0243B81923A29BEE008E6814 /* bowlingFloor.png in Resources */ = {isa = PBXBuildFile; fileRef = 0243B81823A29BEE008E6814 /* bowlingFloor.png */; };
 		0258B1B323A2865700F32F31 /* gutter1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1B223A2865700F32F31 /* gutter1.mp4 */; };
 		0258B1B523A2865D00F32F31 /* gutter2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 0258B1B423A2865D00F32F31 /* gutter2.mp4 */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0228AF6E23A3C1AB00575B17 /* wiiBowl.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wiiBowl.mp3; sourceTree = "<group>"; };
 		0243B81823A29BEE008E6814 /* bowlingFloor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bowlingFloor.png; sourceTree = "<group>"; };
 		0258B1B223A2865700F32F31 /* gutter1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gutter1.mp4; sourceTree = "<group>"; };
 		0258B1B423A2865D00F32F31 /* gutter2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = gutter2.mp4; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				0243B81823A29BEE008E6814 /* bowlingFloor.png */,
+				0228AF6E23A3C1AB00575B17 /* wiiBowl.mp3 */,
 				0258B1B223A2865700F32F31 /* gutter1.mp4 */,
 				0258B1B423A2865D00F32F31 /* gutter2.mp4 */,
 				0258B1B623A2866500F32F31 /* 1pin1.mp4 */,
@@ -338,6 +341,7 @@
 				0258B1CB23A2869400F32F31 /* spare2.mp4 in Resources */,
 				0258B1D123A286A400F32F31 /* strike3.mp4 in Resources */,
 				0258B1C923A2869000F32F31 /* spare1.mp4 in Resources */,
+				0228AF6F23A3C1AB00575B17 /* wiiBowl.mp3 in Resources */,
 				02B88719239EC3CB00FFF53E /* LaunchScreen.storyboard in Resources */,
 				0258B1BB23A2866E00F32F31 /* 3pin1.mp4 in Resources */,
 				02B8870D239EC3C900FFF53E /* Actions.sks in Resources */,
