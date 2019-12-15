@@ -12,6 +12,7 @@
  -Tested and working on iPhone 8 emulator and real iPhone 7, might have issues on others
  -Technically functional, but very laggy + constraint issues on iPads, some constraint issues on iPhone 11s. (no fix due to the way spritekit scenes are made and me not realizing this was a problem until far too late in development)
  -I gave up on animating the ball, but the remenants are still there (shouldn't cause problems)
+ -Swiping ball too fast will STACK the velocity multiplification, making the ball seem like it is teleporting (because phone doesn't make rolling = true fast enough)
  */
 import UIKit
 import SpriteKit
