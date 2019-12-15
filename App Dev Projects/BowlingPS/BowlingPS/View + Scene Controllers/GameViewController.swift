@@ -7,6 +7,7 @@
 //
 /* NOTES/BUGS
  -Ball  may make pins + ball keep floating and not end the game, but there's a timeout for problems like that (due to me not knowing what to do for physics in a 2D bowling game)
+ -Weird Interactions if ball is too slow, fix is still the timeout(same reason as above)
  -Ball takes 2 swipes after the first throw to work properly (no fix atm, IDK why it happens)
  -Tested and working on iPhone 8 emulator and real iPhone 7, might have issues on others
  -Technically functional, but very laggy + constraint issues on iPads, some constraint issues on iPhone 11s. (no fix due to the way spritekit scenes are made and me not realizing this was a problem until far too late in development)

@@ -17,8 +17,8 @@ var totalPoints: Int = 0
 var gameSC = GameScene()
 var time: Double = 0
 var difficulty = 0 // 0: easy mode (kid walls), 1: hard mode (gutters)
-var scorePos = 0
-var rScorePos = 0
+var scorePos = 18
+var rScorePos = 9
 class GameScene: SKScene {
     //MARK - Variables
     var td: Bool = false
@@ -91,7 +91,7 @@ class GameScene: SKScene {
         resetPins()
     }
     //MARK - Normal Functions
-    //collision detection for gutters (uses zPos to set ball to firstBody)
+    //collision detection for gutters (uses zPos to set ball to firstBody) <- NOT WORKING, easy route used
     func didBeginContact(contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
@@ -117,13 +117,14 @@ class GameScene: SKScene {
             }
             else{
                 print("Force multiplyers; x: \(change.x) , y: \(change.y)")
-                if(change.y > 250){ //makes sure ball isn't too fast
-                    rChange.y = 200
-                }
-                //moves ball based on change and tells game it is "rollling"
                 rolling = true
                 animateBall = true
+                if(change.y > 250){ //makes sure ball isn't too fast or slow
+                    rChange.y = 200
+                } //BUG: The print statement is always called, but ball only flung on second swipe (even though ball DOES have physics body by that point).
+                //moves ball based on change and tells game it is "rollling"
                 ball.physicsBody?.applyForce(CGVector(dx: CGFloat(0 + (5000 * (rChange.x))), dy: CGFloat(0 + (5000  * (rChange.y)))))
+                print("Ball Push Attempted")
             }
         }
     }
@@ -334,10 +335,10 @@ class GameScene: SKScene {
     }
     //takes screenshot of results
     func takeResults(){
-        //makes new image the size of the view
-        UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 0)
-        //renders new image
-        self.view!.drawHierarchy(in: self.view!.bounds, afterScreenUpdates: true)
+        //makes new image the size of the view with the width of the screen and heigh of 150
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: UIScreen.main.bounds.size.width, height: 150), false, 0)
+        //renders new image starting from 0-> bound of screen for x, -600 -> top of screen
+        self.view!.drawHierarchy(in: CGRect(x: 0,y: -600,width: UIScreen.main.bounds.size.width,height: UIScreen.main.bounds.size.height), afterScreenUpdates: true)
         //saves new image
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         //stops rendering new image
@@ -405,7 +406,6 @@ class GameScene: SKScene {
         if(scorePos % 2 == 0){
             //checks for spare
             let lastScore: Int = Int(scores[scorePos-2].text!)!
-            print(lastScore)
             if(lastScore + points == 10){
                 scores[scorePos - 1].text = "/"
                 totalPoints += 5 //adds 5 instead of calculating spare
