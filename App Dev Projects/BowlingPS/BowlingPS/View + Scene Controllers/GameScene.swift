@@ -17,8 +17,8 @@ var totalPoints: Int = 0
 var gameSC = GameScene()
 var time: Double = 0
 var difficulty = 0 // 0: easy mode (kid walls), 1: hard mode (gutters)
-var scorePos = 18
-var rScorePos = 9
+var scorePos = 0
+var rScorePos = 0
 class GameScene: SKScene {
     //MARK - Variables
     var td: Bool = false
@@ -110,7 +110,7 @@ class GameScene: SKScene {
     //moves ball in a direction
     func moveBall(change: CGPoint){
         var rChange: CGPoint = change
-        if(!rolling){
+        if(!rolling && ball.position.y < -499){ //balls y value added so ball can't be flung while being "reset" (unless swiping fast)
             if(change.y <= 0 || (change == CGPoint(x: 0, y: 0))){
                 gameVC.playVid(vidName: "backShot")
                 backShot = true

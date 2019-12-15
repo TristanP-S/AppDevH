@@ -6,10 +6,11 @@
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
 //
 /* NOTES/BUGS
- -Ball  may make pins + ball keep floating and not end the game, but there's a timeout for problems like that
- -Ball takes 2 swipes after the first throw to work properly (no fix atm)
- -ONLY tested on iPhone 8 emulator and real iPhone 7, might have issues on others
- -I gave up on animating the ball, but the remenants are still there
+ -Ball  may make pins + ball keep floating and not end the game, but there's a timeout for problems like that (due to me not knowing what to do for physics in a 2D bowling game)
+ -Ball takes 2 swipes after the first throw to work properly (no fix atm, IDK why it happens)
+ -Tested and working on iPhone 8 emulator and real iPhone 7, might have issues on others
+ -Technically functional, but very laggy + constraint issues on iPads, some constraint issues on iPhone 11s. (no fix due to the way spritekit scenes are made and me not realizing this was a problem until far too late in development)
+ -I gave up on animating the ball, but the remenants are still there (shouldn't cause problems)
  */
 import UIKit
 import SpriteKit
