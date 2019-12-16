@@ -9,7 +9,7 @@
  -Ball  may make pins + ball keep floating and not end the game, but there's a timeout for problems like that (due to me not knowing what to do for physics in a 2D bowling game)
  -Weird Interactions if ball is too slow, fix is still the timeout(same reason as above)
  -Ball takes 2 swipes after the first throw to work properly (no fix atm, IDK why it happens)
- -Tested and working on iPhone 8 emulator and real iPhone 7, might have issues on others
+ -Tested and working on iPhone 8 + 11 emulator and real iPhone 6 + 7, might have constraint issues on others
  -Technically functional, but very laggy + constraint issues on iPads, some constraint issues on iPhone 11s. (no fix due to the way spritekit scenes are made and me not realizing this was a problem until far too late in development)
  -I gave up on animating the ball, but the remenants are still there (shouldn't cause problems)
  -Swiping ball too fast will STACK the velocity multiplification, making the ball seem like it is teleporting (because phone doesn't make rolling = true fast enough)
@@ -30,20 +30,21 @@ class GameViewController: UIViewController {
     @IBOutlet weak var diffButton: UIButton!
     @IBOutlet weak var musicButton: UIButton!
     @IBOutlet weak var animationButton: UIButton!
+    @IBOutlet weak var gameScene: SKView!
     //MARK - Loading
     override func viewDidLoad() {
         super.viewDidLoad()
         gameVC = self
+        gameVC.view.backgroundColor = UIColor(ciColor: .gray)
         //defines + adds swipes to VC
         panRec = UIPanGestureRecognizer(target: self, action: #selector(gameVC.handlePan(recognizer:)))
         self.view.addGestureRecognizer(panRec)
         //Loads scene
-        if let view = self.view as! SKView? {
+        if let view = gameVC.gameScene {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                
                 // Present the scene
                 view.presentScene(scene)
             }
