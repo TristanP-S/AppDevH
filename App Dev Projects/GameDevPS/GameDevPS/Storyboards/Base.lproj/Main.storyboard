@@ -18,18 +18,42 @@
                             <skView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NQK-YM-agj">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </skView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hS-Z2-RbP">
+                                <rect key="frame" x="10" y="5" width="36" height="30"/>
+                                <state key="normal" title="Shop">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="shopPressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="HYL-7M-XLe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xis-Vd-wRF">
+                                <rect key="frame" x="298" y="5" width="67" height="30"/>
+                                <state key="normal" title="Minigame">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="minigamePressed:" destination="BV1-FR-VrT" eventType="touchUpInside" id="csc-Sh-iSQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="NQK-YM-agj" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" id="Juh-1p-FNM"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="bottom" secondItem="NQK-YM-agj" secondAttribute="bottom" id="KMr-t1-doR"/>
+                            <constraint firstItem="xis-Vd-wRF" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="5" id="Uga-Fh-PUv"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="xis-Vd-wRF" secondAttribute="trailing" constant="10" id="eub-b8-uMT"/>
                             <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="NQK-YM-agj" secondAttribute="trailing" id="ggM-8Z-gIR"/>
                             <constraint firstItem="NQK-YM-agj" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" id="kb2-N4-3dt"/>
+                            <constraint firstItem="2hS-Z2-RbP" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="5" id="mg3-aF-srj"/>
+                            <constraint firstItem="2hS-Z2-RbP" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="10" id="oMV-W4-jbi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                     <connections>
                         <outlet property="gameView" destination="NQK-YM-agj" id="RD2-cA-LAY"/>
+                        <outlet property="minigameBtn" destination="xis-Vd-wRF" id="20N-b7-UMZ"/>
+                        <outlet property="shopBtn" destination="2hS-Z2-RbP" id="ay1-Tb-d1g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
