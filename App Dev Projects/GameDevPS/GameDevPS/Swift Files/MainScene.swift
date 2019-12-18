@@ -20,6 +20,8 @@ class MainScene: SKScene {
     override func didMove(to view: SKView) {
         mainSC = self
         pointsLbl = self.childNode(withName: "pointsLbl") as! SKLabelNode
+        pointsLbl.position = CGPoint(x: 0, y: (self.view?.bounds.maxY)! - 50)
+        pointsLbl.text = "Points: \(points)"
     }
     //Detects Tap (Beggining)
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
