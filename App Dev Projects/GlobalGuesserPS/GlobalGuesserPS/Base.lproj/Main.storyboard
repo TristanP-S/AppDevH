@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="landscape" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,39 +12,40 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GlobalGuesserPS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="65T-3Z-690">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
-                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tj5-7r-PRu">
-                                <rect key="frame" x="0.0" y="345" width="667" height="30"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="318.5" width="375" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <state key="normal" title="Start">
-                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="startClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MUa-fJ-c7f"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6lk-An-jTb">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="345"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="318.5"/>
                             </imageView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="65T-3Z-690">
+                                <rect key="frame" x="0.0" y="348.5" width="375" height="318.5"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6lk-An-jTb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="EwS-wr-HeQ"/>
+                            <constraint firstItem="6lk-An-jTb" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7Pr-Js-BIV"/>
+                            <constraint firstItem="65T-3Z-690" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="DQM-sJ-IeT"/>
+                            <constraint firstItem="tj5-7r-PRu" firstAttribute="top" secondItem="6lk-An-jTb" secondAttribute="bottom" id="E6N-mq-69b"/>
+                            <constraint firstItem="tj5-7r-PRu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KlA-u9-oox"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tj5-7r-PRu" secondAttribute="trailing" id="OlW-ce-9OW"/>
-                            <constraint firstItem="6lk-An-jTb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="b5s-Dx-era"/>
+                            <constraint firstItem="6lk-An-jTb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="PwA-k7-vpt"/>
+                            <constraint firstItem="6lk-An-jTb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dsd-ra-dOq"/>
                             <constraint firstItem="tj5-7r-PRu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fuD-5b-3nw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tj5-7r-PRu" secondAttribute="bottom" id="kHd-Se-sjl"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="65T-3Z-690" secondAttribute="trailing" id="qJ9-pm-JTH"/>
-                            <constraint firstItem="65T-3Z-690" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="uks-RN-dqw"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="65T-3Z-690" secondAttribute="bottom" id="vTD-CK-IzL"/>
-                            <constraint firstItem="65T-3Z-690" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xP0-Ra-Iac"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="6lk-An-jTb" secondAttribute="trailing" id="zCm-0u-lSU"/>
-                            <constraint firstItem="tj5-7r-PRu" firstAttribute="top" secondItem="6lk-An-jTb" secondAttribute="bottom" id="zzz-Fx-dFm"/>
+                            <constraint firstItem="65T-3Z-690" firstAttribute="top" secondItem="tj5-7r-PRu" secondAttribute="bottom" id="gLQ-gz-cMC"/>
+                            <constraint firstItem="tj5-7r-PRu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lOs-gN-AKj"/>
+                            <constraint firstItem="65T-3Z-690" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="oYV-PV-zPs"/>
+                            <constraint firstItem="65T-3Z-690" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vur-Xc-sOB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -56,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="115"/>
+            <point key="canvasLocation" x="138.98050974512745" y="114.40000000000001"/>
         </scene>
     </scenes>
 </document>
