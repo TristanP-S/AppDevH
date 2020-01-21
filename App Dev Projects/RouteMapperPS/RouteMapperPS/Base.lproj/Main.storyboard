@@ -27,11 +27,21 @@
                                     <action selector="resetTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HZi-id-hB7"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZJ-oA-3h8">
+                                <rect key="frame" x="0.0" y="637" width="375" height="30"/>
+                                <state key="normal" title="Undo"/>
+                                <connections>
+                                    <action selector="undoTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uDw-wi-ZPu"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="y5T-Yz-CNS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="17j-xI-Iwd"/>
+                            <constraint firstItem="UZJ-oA-3h8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="867-Gx-mNx"/>
                             <constraint firstItem="GtX-8T-NCK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Brq-7L-fch"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UZJ-oA-3h8" secondAttribute="trailing" id="MqB-hL-O1X"/>
+                            <constraint firstItem="UZJ-oA-3h8" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="O59-U1-3AS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="y5T-Yz-CNS" secondAttribute="bottom" id="dYT-3g-czd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="y5T-Yz-CNS" secondAttribute="trailing" id="iUy-nP-5od"/>
                             <constraint firstItem="GtX-8T-NCK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qOA-Oj-6YS"/>
@@ -42,7 +52,8 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="y5T-Yz-CNS" id="f7u-hh-3HG"/>
-                        <outlet property="resetButton" destination="GtX-8T-NCK" id="cs7-xp-I1v"/>
+                        <outlet property="resetBtn" destination="GtX-8T-NCK" id="Fie-xe-Tqh"/>
+                        <outlet property="undoBtn" destination="UZJ-oA-3h8" id="hIL-EX-D6U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
