@@ -19,8 +19,9 @@ class ViewController: UIViewController, MKMapViewDelegate {
     override var shouldAutorotate: Bool { // Locks screen into landscape
         return false
     }
-    var phase = 0 //phase 0 = start, 1 = end, 2 = viewing route
+    var phase = 0 //phase 0 = start, 1 = turns, 2 = end, 3 = viewing
     var locations: [CLLocationCoordinate2D] = []
+    var reset = false
     //MARK - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,23 +46,26 @@ class ViewController: UIViewController, MKMapViewDelegate {
         annotation.coordinate = pointCoords
         mapView.addAnnotation(annotation)
     }
-    //removes all annotations on the map
+    //removes all annotations and overlays on the map
     func removeAnnotations(){
         for annotation in mapView.annotations{
             mapView.removeAnnotation(annotation)
+        }
+    }
+    func removeOverlays(){
+        for overlay in mapView.overlays{
+            mapView.removeOverlay(overlay)
         }
     }
     //creates a polyline with the given coords
     func makePolyline(locations: [CLLocationCoordinate2D]){
         let polyline = MKPolyline(coordinates: locations, count: locations.count) //makes polyLine w/ coords given
         mapView.addOverlay(polyline)
-        print("polyline attempted, size: \(locations.count), coords: \(locations)")
     }
-    //actually makes the polyline render
+    //overrides overlay rendering functions
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         //sets rendering properties for polyline
         if(overlay is MKPolyline){
-            print("polyline draw attempted")
             let polylineRender = MKPolylineRenderer(overlay: overlay)
             polylineRender.strokeColor = UIColor(ciColor: .red)
             polylineRender.lineWidth = 5
@@ -82,19 +86,33 @@ class ViewController: UIViewController, MKMapViewDelegate {
         } else if (phase == 1){ //if set start
             let coords = mapView.convert(tapLocation,toCoordinateFrom: mapView)
             print("Tapped at lat: \(coords.latitude) long: \(coords.longitude)")
+            makeAnnotation(givenTitle: "Turn\(locations.count)", pointCoords: coords)
+            locations.append(coords)
+        } else if (phase == 2){ //add turns here + redraw polyline
+            let coords = mapView.convert(tapLocation,toCoordinateFrom: mapView)
+            print("Tapped at lat: \(coords.latitude) long: \(coords.longitude)")
             makeAnnotation(givenTitle: "End", pointCoords: coords)
             locations.append(coords)
-            phase = 2
             //create polyline here
             makePolyline(locations: locations)
-        } else { //add turns here + redraw polyline
-            
+            phase = 3
+            reset = true
+        } else {
+            print("Extra Tap") //just so nothing else is called when user taps while scrolling around map
         }
     }
     //resets start and end of map
     @IBAction func resetTapped(_ sender: Any) {
-        removeAnnotations()
-        phase = 0
-        locations = []
+        if(reset){ //if actually resetting
+            removeAnnotations()
+            removeOverlays()
+            phase = 0
+            locations = []
+            reset = false
+            resetButton.setTitle("Confirm Turns", for: .normal)
+        } else { //if confirming start + turns are done
+            phase = 2
+            resetButton.setTitle("Reset Route", for: .normal)
+        }
     }
 }
