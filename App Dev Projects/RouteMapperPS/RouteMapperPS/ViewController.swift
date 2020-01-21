@@ -19,7 +19,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     override var shouldAutorotate: Bool { // Locks screen into landscape
         return false
     }
-    var phase = 0 //phase 0 = start, 1 = turns, 2 = end, 3 = viewing
+    var phase: Int = 0 //phase 0 = start, 1 = turns, 2 = end, 3 = viewing
+    var distance: Double = 0
     var locations: [CLLocationCoordinate2D] = []
     var reset = false
     //MARK - Functions
@@ -73,6 +74,13 @@ class ViewController: UIViewController, MKMapViewDelegate {
         }
         return MKPolylineRenderer()//stops the render if not polyline
     }
+    //calculates distance between current points and adds it up
+    func calcDistance(){
+        distance = 0
+        for i in 0...(locations.count - 2){ //adds distance between one location except last point
+            distance += CLLocation(latitude: CLLocationDegrees(exactly: locations[i].latitude)!, longitude: CLLocationDegrees(exactly: locations[i].longitude)!).distance(from: CLLocation(latitude: CLLocationDegrees(exactly: locations[i+1].latitude)!, longitude: CLLocationDegrees(exactly: locations[i+1].longitude)!))
+        }
+    }
     //Detects Tap (Beggining) TO ADD: check if touching "click Sprite"
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
@@ -95,6 +103,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
             locations.append(coords)
             //create polyline here
             makePolyline(locations: locations)
+            mapView.showAnnotations(mapView.annotations, animated: true)
+            calcDistance()
+            distance /= 1609.34 //<- converts to miles
+            distance = Double(round(100 * distance) / 100) //rounds it to 2 decimals
+            makeAlert(message: "Distance of route: \(distance) Miles")
             phase = 3
             reset = true
         } else {
