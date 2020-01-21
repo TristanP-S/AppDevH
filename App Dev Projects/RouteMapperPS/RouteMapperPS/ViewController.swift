@@ -10,6 +10,7 @@ NOTES/BUGS:
 -Undo Button Added for Extra Credit
 -Gives Option to Show individual route distances for Extra Credit
 ^ 2 "Fun/Interesting" extensions were added
+-ALL Taps add an annotation (hold tap function isn't supported by MapKit), can be "fixed" by the user hitting undo repeatedly once they find their location.
  */
 import UIKit
 import MapKit
