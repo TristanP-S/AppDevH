@@ -161,13 +161,17 @@ class ViewController: UIViewController, MKMapViewDelegate {
             mapView.removeAnnotation(annotations[annotations.count - 1])
             annotations.remove(at: annotations.count - 1)
             locations.remove(at: locations.count - 1)
+            reset = false
+            resetBtn.setTitle("Confirm Turns", for: .normal)
         } else if (reset){ //removes ending + polyline
             mapView.removeAnnotation(annotations[annotations.count - 1])
             annotations.remove(at: annotations.count - 1)
             locations.remove(at: locations.count - 1)
-            phase = 2
+            phase = 1
             removeOverlays()
             distances = []
+            reset = false
+            resetBtn.setTitle("Confirm Turns", for: .normal)
         } else {
             makeAlert(message: "Nothing left to undo!")
         }
