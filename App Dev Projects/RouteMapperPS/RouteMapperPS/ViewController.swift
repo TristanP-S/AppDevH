@@ -18,6 +18,7 @@ struct Location{
 class ViewController: UIViewController {
     //MARK - Outlets
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var resetButton: UIButton!
     //MARK - Variables
     override var shouldAutorotate: Bool { // Locks screen into landscape
         return false
@@ -66,9 +67,14 @@ class ViewController: UIViewController {
             print("Tapped at lat: \(coords.latitude) long: \(coords.longitude)")
             makeAnnotation(givenTitle: "End", pointCoords: coords)
             phase = 2
-        } else { //if viewing route
-            removeAnnotations()
-            phase = 0
+            //create polyline here
+        } else { //add turns here + redraw polyline
+            
         }
+    }
+    //resets start and end of map
+    @IBAction func resetTapped(_ sender: Any) {
+        removeAnnotations()
+        phase = 0
     }
 }

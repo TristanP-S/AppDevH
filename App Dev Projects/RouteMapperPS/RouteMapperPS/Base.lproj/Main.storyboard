@@ -18,18 +18,31 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="y5T-Yz-CNS">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GtX-8T-NCK">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                <state key="normal" title="Reset Route">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HZi-id-hB7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="y5T-Yz-CNS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="17j-xI-Iwd"/>
+                            <constraint firstItem="GtX-8T-NCK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Brq-7L-fch"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="y5T-Yz-CNS" secondAttribute="bottom" id="dYT-3g-czd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="y5T-Yz-CNS" secondAttribute="trailing" id="iUy-nP-5od"/>
+                            <constraint firstItem="GtX-8T-NCK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qOA-Oj-6YS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GtX-8T-NCK" secondAttribute="trailing" id="v6c-5y-2xp"/>
                             <constraint firstItem="y5T-Yz-CNS" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="xEo-4A-IZ8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="mapView" destination="y5T-Yz-CNS" id="f7u-hh-3HG"/>
+                        <outlet property="resetButton" destination="GtX-8T-NCK" id="cs7-xp-I1v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
