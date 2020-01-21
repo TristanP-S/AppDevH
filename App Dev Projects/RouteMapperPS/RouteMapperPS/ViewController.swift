@@ -28,7 +28,6 @@ class ViewController: UIViewController, MKMapViewDelegate {
     var annotations: [MKAnnotation] = [] //used because annotation.remove is bugged
     var distances: [Double] = [] //used for extra credit thing
     var reset = false
-    var distView = false
     //MARK - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +36,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
         self.mapView.delegate = self //sets up MKMapViewDelegate
     }
     //makes a basic alert with an ok button and presents it
-    func makeAlert(message: String){
+    func makeAlert(message: String, viewEnabled: Bool){
         let alertMessage = UIAlertController(title: message, message: nil, preferredStyle: .alert)
         let okayAction = UIAlertAction(title: "OK", style: .default) { action in
             //call any needed functions here
             print("OK pressed")
-            self.distView = false
         }
         let viewAction = UIAlertAction(title: "View Individual Distances", style: .default) { action in
             //call any needed functions here
@@ -53,11 +51,10 @@ class ViewController: UIViewController, MKMapViewDelegate {
                 cDistance = Double(round(100 * cDistance) / 100) //rounds it to 2 decimals
                 msgString = "\(msgString) \n Route \(i + 1): \(cDistance) Miles"
             }
-            self.distView = true
-            self.makeAlert(message: msgString)
+            self.makeAlert(message: msgString, viewEnabled: false)
         }
         alertMessage.addAction(okayAction)
-        if(!distView){ //if not already viewing individual distances
+        if(viewEnabled){ //if not already viewing individual distances
             alertMessage.addAction(viewAction)
         }
         present(alertMessage, animated: true)
@@ -129,11 +126,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
             locations.append(coords)
             //create polyline here
             makePolyline(locations: locations)
-            mapView.showAnnotations(mapView.annotations, animated: true)
+            mapView.showAnnotations(mapView.annotations, animated: true) //zooms in to show all annotations
             calcDistance()
             distance /= 1609.34 //<- converts to miles
             distance = Double(round(100 * distance) / 100) //rounds it to 2 decimals
-            makeAlert(message: "Distance of route: \(distance) Miles")
+            makeAlert(message: "Distance of route: \(distance) Miles", viewEnabled: true)
             phase = 3
             reset = true
         } else {
@@ -148,11 +145,16 @@ class ViewController: UIViewController, MKMapViewDelegate {
             phase = 0
             locations = []
             annotations = []
+            //zooms map back out in center of USA
+            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 40, longitude: -100), latitudinalMeters: CLLocationDistance(exactly: 5000000)!, longitudinalMeters: CLLocationDistance(exactly: 5000000)!)
+            mapView.setRegion(mapView.regionThatFits(region), animated: true)
             reset = false
             resetBtn.setTitle("Confirm Turns", for: .normal)
-        } else { //if confirming start + turns are done
+        } else if (annotations.count > 1){ //if confirming start + turns are done
             phase = 2
             resetBtn.setTitle("Reset Route", for: .normal)
+        } else {
+            makeAlert(message: "Must Create A Starting Point", viewEnabled: false)
         }
     }
     //undo button tapped
@@ -163,7 +165,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
             locations.remove(at: locations.count - 1)
             reset = false
             resetBtn.setTitle("Confirm Turns", for: .normal)
-        } else if (reset){ //removes ending + polyline
+        } else if (reset && annotations.count > 1){ //removes ending + polyline
             mapView.removeAnnotation(annotations[annotations.count - 1])
             annotations.remove(at: annotations.count - 1)
             locations.remove(at: locations.count - 1)
@@ -173,7 +175,7 @@ class ViewController: UIViewController, MKMapViewDelegate {
             reset = false
             resetBtn.setTitle("Confirm Turns", for: .normal)
         } else {
-            makeAlert(message: "Nothing left to undo!")
+            makeAlert(message: "Nothing Left to Undo!", viewEnabled:  false)
         }
     }
 }
