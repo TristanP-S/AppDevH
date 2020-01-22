@@ -11,10 +11,11 @@ NOTES/BUGS:
 -Gives Option to Show individual route distances for Extra Credit
 ^ 2 "Fun/Interesting" extensions were added
 -ALL Taps add an annotation (hold tap function isn't supported by MapKit), can be "fixed" by the user hitting undo repeatedly once they find their location.
+-"Start" isn't connected in polyline <- not sure what causes that, likely to be due to User Location
  */
 import UIKit
 import MapKit
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     //MARK - Outlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var resetBtn: UIButton!
@@ -23,18 +24,36 @@ class ViewController: UIViewController, MKMapViewDelegate {
     override var shouldAutorotate: Bool { // Locks screen into landscape
         return false
     }
-    var phase: Int = 0 //phase 0 = start, 1 = turns, 2 = end, 3 = viewing
+    var phase: Int = 0 //phase 0 = turns, 1 = end, 2 = viewing
     var distance: Double = 0
-    var locations: [CLLocationCoordinate2D] = []
+    var userCoords: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    var turnLocations: [CLLocationCoordinate2D] = []
     var annotations: [MKAnnotation] = [] //used because annotation.remove is bugged
     var distances: [Double] = [] //used for extra credit thing
     var reset = false
+    var locationManager = CLLocationManager() // used to track user location
     //MARK - Functions
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation") //Locks screen into landscape mode
         self.mapView.delegate = self //sets up MKMapViewDelegate
+        if (CLLocationManager.locationServicesEnabled() == true){
+            if(CLLocationManager.authorizationStatus() == .restricted || CLLocationManager.authorizationStatus() == .denied || CLLocationManager.authorizationStatus() == .notDetermined){
+                locationManager.requestWhenInUseAuthorization()
+            }
+            locationManager.desiredAccuracy = 1.0 //makes user location accurate
+            locationManager.delegate = self
+            locationManager.startUpdatingLocation()
+            if(turnLocations.count < 1){ //if start isn't there already, it creates it
+                makeAnnotation(givenTitle: "Start", pointCoords: userCoords)
+                turnLocations.append(userCoords)
+                let region = MKCoordinateRegion(center: userCoords, latitudinalMeters: 100, longitudinalMeters: 100)
+                mapView.setRegion(region, animated: true)
+            }
+        } else {
+            makeAlert(message: "Please Turn on Locaiton Services", viewEnabled: false)
+        }
     }
     //makes a basic alert with an ok button and presents it
     func makeAlert(message: String, viewEnabled: Bool){
@@ -80,10 +99,11 @@ class ViewController: UIViewController, MKMapViewDelegate {
         }
     }
     //creates a polyline with the given coords
-    func makePolyline(locations: [CLLocationCoordinate2D]){
-        let polyline = MKPolyline(coordinates: locations, count: locations.count) //makes polyLine w/ coords given
+    func makePolyline(turnLocations: [CLLocationCoordinate2D]){
+        let polyline = MKPolyline(coordinates: turnLocations, count: turnLocations.count) //makes polyLine w/ coords given
         mapView.addOverlay(polyline)
     }
+    //MARK - mapView Funcs
     //overrides overlay rendering functions
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         //sets rendering properties for polyline
@@ -95,12 +115,24 @@ class ViewController: UIViewController, MKMapViewDelegate {
         }
         return MKPolylineRenderer()//stops the render if not polyline
     }
+    //called when user location is updated
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        //sets user location
+        userCoords = mapView.userLocation.coordinate
+        if(turnLocations.count < 1){ //if start isn't there already
+            self.mapView.showAnnotations(mapView.annotations, animated: true) //zooms in to show all annotations
+        }
+    }
+    //MARK - LocationManager funcs
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        makeAlert(message: "Can't get your current location", viewEnabled: false)
+    }
     //calculates distance between current points and adds it up
     func calcDistance(){
         distance = 0
         distances = []
         for i in 0...(annotations.count - 2){ //adds distance between one location except last point
-            let cDistance = CLLocation(latitude: CLLocationDegrees(exactly: locations[i].latitude)!, longitude: CLLocationDegrees(exactly: locations[i].longitude)!).distance(from: CLLocation(latitude: CLLocationDegrees(exactly: locations[i+1].latitude)!, longitude: CLLocationDegrees(exactly: locations[i+1].longitude)!)) //cDistance = current
+            let cDistance = CLLocation(latitude: CLLocationDegrees(exactly: turnLocations[i].latitude)!, longitude: CLLocationDegrees(exactly: turnLocations[i].longitude)!).distance(from: CLLocation(latitude: CLLocationDegrees(exactly: turnLocations[i+1].latitude)!, longitude: CLLocationDegrees(exactly: turnLocations[i+1].longitude)!)) //cDistance = current
             distance += cDistance
             distances.append(cDistance)
         }
@@ -109,30 +141,24 @@ class ViewController: UIViewController, MKMapViewDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         let tapLocation = touch.location(in: mapView)
-        if (annotations.count == 0) { //if nothing set (uses annotations.count so undo doesn't bug)
-            let coords = mapView.convert(tapLocation,toCoordinateFrom: mapView)
-            print("Tapped at lat: \(coords.latitude) long: \(coords.longitude)")
-            makeAnnotation(givenTitle: "Start", pointCoords: coords)
-            locations.append(coords)
-            phase = 1
-        } else if (phase == 1) { //if set start
+        if (phase == 0) { //if set start
             let coords = mapView.convert(tapLocation,toCoordinateFrom: mapView)
             print("Tapped at lat: \(coords.latitude) long: \(coords.longitude)")
             makeAnnotation(givenTitle: "Turn\(annotations.count)", pointCoords: coords)
-            locations.append(coords)
-        } else if (phase == 2) { //add turns here + redraw polyline
+            turnLocations.append(coords)
+        } else if (phase == 1) { //add turns here + redraw polyline
             let coords = mapView.convert(tapLocation,toCoordinateFrom: mapView)
             print("Tapped at lat: \(coords.latitude) long: \(coords.longitude)")
             makeAnnotation(givenTitle: "End", pointCoords: coords)
-            locations.append(coords)
+            turnLocations.append(coords)
             //create polyline here
-            makePolyline(locations: locations)
+            makePolyline(turnLocations: turnLocations)
             mapView.showAnnotations(mapView.annotations, animated: true) //zooms in to show all annotations
             calcDistance()
             distance /= 1609.34 //<- converts to miles
             distance = Double(round(100 * distance) / 100) //rounds it to 2 decimals
             makeAlert(message: "Distance of route: \(distance) Miles", viewEnabled: true)
-            phase = 3
+            phase = 2
             reset = true
         } else {
             print("Extra Tap") //just so nothing else is called when user taps while scrolling around map
@@ -144,15 +170,18 @@ class ViewController: UIViewController, MKMapViewDelegate {
             removeAnnotations()
             removeOverlays()
             phase = 0
-            locations = []
+            turnLocations = []
             annotations = []
-            //zooms map back out in center of USA
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 40, longitude: -100), latitudinalMeters: CLLocationDistance(exactly: 5000000)!, longitudinalMeters: CLLocationDistance(exactly: 5000000)!)
-            mapView.setRegion(mapView.regionThatFits(region), animated: true)
             reset = false
+            if(turnLocations.count < 1){ //if start isn't there already, it creates it
+                makeAnnotation(givenTitle: "Start", pointCoords: userCoords)
+                turnLocations.append(userCoords)
+                let region = MKCoordinateRegion(center: userCoords, latitudinalMeters: 100, longitudinalMeters: 100)
+                mapView.setRegion(region, animated: true)
+            }
             resetBtn.setTitle("Confirm Turns", for: .normal)
-        } else if (annotations.count > 1){ //if confirming start + turns are done
-            phase = 2
+        } else if (annotations.count >= 1){ //if confirming start + turns are done
+            phase = 1
             resetBtn.setTitle("Reset Route", for: .normal)
         } else {
             makeAlert(message: "Must Create A Starting Point", viewEnabled: false)
@@ -160,17 +189,17 @@ class ViewController: UIViewController, MKMapViewDelegate {
     }
     //undo button tapped
     @IBAction func undoTapped(_ sender: Any) {
-        if(!reset && annotations.count > 0) { //checks if there are any annotations then removes last added one from map + if route isn't ended
+        if(!reset && annotations.count > 1) { //checks if there are any annotations then removes last added one from map + if route isn't ended, except starting annotation (as that is user location)
             mapView.removeAnnotation(annotations[annotations.count - 1])
             annotations.remove(at: annotations.count - 1)
-            locations.remove(at: locations.count - 1)
+            turnLocations.remove(at: turnLocations.count - 1)
             reset = false
             resetBtn.setTitle("Confirm Turns", for: .normal)
-        } else if (reset && annotations.count > 1){ //removes ending + polyline
+        } else if (reset && annotations.count > 1){ //removes ending + polyline if at ending
             mapView.removeAnnotation(annotations[annotations.count - 1])
             annotations.remove(at: annotations.count - 1)
-            locations.remove(at: locations.count - 1)
-            phase = 1
+            turnLocations.remove(at: turnLocations.count - 1)
+            phase = 0
             removeOverlays()
             distances = []
             reset = false
