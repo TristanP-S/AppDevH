@@ -10,14 +10,16 @@ NOTES/BUGS:
 -Undo Button Added for Extra Credit
 -Gives Option to Show individual route distances for Extra Credit
 ^ 2 "Fun/Interesting" extensions were added
--ALL Taps add an annotation (hold tap function isn't supported by MapKit), can be "fixed" by the user hitting undo repeatedly once they find their location.
 -Obviously doesn't work if you don't give it permission to use your location
--"Start" isn't connected in polyline, caused by bug with MapKit and the coordinates 0,0. Since a user will never be at EXACTLY 0,0 on a map unless emulating or using a spoofed location, this isn't an actual bug. However, the bug is that the user location isn't properly tracked, and is always 0,0
+-"Start" isn't connected in polyline if its location is 0,0 , caused by bug with MapKit and the coordinates 0,0. However, it is highly improbable for the user to be at EAXCTLY 0,0 on the dot.
+ -You need to hold for .5 seconds each time and then let go for a "turn" to spawn, this can be changed by changing the line "longPressRecognizer.minimumPressDuration = 0.5"
+ -Undo allows user to update their location.
+ -MapKit accuracy isn't 100% accurate always, it isn't something I can fix, I set the desired accuracy to max
  */
 import UIKit
 import MapKit
 import CoreLocation
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
     //MARK - Outlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var resetBtn: UIButton!
@@ -39,6 +41,12 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation") //Locks screen into landscape mode
+        //adds long press recognizer
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+        longPressRecognizer.minimumPressDuration = 0.5
+        longPressRecognizer.delegate = self
+        longPressRecognizer.delaysTouchesBegan = true
+        self.view.addGestureRecognizer(longPressRecognizer)
         self.mapView.delegate = self //sets up MKMapViewDelegate
         //sets up location manager + asks for permissions
         if (CLLocationManager.locationServicesEnabled() == true){
@@ -50,6 +58,33 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             locationManager.startUpdatingLocation()
         } else {
             makeAlert(message: "Please Turn on Locaiton Services", viewEnabled: false)
+        }
+    }
+    //func called when a long press is detected
+    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer)
+    {
+        if gestureReconizer.state == UIGestureRecognizer.State.began{ //if it detected a full (.5 second) touch
+            let tapLocation = gestureReconizer.location(in: mapView)
+            if (phase == 0) { //if set start
+                let coords = mapView.convert(tapLocation,toCoordinateFrom: mapView)
+                print("Tapped at lat: \(coords.latitude) long: \(coords.longitude)")
+                makeAnnotation(givenTitle: "Turn\(annotations.count)", pointCoords: coords)
+            } else if (phase == 1) { //add turns here + redraw polyline
+                let coords = mapView.convert(tapLocation,toCoordinateFrom: mapView)
+                print("Tapped at lat: \(coords.latitude) long: \(coords.longitude)")
+                makeAnnotation(givenTitle: "End", pointCoords: coords)
+                //create polyline here
+                makePolyline(turnLocations: turnLocations)
+                mapView.showAnnotations(mapView.annotations, animated: true) //zooms in to show all annotations
+                calcDistance()
+                distance /= 1609.34 //<- converts to miles
+                distance = Double(round(100 * distance) / 100) //rounds it to 2 decimals
+                makeAlert(message: "Distance of route: \(distance) Miles", viewEnabled: true)
+                phase = 2
+                reset = true
+            } else {
+                print("Extra Tap") //just so nothing else is called when user taps while scrolling around map
+            }
         }
     }
     //makes a basic alert with an ok button and presents it
@@ -138,31 +173,6 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             let cDistance = CLLocation(latitude: CLLocationDegrees(exactly: turnLocations[i].latitude)!, longitude: CLLocationDegrees(exactly: turnLocations[i].longitude)!).distance(from: CLLocation(latitude: CLLocationDegrees(exactly: turnLocations[i+1].latitude)!, longitude: CLLocationDegrees(exactly: turnLocations[i+1].longitude)!)) //cDistance = current
             distance += cDistance
             distances.append(cDistance)
-        }
-    }
-    //Detects Tap (Beggining) TO ADD: check if touching "click Sprite"
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
-        let tapLocation = touch.location(in: mapView)
-        if (phase == 0) { //if set start
-            let coords = mapView.convert(tapLocation,toCoordinateFrom: mapView)
-            print("Tapped at lat: \(coords.latitude) long: \(coords.longitude)")
-            makeAnnotation(givenTitle: "Turn\(annotations.count)", pointCoords: coords)
-        } else if (phase == 1) { //add turns here + redraw polyline
-            let coords = mapView.convert(tapLocation,toCoordinateFrom: mapView)
-            print("Tapped at lat: \(coords.latitude) long: \(coords.longitude)")
-            makeAnnotation(givenTitle: "End", pointCoords: coords)
-            //create polyline here
-            makePolyline(turnLocations: turnLocations)
-            mapView.showAnnotations(mapView.annotations, animated: true) //zooms in to show all annotations
-            calcDistance()
-            distance /= 1609.34 //<- converts to miles
-            distance = Double(round(100 * distance) / 100) //rounds it to 2 decimals
-            makeAlert(message: "Distance of route: \(distance) Miles", viewEnabled: true)
-            phase = 2
-            reset = true
-        } else {
-            print("Extra Tap") //just so nothing else is called when user taps while scrolling around map
         }
     }
     //resets start and end of map
