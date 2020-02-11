@@ -11,39 +11,36 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
+    //sets up gamescene
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                
                 // Present the scene
                 view.presentScene(scene)
             }
-            
             view.ignoresSiblingOrder = true
-            
+            //remove after testing
             view.showsFPS = true
             view.showsNodeCount = true
         }
     }
-
+    //makes it so screen doesn't rotate
     override var shouldAutorotate: Bool {
-        return true
+        return false
     }
-
+    //makes it so screen is always in portait
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
+            return .portrait
         } else {
-            return .all
+            return .portrait
         }
     }
-
+    //idk what this is, but it was here by default
     override var prefersStatusBarHidden: Bool {
         return true
     }
