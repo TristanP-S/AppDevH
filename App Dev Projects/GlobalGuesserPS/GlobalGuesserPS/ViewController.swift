@@ -55,6 +55,7 @@ class ViewController: UIViewController {
         //sets up current place
         currentPlace = Int.random(in: 0...locations.count - 1) //sets to a random location
         locImage.image = locations[currentPlace].image
+        mapView.gyro
     }
     //makes a basic alert with an ok button and presents it
     func makeAlert(message: String){
