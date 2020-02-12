@@ -31,14 +31,16 @@ class GameScene: SKScene {
     func setupPlayer(){
         player?.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 50))
         player?.size = CGSize(width: 50, height: 50)
+        player?.position = CGPoint(x: 500, y: 0)
         setDefaults(sprite: player!, mass: 1, zPosition: 2, affectedByGravity: true, isDyamic: true)
     }
     //Makes a wall
     func generateWall(width: CGFloat, height: CGFloat, position: CGPoint) -> SKSpriteNode{
         let wall = SKSpriteNode(color: .red, size: CGSize(width: width, height: height))
         wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height))
-        setDefaults(sprite: wall, mass: 100, zPosition: 1, affectedByGravity: false, isDyamic: false)
-        wall.physicsBody?.velocity = CGVector(dx: 0, dy: 1000)
+        wall.position = position
+        setDefaults(sprite: wall, mass: 1000, zPosition: 1, affectedByGravity: false, isDyamic: true)
+        wall.physicsBody?.velocity = CGVector(dx: 0, dy: 100)
         return wall
     }
     //Makes a entire wall with one piece missing
@@ -46,8 +48,8 @@ class GameScene: SKScene {
         let width: CGFloat = 100
         let height: CGFloat = 50
         let wall1: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: 0, y: -100))
-        let wall2: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: -width, y: -100))
-        let wall3: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: width, y: -100))
+        let wall2: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: -(width * 1.25), y: -100))
+        let wall3: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: (width * 1.25), y: -100))
         var fullWall: [SKSpriteNode] = [wall1, wall2, wall3]
         fullWall.remove(at: Int.random(in: 0...fullWall.count - 1)) //removes a random wall
         for wall in fullWall{ //adds wall to scene
@@ -88,7 +90,7 @@ class GameScene: SKScene {
     //MARK: useful/shortcut functions
     func setDefaults(sprite: SKSpriteNode, mass : CGFloat, zPosition: CGFloat, affectedByGravity: Bool, isDyamic: Bool){
         sprite.physicsBody?.affectedByGravity = affectedByGravity
-        sprite.physicsBody?.isDynamic = true
+        sprite.physicsBody?.isDynamic = isDyamic
         sprite.physicsBody?.allowsRotation = false
         sprite.physicsBody?.angularDamping = 0
         sprite.physicsBody?.linearDamping = 0
