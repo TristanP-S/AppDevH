@@ -29,6 +29,7 @@ class GameScene: SKScene {
         setupGyro()
         moveObject(x: 0)
         nextWall()
+        print("Bruv")
     }
     //MARK: setup/generation functions
     //Sets up player node
@@ -87,15 +88,26 @@ class GameScene: SKScene {
                 let z = trueData.rotationRate.z
                 //do motion here
                 print("X: \(x), Y: \(y), Z: \(z)")
-                self.moveObject(x: x)
+                self.moveObject(x: z)
             }
         }
     }
     //MARK: physics functions
     //Moves the object
     func moveObject(x: Double){
-        player?.physicsBody?.velocity = CGVector(dx: x, dy: Double((player?.physicsBody?.velocity.dy)!))
-        print("X: \(x)")
+        let moveY: Double = Double((player?.physicsBody?.velocity.dy)!)
+        let tempX = -x * 1000 //increases x by 1000 so the player will actaully move
+        var moveX: Double = 0
+        if(tempX > 500){
+            moveX = 500
+        }
+        else if(tempX < -500){
+            moveX = -500
+        }
+        else {
+            moveX = tempX
+        }
+        player?.physicsBody?.velocity = CGVector(dx: moveX, dy: moveY)
     }
     //MARK: useful/shortcut functions
     func setDefaults(sprite: SKSpriteNode, mass : CGFloat, zPosition: CGFloat, affectedByGravity: Bool, isDyamic: Bool){
