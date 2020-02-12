@@ -1,10 +1,12 @@
-//
-//  GameScene.swift
-//  GyroGamePS
-//
-//  Created by Tristan Pudell-Spatscheck on 2/11/20.
-//  Copyright © 2020 Tristan Pudell-Spatscheck. All rights reserved.
-//
+/*
+  GameScene.swift
+  GyroGamePS
+  Created by Tristan Pudell-Spatscheck on 2/11/20.
+  Copyright © 2020 Tristan Pudell-Spatscheck. All rights reserved.
+Note from teacher (Matthew Horner) when I asked about using accelerometer instead: In general, I want one of this app and whatever we do next to involve gyroscope, and one to involve accelerometer. However, if you can give me a write-up in this one of what the gyroscope is giving you and why it's not the best choice for your particular app, I'd be fine with that.
+Write up as to why I used accelerometer instead of gyroscope:
+ The gyroscope measures the velocity of my phone while the acclerometer measures the acceleration. Due to how the iPhone handles velocity and accleration, the "velocity" it simply compares the location in a set time interval, meaning your phone must constantly be turning right and can't be held in a single position. The accelerometer on the other hand will measure the difference in acceleration in a given time interval, which will tend to give direction instead of speed, allowing it to measure the direction the phone is in a lot better and allows the user to control the player better.
+ */
 import SpriteKit
 import GameplayKit
 import CoreMotion
@@ -78,7 +80,7 @@ class GameScene: SKScene {
     }
     //Sets up gyroscope sensor data
     func setupGyro(){
-        motionManager.gyroUpdateInterval = 0.2
+        motionManager.accelerometerUpdateInterval = 0.2
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             print(data as Any)
             if let trueData = data {
