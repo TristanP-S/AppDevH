@@ -20,13 +20,14 @@ class GameScene: SKScene {
         self.player = self.childNode(withName: "playerSprite") as? SKSpriteNode
         setupPlayer()
         //Sets up other stuff
+        setupBorder()
         setupGyro()
         moveObject(x: 0)
     }
     //MARK: setup/generation functions
     //Sets up player node
     func setupPlayer(){
-        player?.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 25, height: 25))
+        player?.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100))
         player?.physicsBody?.isDynamic = true
         player?.physicsBody?.affectedByGravity = true
         player?.physicsBody?.allowsRotation = false
@@ -35,8 +36,18 @@ class GameScene: SKScene {
         player?.physicsBody?.friction = 0
         player?.physicsBody?.restitution = 0
         player?.physicsBody?.mass = 1
+        player?.size = CGSize(width: 100, height: 100)
         player?.zRotation = 0
         player?.zPosition = 1
+    }
+    //Sets up border of screen as its own physics body
+    func setupBorder(){
+        //sets up border of screen as border
+        let border = SKPhysicsBody(edgeLoopFrom: self.frame)
+        border.friction = 0
+        border.restitution = 0
+        border.isDynamic = false
+        self.physicsBody = border
     }
     //Sets up gyroscope sensor data
     func setupGyro(){
