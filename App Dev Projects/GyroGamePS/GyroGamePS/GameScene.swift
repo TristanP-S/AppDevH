@@ -15,6 +15,7 @@ class GameScene: SKScene {
     private var scoreLbl : SKLabelNode?
     private var player: SKSpriteNode?
     private var time: Double = 0
+    private var score: Int = 0
     //MARK: functions
     override func didMove(to view: SKView) {
         //Sets up nodes
@@ -22,6 +23,8 @@ class GameScene: SKScene {
         self.player = self.childNode(withName: "playerSprite") as? SKSpriteNode
         setupPlayer()
         //Sets up other stuff
+        self.score = 0
+        self.scoreLbl?.text = "Score: \(score)"
         setupBorder()
         setupGyro()
         moveObject(x: 0)
@@ -120,6 +123,8 @@ class GameScene: SKScene {
                 wall.removeFromParent()
             }
             spawnedWalls.remove(at: 0)
+            self.score += 1
+            self.scoreLbl?.text = "Score: \(self.score)"
         }
     }
 }
