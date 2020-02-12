@@ -29,7 +29,6 @@ class GameScene: SKScene {
         setupGyro()
         moveObject(x: 0)
         nextWall()
-        print("Bruv")
     }
     //MARK: setup/generation functions
     //Sets up player node
@@ -38,11 +37,11 @@ class GameScene: SKScene {
         player?.size = CGSize(width: 25, height: 25)
         player?.position = CGPoint(x: 0, y: 0)
         setDefaults(sprite: player!, mass: 0.000000000000000000000001, zPosition: 2, affectedByGravity: true, isDyamic: true)
-        player?.physicsBody?.restitution = 0.5
+        player?.physicsBody?.restitution = 0.2
     }
     //Makes a wall
     func generateWall(width: CGFloat, height: CGFloat, position: CGPoint) -> SKSpriteNode{
-        let wall = SKSpriteNode(color: .red, size: CGSize(width: width, height: height))
+        let wall = SKSpriteNode(color: .blue, size: CGSize(width: width, height: height))
         wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height))
         wall.position = position
         setDefaults(sprite: wall, mass: 100000, zPosition: 1, affectedByGravity: false, isDyamic: true)
@@ -80,15 +79,15 @@ class GameScene: SKScene {
     //Sets up gyroscope sensor data
     func setupGyro(){
         motionManager.gyroUpdateInterval = 0.2
-        motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             print(data as Any)
             if let trueData = data {
-                let x = trueData.rotationRate.x
-                let y = trueData.rotationRate.y
-                let z = trueData.rotationRate.z
+                let x = trueData.acceleration.x
+                let y = trueData.acceleration.y
+                let z = trueData.acceleration.z
                 //do motion here
                 print("X: \(x), Y: \(y), Z: \(z)")
-                self.moveObject(x: z)
+                self.moveObject(x: x)
             }
         }
     }
@@ -96,7 +95,7 @@ class GameScene: SKScene {
     //Moves the object
     func moveObject(x: Double){
         let moveY: Double = Double((player?.physicsBody?.velocity.dy)!)
-        let tempX = -x * 1000 //increases x by 1000 so the player will actaully move
+        let tempX = x * 1000 //increases x by 1000 so the player will actaully move
         var moveX: Double = 0
         if(tempX > 500){
             moveX = 500
@@ -126,7 +125,7 @@ class GameScene: SKScene {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         self.time += (1/60)
-        if(time > 1.5){ //spawns wall every 2 seconds (based on FPS)
+        if(time > 1){ //spawns wall every second (based on FPS)
             nextWall()
             time = 0
         }
@@ -137,6 +136,13 @@ class GameScene: SKScene {
             spawnedWalls.remove(at: 0)
             self.score += 1
             self.scoreLbl?.text = "Score: \(self.score)"
+        }
+        if(player!.position.y > 500){ //"kills" player then calls the reset function
+            player?.removeFromParent()
+        }
+        if(player!.position.y < -650 + player!.size.height) { //if player hits bottom, moves them up
+            player!.position.y = -600
+            player!.physicsBody?.velocity.dy = 0
         }
     }
 }
