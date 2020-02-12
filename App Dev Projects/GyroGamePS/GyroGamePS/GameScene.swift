@@ -11,6 +11,7 @@ import CoreMotion
 class GameScene: SKScene {
     //MARK: variables
     var motionManager : CMMotionManager = CMMotionManager()
+    private var spawnedWalls: [[SKSpriteNode]] = []
     private var scoreLbl : SKLabelNode?
     private var player: SKSpriteNode?
     //MARK: functions
@@ -23,22 +24,36 @@ class GameScene: SKScene {
         setupBorder()
         setupGyro()
         moveObject(x: 0)
+        nextWall()
     }
     //MARK: setup/generation functions
     //Sets up player node
     func setupPlayer(){
-        player?.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 100, height: 100))
-        player?.physicsBody?.isDynamic = true
-        player?.physicsBody?.affectedByGravity = true
-        player?.physicsBody?.allowsRotation = false
-        player?.physicsBody?.angularDamping = 0
-        player?.physicsBody?.linearDamping = 0
-        player?.physicsBody?.friction = 0
-        player?.physicsBody?.restitution = 0
-        player?.physicsBody?.mass = 1
-        player?.size = CGSize(width: 100, height: 100)
-        player?.zRotation = 0
-        player?.zPosition = 1
+        player?.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 50, height: 50))
+        player?.size = CGSize(width: 50, height: 50)
+        setDefaults(sprite: player!, mass: 1, zPosition: 2, affectedByGravity: true, isDyamic: true)
+    }
+    //Makes a wall
+    func generateWall(width: CGFloat, height: CGFloat, position: CGPoint) -> SKSpriteNode{
+        let wall = SKSpriteNode(color: .red, size: CGSize(width: width, height: height))
+        wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height))
+        setDefaults(sprite: wall, mass: 100, zPosition: 1, affectedByGravity: false, isDyamic: false)
+        wall.physicsBody?.velocity = CGVector(dx: 0, dy: 1000)
+        return wall
+    }
+    //Makes a entire wall with one piece missing
+    func nextWall(){
+        let width: CGFloat = 100
+        let height: CGFloat = 50
+        let wall1: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: 0, y: -100))
+        let wall2: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: -width, y: -100))
+        let wall3: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: width, y: -100))
+        var fullWall: [SKSpriteNode] = [wall1, wall2, wall3]
+        fullWall.remove(at: Int.random(in: 0...fullWall.count - 1)) //removes a random wall
+        for wall in fullWall{ //adds wall to scene
+            self.addChild(wall)
+        }
+        spawnedWalls.append(fullWall)
     }
     //Sets up border of screen as its own physics body
     func setupBorder(){
@@ -64,18 +79,30 @@ class GameScene: SKScene {
             }
         }
     }
-    //Makes a wall with one piece missing
-    func generateWall(){
-        
-    }
     //MARK: physics functions
     //Moves the object
     func moveObject(x: Double){
         player?.physicsBody?.velocity = CGVector(dx: x, dy: Double((player?.physicsBody?.velocity.dy)!))
         print("X: \(x)")
     }
+    //MARK: useful/shortcut functions
+    func setDefaults(sprite: SKSpriteNode, mass : CGFloat, zPosition: CGFloat, affectedByGravity: Bool, isDyamic: Bool){
+        sprite.physicsBody?.affectedByGravity = affectedByGravity
+        sprite.physicsBody?.isDynamic = true
+        sprite.physicsBody?.allowsRotation = false
+        sprite.physicsBody?.angularDamping = 0
+        sprite.physicsBody?.linearDamping = 0
+        sprite.physicsBody?.friction = 0
+        sprite.physicsBody?.restitution = 0
+        sprite.physicsBody?.mass = mass
+        sprite.zRotation = 0
+        sprite.zPosition = zPosition
+    }
     //MARK: update function
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        if(spawnedWalls.count > 0 && spawnedWalls[0][0].position.y > 200){ //removes wall when it hits a certain point near the top
+            spawnedWalls.removeFirst()
+        }
     }
 }
