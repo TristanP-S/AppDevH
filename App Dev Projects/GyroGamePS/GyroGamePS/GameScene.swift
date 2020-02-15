@@ -14,10 +14,14 @@ class GameScene: SKScene {
     //MARK: variables
     var motionManager : CMMotionManager = CMMotionManager()
     private var spawnedWalls: [[SKSpriteNode]] = []
-    private var scoreLbl: SKLabelNode? = SKLabelNode()
+    private var scoreLbl: SKLabelNode?
     private var tapPlayLbl: SKLabelNode?
+    private var menuScoreLbl: SKLabelNode?
+    private var menuHiScoreLbl: SKLabelNode?
+    private var replayLbl: SKLabelNode?
     private var player: SKSpriteNode?
-    private var playBtn: SKSpriteNode?
+    private var replayBtn: SKSpriteNode?
+    private var menuBckg: SKSpriteNode?
     private var time: Double = 0
     private var score: Int = 0
     private var highScore: Int = 0
@@ -29,10 +33,34 @@ class GameScene: SKScene {
         self.scoreLbl = self.childNode(withName: "scoreLbl") as? SKLabelNode
         setupPlayer()
         setupPlayLbl()
-        //Sets up other stuff
+        //sets up score + high score values and labels
         self.highScore = UserDefaults.standard.integer(forKey: "highScore")
         self.score = 0
         self.scoreLbl?.text = "Score: \(score)"
+        //menu pre-setup
+        self.menuScoreLbl = SKLabelNode(text: "SCORE \n \(score)")
+        self.menuHiScoreLbl = SKLabelNode(text: "HISCR \n \(highScore)")
+        self.menuBckg = SKSpriteNode(color: .white, size: CGSize(width: 250, height: 200))
+        self.replayBtn = SKSpriteNode(color: .green, size: CGSize(width: 150, height: 50))
+        self.replayLbl = SKLabelNode(text: "Play Again")
+        //further menu label setup
+        self.menuScoreLbl?.fontColor = .black
+        self.menuHiScoreLbl?.fontColor = self.menuScoreLbl?.fontColor
+        self.replayLbl?.fontColor = self.menuScoreLbl?.fontColor
+        self.menuScoreLbl?.numberOfLines = 2
+        self.menuHiScoreLbl?.numberOfLines = self.menuScoreLbl!.numberOfLines
+        self.menuScoreLbl?.fontSize = 25
+        self.menuHiScoreLbl?.fontSize = self.menuScoreLbl!.fontSize
+        self.replayLbl?.fontSize = self.menuScoreLbl!.fontSize
+        self.menuScoreLbl?.horizontalAlignmentMode = .center
+        self.menuHiScoreLbl?.horizontalAlignmentMode = self.menuScoreLbl!.horizontalAlignmentMode
+        //menu position setup
+        self.menuBckg?.position = CGPoint(x: 0, y: 0)
+        self.replayBtn?.position = CGPoint(x: 0, y: -50)
+        self.menuScoreLbl?.position = CGPoint(x: -50, y: 0)
+        self.menuHiScoreLbl?.position = CGPoint(x: 50, y: 0)
+        self.replayLbl?.position = self.replayBtn!.position
+        //other stup
         setupBorder()
         setupGyro()
         moveObject(x: 0)
@@ -118,9 +146,20 @@ class GameScene: SKScene {
                 }
             }
         }
-        closeMenu()
+        menuScoreLbl?.text = "SCORE \n \(score)"
+        menuHiScoreLbl?.text = "HISCR \n \(highScore)"
+        self.addChild(menuBckg!)
+        self.addChild(replayBtn!)
+        self.addChild(menuScoreLbl!)
+        self.addChild(menuHiScoreLbl!)
+        self.addChild(replayLbl!)
     }
     func closeMenu(){
+        menuBckg?.removeFromParent()
+        replayBtn?.removeFromParent()
+        menuScoreLbl?.removeFromParent()
+        menuHiScoreLbl?.removeFromParent()
+        replayLbl?.removeFromParent()
         self.addChild(tapPlayLbl!)
         menu = false
     }
@@ -159,7 +198,7 @@ class GameScene: SKScene {
         let touch = touches.first!
         let location = touch.location(in: self)
         if(!active){ //if game was lost / hasn't started
-            if (menu && playBtn!.contains(location)){ // if playBtn has a detected tap
+            if (menu && replayBtn!.contains(location)){ // if playBtn has a detected tap
                 closeMenu()
             } else if (!menu){ //if game was tapped and not in menu, start game
                 player?.position = CGPoint(x: 0, y: 0)
