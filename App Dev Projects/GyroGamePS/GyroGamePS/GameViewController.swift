@@ -23,9 +23,6 @@ class GameViewController: UIViewController {
                 view.presentScene(scene)
             }
             view.ignoresSiblingOrder = true
-            //remove after testing
-            view.showsFPS = true
-            view.showsNodeCount = true
         }
     }
     //makes it so screen doesn't rotate

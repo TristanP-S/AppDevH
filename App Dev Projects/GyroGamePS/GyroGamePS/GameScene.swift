@@ -14,21 +14,21 @@ class GameScene: SKScene {
     //MARK: variables
     var motionManager : CMMotionManager = CMMotionManager()
     private var spawnedWalls: [[SKSpriteNode]] = []
-    private var scoreLbl: SKLabelNode?
-    private var playAgainLbl: SKLabelNode?
+    private var scoreLbl: SKLabelNode? = SKLabelNode()
+    private var tapPlayLbl: SKLabelNode?
     private var player: SKSpriteNode?
     private var playBtn: SKSpriteNode?
     private var time: Double = 0
     private var score: Int = 0
     private var highScore: Int = 0
-    private var active: Bool = true
+    private var active: Bool = false
     private var menu: Bool = false
     //MARK: functions
     override func didMove(to view: SKView) {
         //Sets up nodes
         self.scoreLbl = self.childNode(withName: "scoreLbl") as? SKLabelNode
-        self.player = self.childNode(withName: "playerSprite") as? SKSpriteNode
         setupPlayer()
+        setupPlayLbl()
         //Sets up other stuff
         self.highScore = UserDefaults.standard.integer(forKey: "highScore")
         self.score = 0
@@ -36,16 +36,24 @@ class GameScene: SKScene {
         setupBorder()
         setupGyro()
         moveObject(x: 0)
-        nextWall()
     }
     //MARK: setup/generation functions
     //Sets up player node
     func setupPlayer(){
+        player = SKSpriteNode(color: .red, size: CGSize(width: 25, height: 25))
         player?.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 25, height: 25))
         player?.size = CGSize(width: 25, height: 25)
         player?.position = CGPoint(x: 0, y: 0)
         setDefaults(sprite: player!, mass: 0.000000000000000000000001, zPosition: 2, affectedByGravity: true, isDyamic: true)
         player?.physicsBody?.restitution = 0.2
+    }
+    func setupPlayLbl(){
+        self.tapPlayLbl = SKLabelNode(text: "Tap to start playing!")
+        self.tapPlayLbl?.fontSize = 50
+        self.tapPlayLbl?.fontColor = UIColor(ciColor: .white)
+        self.tapPlayLbl?.fontName = self.scoreLbl?.fontName
+        self.tapPlayLbl?.position = CGPoint(x: 0, y: 0)
+        self.addChild(tapPlayLbl!)
     }
     //Makes a wall
     func generateWall(width: CGFloat, height: CGFloat, position: CGPoint) -> SKSpriteNode{
@@ -113,6 +121,7 @@ class GameScene: SKScene {
         closeMenu()
     }
     func closeMenu(){
+        self.addChild(tapPlayLbl!)
         menu = false
     }
     //MARK: physics functions
@@ -154,8 +163,11 @@ class GameScene: SKScene {
                 closeMenu()
             } else if (!menu){ //if game was tapped and not in menu, start game
                 player?.position = CGPoint(x: 0, y: 0)
-                self.addChild(player!)
+                self.tapPlayLbl?.removeFromParent()
                 active = true
+                self.addChild(player!)
+                nextWall()
+                self.time = 0
             } else { //if tap was detected anywhere else in menu, do nothing
                 print("Loc Tapped: \(location)")
             }
