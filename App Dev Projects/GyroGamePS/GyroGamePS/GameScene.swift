@@ -5,7 +5,7 @@
   Copyright © 2020 Tristan Pudell-Spatscheck. All rights reserved.
 Note from teacher (Matthew Horner) when I asked about using accelerometer instead: In general, I want one of this app and whatever we do next to involve gyroscope, and one to involve accelerometer. However, if you can give me a write-up in this one of what the gyroscope is giving you and why it's not the best choice for your particular app, I'd be fine with that.
 Write up as to why I used accelerometer instead of gyroscope:
- The gyroscope measures the velocity of my phone while the acclerometer measures the acceleration. Due to how the iPhone handles velocity and accleration, the "velocity" it simply compares the location in a set time interval, meaning your phone must constantly be turning right and can't be held in a single position. The accelerometer on the other hand will measure the difference in acceleration in a given time interval, which will tend to give direction instead of speed, allowing it to measure the direction the phone is in a lot better and allows the user to control the player better.
+ The gyroscope measures the velocity of my phone while the acclerometer measures the acceleration. Due to how the iPhone handles velocity and accleration, the "velocity" it simply compares the location in a set time interval, meaning your phone must constantly be turning right and can't be held in a single position. The accelerometer on the other hand will measure the difference in acceleration in a given time interval, which will tend to give direction instead of speed, allowing it to measure the direction the phone is in a lot better and allows the user to control the player better. After testing both of them, the accelerometer just worked better for this application. If I wanted to control this using the gyroscope, all I would have to do is change the values in setupGyro to .gyroupdateinterval, startGyroUpdates, and .rotationRate respectively. 
  */
 import SpriteKit
 import GameplayKit
@@ -14,10 +14,15 @@ class GameScene: SKScene {
     //MARK: variables
     var motionManager : CMMotionManager = CMMotionManager()
     private var spawnedWalls: [[SKSpriteNode]] = []
-    private var scoreLbl : SKLabelNode?
+    private var scoreLbl: SKLabelNode?
+    private var playAgainLbl: SKLabelNode?
     private var player: SKSpriteNode?
+    private var playBtn: SKSpriteNode?
     private var time: Double = 0
     private var score: Int = 0
+    private var highScore: Int = 0
+    private var active: Bool = true
+    private var menu: Bool = false
     //MARK: functions
     override func didMove(to view: SKView) {
         //Sets up nodes
@@ -25,6 +30,7 @@ class GameScene: SKScene {
         self.player = self.childNode(withName: "playerSprite") as? SKSpriteNode
         setupPlayer()
         //Sets up other stuff
+        self.highScore = UserDefaults.standard.integer(forKey: "highScore")
         self.score = 0
         self.scoreLbl?.text = "Score: \(score)"
         setupBorder()
@@ -93,6 +99,22 @@ class GameScene: SKScene {
             }
         }
     }
+    //Creates the "menu" upon death
+    func setMenu(){
+        print("setCalled")
+        //removes any walls left over
+        if (spawnedWalls.count > 0){
+            for walls in spawnedWalls{
+                for wall in walls{
+                    wall.removeFromParent()
+                }
+            }
+        }
+        closeMenu()
+    }
+    func closeMenu(){
+        menu = false
+    }
     //MARK: physics functions
     //Moves the object
     func moveObject(x: Double){
@@ -123,28 +145,61 @@ class GameScene: SKScene {
         sprite.zRotation = 0
         sprite.zPosition = zPosition
     }
+    //Touch detector
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) { //detects screen taps to start game and such
+        let touch = touches.first!
+        let location = touch.location(in: self)
+        if(!active){ //if game was lost / hasn't started
+            if (menu && playBtn!.contains(location)){ // if playBtn has a detected tap
+                closeMenu()
+            } else if (!menu){ //if game was tapped and not in menu, start game
+                player?.position = CGPoint(x: 0, y: 0)
+                self.addChild(player!)
+                active = true
+            } else { //if tap was detected anywhere else in menu, do nothing
+                print("Loc Tapped: \(location)")
+            }
+        }
+    }
     //MARK: update function
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        self.time += (1/60)
-        if(time > 1){ //spawns wall every second (based on FPS)
-            nextWall()
-            time = 0
-        }
-        if(spawnedWalls.count > 0 && spawnedWalls[0][0].position.y > 500){ //despawns first wall when it goes over 300
-            for wall in spawnedWalls[0]{
-                wall.removeFromParent()
+        if(active){ //if game is active/running
+            self.time += (1/60)
+            if(time > 1){ //spawns wall every second (based on FPS)
+                nextWall()
+                time = 0
             }
-            spawnedWalls.remove(at: 0)
-            self.score += 1
-            self.scoreLbl?.text = "Score: \(self.score)"
+            if(spawnedWalls.count > 0 && spawnedWalls[0][0].position.y > 500){ //despawns first wall when it goes over 300
+                for wall in spawnedWalls[0]{
+                    wall.removeFromParent()
+                }
+                spawnedWalls.remove(at: 0)
+                self.score += 1
+                self.scoreLbl?.text = "Score: \(self.score)"
+            }
+            if(player!.position.y > 500){ //"kills" player then calls the reset function
+                player?.removeFromParent()
+                active = false
+                menu = true
+                setMenu()
+            }
+            if(player!.position.y < -650 + player!.size.height) { //if player hits bottom, moves them up and rewards them with 5 extra points
+                score += 5
+                scoreLbl?.text = "Score: \(score)"
+                player!.position.y = -300
+                player!.physicsBody?.velocity.dy = 0
+            }
+            if(score > highScore){
+                highScore = score
+                UserDefaults.standard.set(highScore, forKey: "highScore")
+            }
         }
-        if(player!.position.y > 500){ //"kills" player then calls the reset function
-            player?.removeFromParent()
+        else if (menu){ //if in "menu"
+            
         }
-        if(player!.position.y < -650 + player!.size.height) { //if player hits bottom, moves them up
-            player!.position.y = -600
-            player!.physicsBody?.velocity.dy = 0
+        else { //if game isn't active & out of menu
+            
         }
     }
 }
