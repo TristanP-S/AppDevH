@@ -28,6 +28,8 @@ class GameScene: SKScene {
     private var lbScores: [Int] = [0, 0, 0, 0, 0]
     //MARK: functions
     override func didMove(to view: SKView) {
+        //Increases gravity
+        physicsWorld.gravity.dy = physicsWorld.gravity.dy * 2
         //Sets up nodes
         self.scoreLbl = self.childNode(withName: "scoreLbl") as? SKLabelNode
         setupPlayer()
@@ -102,7 +104,7 @@ class GameScene: SKScene {
         let wall7: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: -(width * 3.5), y: -650))
         let wall8: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: (width * 3.5), y: -650))
         var fullWall: [SKSpriteNode] = [wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8]
-        fullWall.remove(at: Int.random(in: 0...fullWall.count - 1)) //removes a random wall
+        fullWall.remove(at: Int.random(in: 1...fullWall.count - 2)) //removes a random wall (not at end) 
         for wall in fullWall{ //adds wall to scene
             self.addChild(wall)
         }
@@ -119,7 +121,7 @@ class GameScene: SKScene {
     }
     //Sets up gyroscope sensor data
     func setupGyro(){
-        motionManager.accelerometerUpdateInterval = 0.2
+        motionManager.accelerometerUpdateInterval = 0.1
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             //print(data as Any)
             if let trueData = data {
@@ -244,12 +246,16 @@ class GameScene: SKScene {
                 active = false
                 menu = true
                 setMenu()
-            }
-            if(player!.position.y < -650 + player!.size.height) { //if player hits bottom, moves them up and rewards them with 5 extra points
+            } else if(player!.position.y < -650 + player!.size.height) { //if player hits bottom, moves them up and rewards them with 5 extra points
                 score += 5
                 scoreLbl?.text = "Score: \(score)"
                 player!.position.y = -300
                 player!.physicsBody?.velocity.dy = 0
+            }
+            if(player!.position.x < -360) {
+                player?.position.x = 300
+            } else if (player!.position.x > 360) {
+                player?.position.x = -350
             }
         }
         else if (menu){ //if in "menu"
