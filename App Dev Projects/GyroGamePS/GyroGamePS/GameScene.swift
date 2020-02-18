@@ -37,6 +37,7 @@ class GameScene: SKScene {
         self.highScore = UserDefaults.standard.integer(forKey: "highScore")
         self.score = 0
         self.scoreLbl?.text = "Score: \(score)"
+        self.scoreLbl!.position = CGPoint(x: 0, y: 600)
         //menu pre-setup
         self.menuScoreLbl = SKLabelNode(text: "SCORE \n \(score)")
         self.menuHiScoreLbl = SKLabelNode(text: "HISCR \n \(highScore)")
@@ -234,6 +235,7 @@ class GameScene: SKScene {
                 active = false
                 menu = true
                 setMenu()
+                score = 0
             }
             if(player!.position.y < -650 + player!.size.height) { //if player hits bottom, moves them up and rewards them with 5 extra points
                 score += 5

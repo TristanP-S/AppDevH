@@ -15,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gyroscope Game" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hz-uU-jpy">
-                                <rect key="frame" x="58.5" y="315.5" width="258" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accelerate" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hz-uU-jpy">
+                                <rect key="frame" x="105" y="315.5" width="165" height="36"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -27,6 +27,13 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Accelerate" translatesAutoresizingMaskIntoConstraints="NO" id="pg6-LT-tsB">
+                                <rect key="frame" x="62.5" y="55.5" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="HvY-jB-wgI"/>
+                                    <constraint firstAttribute="height" constant="250" id="aMQ-E3-JCc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -34,6 +41,8 @@
                             <constraint firstItem="LPW-XT-xEG" firstAttribute="top" secondItem="7Hz-uU-jpy" secondAttribute="bottom" constant="20" id="6Ag-b4-RAJ"/>
                             <constraint firstItem="7Hz-uU-jpy" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Kgj-XO-Mws"/>
                             <constraint firstItem="7Hz-uU-jpy" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="eBq-1K-QRa"/>
+                            <constraint firstItem="pg6-LT-tsB" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="gpU-g7-ItF"/>
+                            <constraint firstItem="7Hz-uU-jpy" firstAttribute="top" secondItem="pg6-LT-tsB" secondAttribute="bottom" constant="10" id="sFp-cT-iC8"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -43,4 +52,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Accelerate" width="1024" height="1024"/>
+    </resources>
 </document>
