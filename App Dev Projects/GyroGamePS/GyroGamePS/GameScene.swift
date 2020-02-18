@@ -18,6 +18,7 @@ class GameScene: SKScene {
     private var tapPlayLbl: SKLabelNode?
     private var menuLeaderboardLbl: SKLabelNode?
     private var replayLbl: SKLabelNode?
+    private var popupLbl: SKLabelNode?
     private var player: SKSpriteNode?
     private var replayBtn: SKSpriteNode?
     private var menuBckg: SKSpriteNode?
@@ -25,6 +26,8 @@ class GameScene: SKScene {
     private var score: Int = 0
     private var active: Bool = false
     private var menu: Bool = false
+    private var textUp: Bool = false //if point text is loaded
+    private var fadeRemove: SKAction = SKAction()
     private var lbScores: [Int] = [0, 0, 0, 0, 0]
     //MARK: functions
     override func didMove(to view: SKView) {
@@ -59,7 +62,21 @@ class GameScene: SKScene {
         self.replayBtn?.position = CGPoint(x: 0, y: -200 + ((replayLbl?.frame.height)! / 2))
         self.menuLeaderboardLbl?.position = CGPoint(x: 0, y: -100)
         self.replayLbl?.position = CGPoint(x: 0, y: -200)
-        //other stup
+        //sets up point fader animation
+        let fadeAction = SKAction.fadeAlpha(to: 0, duration: 5.0)
+        let removeAction = SKAction.removeFromParent()
+        let textChange = SKAction.run { //safety in case it is already running the action
+            self.textUp = !self.textUp
+        }
+        //sets up point fader text
+        self.popupLbl = SKLabelNode(text: "+\(score)")
+        self.popupLbl?.fontName = self.menuLeaderboardLbl?.fontName
+        self.popupLbl?.fontSize = 100
+        self.popupLbl?.position = CGPoint(x: 0, y: -300)
+        self.popupLbl?.color = .white
+        self.popupLbl?.zPosition = 100
+        fadeRemove = SKAction.sequence([textChange, fadeAction, removeAction, textChange])
+        //other setup
         setupBorder()
         setupGyro()
         moveObject(x: 0)
@@ -88,7 +105,7 @@ class GameScene: SKScene {
         wall.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: width, height: height))
         wall.position = position
         setDefaults(sprite: wall, mass: 100000, zPosition: 1, affectedByGravity: false, isDyamic: true)
-        wall.physicsBody?.velocity = CGVector(dx: 0, dy: 100)
+        wall.physicsBody?.velocity = CGVector(dx: 0, dy: 150)
         return wall
     }
     //Makes a entire wall with one piece missing
@@ -104,7 +121,7 @@ class GameScene: SKScene {
         let wall7: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: -(width * 3.5), y: -650))
         let wall8: SKSpriteNode = generateWall(width: width, height: height, position: CGPoint(x: (width * 3.5), y: -650))
         var fullWall: [SKSpriteNode] = [wall1, wall2, wall3, wall4, wall5, wall6, wall7, wall8]
-        fullWall.remove(at: Int.random(in: 1...fullWall.count - 2)) //removes a random wall (not at end) 
+        fullWall.remove(at: Int.random(in: 1...fullWall.count - 3)) //removes a random wall (not at end)
         for wall in fullWall{ //adds wall to scene
             self.addChild(wall)
         }
@@ -226,6 +243,14 @@ class GameScene: SKScene {
     //MARK: update function
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        //used for fading text
+        if(textUp){
+            popupLbl!.isPaused = true
+            popupLbl!.removeAllActions()
+            popupLbl!.removeFromParent()
+            popupLbl!.isPaused = false
+            textUp = false
+        }
         if(active){ //if game is active/running
             self.time += (1/60)
             if(spawnedWalls.count > 0 && spawnedWalls[0][0].position.y > 500){ //despawns first wall when it goes over 300 and adds score
@@ -236,7 +261,7 @@ class GameScene: SKScene {
                 self.score += 1
                 self.scoreLbl?.text = "Score: \(self.score)"
             }
-            if(time > 1){ //spawns wall every second (based on FPS)
+            if(time > 0.75){ //spawns wall every second (based on FPS)
                 print(spawnedWalls.count)
                 nextWall()
                 time = 0
@@ -248,12 +273,16 @@ class GameScene: SKScene {
                 setMenu()
             } else if(player!.position.y < -650 + player!.size.height) { //if player hits bottom, moves them up and rewards them with 5 extra points
                 score += 5
+                popupLbl?.text = "+\(score)"
+                popupLbl?.alpha = 1
+                self.addChild(popupLbl!)
+                self.popupLbl?.run(fadeRemove)
                 scoreLbl?.text = "Score: \(score)"
-                player!.position.y = -300
+                player!.position.y = -400
                 player!.physicsBody?.velocity.dy = 0
             }
             if(player!.position.x < -360) {
-                player?.position.x = 300
+                player?.position.x = 350
             } else if (player!.position.x > 360) {
                 player?.position.x = -350
             }
