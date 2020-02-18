@@ -121,13 +121,13 @@ class GameScene: SKScene {
     func setupGyro(){
         motionManager.accelerometerUpdateInterval = 0.2
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
-            print(data as Any)
+            //  print(data as Any)
             if let trueData = data {
                 let x = trueData.acceleration.x
                 let y = trueData.acceleration.y
                 let z = trueData.acceleration.z
                 //do motion here
-                print("X: \(x), Y: \(y), Z: \(z)")
+                //print("X: \(x), Y: \(y), Z: \(z)")
                 self.moveObject(x: x)
             }
         }
@@ -145,12 +145,13 @@ class GameScene: SKScene {
             spawnedWalls = []
         }
         //Updates Leaderboard
-        for cScore in 0...lbScores.count - 1 {
+        for cScore in stride(from: 0, to: lbScores.count - 1, by: 1) {
+            print("Score: \(score) LBScore: \(lbScores[cScore])")
             if(score > lbScores[cScore]){
-                for lScore in stride(from: lbScores.count - 2, to: 0, by: -1) { //uses stride to count down, range can't
+                for lScore in stride(from: cScore, to: lbScores.count + 1, by: -1) {
                     lbScores[lScore] = lbScores[lScore - 1]
                 }
-                lbScores[0] = score
+                lbScores[cScore] = score
                 break
             }
         }
