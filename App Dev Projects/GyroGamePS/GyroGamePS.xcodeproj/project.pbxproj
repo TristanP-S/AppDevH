@@ -17,6 +17,7 @@
 		02F3B87923F2E0A800E02F6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02F3B87723F2E0A800E02F6F /* LaunchScreen.storyboard */; };
 		02F3B88423F2E0A900E02F6F /* GyroGamePSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3B88323F2E0A900E02F6F /* GyroGamePSTests.swift */; };
 		02F3B88F23F2E0A900E02F6F /* GyroGamePSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3B88E23F2E0A900E02F6F /* GyroGamePSUITests.swift */; };
+		02F869E423FC4BBF00B313D4 /* JankShank.wav in Resources */ = {isa = PBXBuildFile; fileRef = 02F869E323FC4BBF00B313D4 /* JankShank.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		02F3B88A23F2E0A900E02F6F /* GyroGamePSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GyroGamePSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F3B88E23F2E0A900E02F6F /* GyroGamePSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GyroGamePSUITests.swift; sourceTree = "<group>"; };
 		02F3B89023F2E0A900E02F6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02F869E323FC4BBF00B313D4 /* JankShank.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = JankShank.wav; path = GyroGamePS/Assets/JankShank.wav; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,13 +106,10 @@
 			isa = PBXGroup;
 			children = (
 				02F3B86823F2E0A800E02F6F /* AppDelegate.swift */,
-				02F3B86A23F2E0A800E02F6F /* GameScene.sks */,
-				02F3B86C23F2E0A800E02F6F /* Actions.sks */,
-				02F3B86E23F2E0A800E02F6F /* GameScene.swift */,
-				02F3B87023F2E0A800E02F6F /* GameViewController.swift */,
-				02F3B87223F2E0A800E02F6F /* Main.storyboard */,
-				02F3B87523F2E0A800E02F6F /* Assets.xcassets */,
-				02F3B87723F2E0A800E02F6F /* LaunchScreen.storyboard */,
+				02F869E223FC4B0B00B313D4 /* SKS Files */,
+				02F869E123FC4B0100B313D4 /* Swift Files */,
+				02F869DD23FC4ADE00B313D4 /* Storyboards */,
+				02F869DE23FC4AEE00B313D4 /* Assets */,
 				02F3B87A23F2E0A800E02F6F /* Info.plist */,
 			);
 			path = GyroGamePS;
@@ -132,6 +131,42 @@
 				02F3B89023F2E0A900E02F6F /* Info.plist */,
 			);
 			path = GyroGamePSUITests;
+			sourceTree = "<group>";
+		};
+		02F869DD23FC4ADE00B313D4 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				02F3B87723F2E0A800E02F6F /* LaunchScreen.storyboard */,
+				02F3B87223F2E0A800E02F6F /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		02F869DE23FC4AEE00B313D4 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				02F869E323FC4BBF00B313D4 /* JankShank.wav */,
+				02F3B87523F2E0A800E02F6F /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		02F869E123FC4B0100B313D4 /* Swift Files */ = {
+			isa = PBXGroup;
+			children = (
+				02F3B87023F2E0A800E02F6F /* GameViewController.swift */,
+				02F3B86E23F2E0A800E02F6F /* GameScene.swift */,
+			);
+			path = "Swift Files";
+			sourceTree = "<group>";
+		};
+		02F869E223FC4B0B00B313D4 /* SKS Files */ = {
+			isa = PBXGroup;
+			children = (
+				02F3B86C23F2E0A800E02F6F /* Actions.sks */,
+				02F3B86A23F2E0A800E02F6F /* GameScene.sks */,
+			);
+			path = "SKS Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +275,7 @@
 			files = (
 				02F3B87423F2E0A800E02F6F /* Main.storyboard in Resources */,
 				02F3B86B23F2E0A800E02F6F /* GameScene.sks in Resources */,
+				02F869E423FC4BBF00B313D4 /* JankShank.wav in Resources */,
 				02F3B87623F2E0A800E02F6F /* Assets.xcassets in Resources */,
 				02F3B87923F2E0A800E02F6F /* LaunchScreen.storyboard in Resources */,
 				02F3B86D23F2E0A800E02F6F /* Actions.sks in Resources */,
