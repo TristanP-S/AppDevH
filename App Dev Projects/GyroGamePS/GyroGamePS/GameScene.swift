@@ -16,8 +16,7 @@ class GameScene: SKScene {
     private var spawnedWalls: [[SKSpriteNode]] = []
     private var scoreLbl: SKLabelNode?
     private var tapPlayLbl: SKLabelNode?
-    private var menuScoreLbl: SKLabelNode?
-    private var menuHiScoreLbl: SKLabelNode?
+    private var menuLeaderboardLbl: SKLabelNode?
     private var replayLbl: SKLabelNode?
     private var player: SKSpriteNode?
     private var replayBtn: SKSpriteNode?
@@ -27,6 +26,7 @@ class GameScene: SKScene {
     private var highScore: Int = 0
     private var active: Bool = false
     private var menu: Bool = false
+    private var lbScores: [Int] = [0, 0, 0, 0, 0]
     //MARK: functions
     override func didMove(to view: SKView) {
         //Sets up nodes
@@ -34,32 +34,29 @@ class GameScene: SKScene {
         setupPlayer()
         setupPlayLbl()
         //sets up score + high score values and labels
-        self.highScore = UserDefaults.standard.integer(forKey: "highScore")
+        if(UserDefaults.standard.array(forKey: "lbScores") != nil){ //checks if value was stored
+            self.lbScores = UserDefaults.standard.array(forKey: "lbScores") as! [Int]
+        }
         self.score = 0
         self.scoreLbl?.text = "Score: \(score)"
         self.scoreLbl!.position = CGPoint(x: 0, y: 600)
         //menu pre-setup
-        self.menuScoreLbl = SKLabelNode(text: "SCORE \n \(score)")
-        self.menuHiScoreLbl = SKLabelNode(text: "HISCR \n \(highScore)")
-        self.menuBckg = SKSpriteNode(color: .white, size: CGSize(width: 250, height: 200))
-        self.replayBtn = SKSpriteNode(color: .green, size: CGSize(width: 150, height: 50))
+        self.menuLeaderboardLbl = SKLabelNode(text: "High Scores \n1: \(lbScores[0]) \n2: \(lbScores[1]) \n3: \(lbScores[2]) \n4: \(lbScores[3]) \n5: \(lbScores[4])")
+        self.menuBckg = SKSpriteNode(color: .white, size: CGSize(width: 250, height: 500))
+        self.replayBtn = SKSpriteNode(color: .green, size: CGSize(width: 225, height: 85))
         self.replayLbl = SKLabelNode(text: "Play Again")
         //further menu label setup
-        self.menuScoreLbl?.fontColor = .black
-        self.menuHiScoreLbl?.fontColor = self.menuScoreLbl?.fontColor
-        self.replayLbl?.fontColor = self.menuScoreLbl?.fontColor
-        self.menuScoreLbl?.numberOfLines = 2
-        self.menuHiScoreLbl?.numberOfLines = self.menuScoreLbl!.numberOfLines
-        self.menuScoreLbl?.fontSize = 25
-        self.menuHiScoreLbl?.fontSize = self.menuScoreLbl!.fontSize
-        self.replayLbl?.fontSize = self.menuScoreLbl!.fontSize
-        self.menuScoreLbl?.horizontalAlignmentMode = .center
-        self.menuHiScoreLbl?.horizontalAlignmentMode = self.menuScoreLbl!.horizontalAlignmentMode
+        self.menuLeaderboardLbl?.fontColor = .black
+        self.replayLbl?.fontColor = .black
+        self.menuLeaderboardLbl?.numberOfLines = 6
+        self.menuLeaderboardLbl?.fontSize = 50
+        self.replayLbl?.fontSize = 50
+        self.menuLeaderboardLbl?.horizontalAlignmentMode = .center
+        self.menuLeaderboardLbl?.verticalAlignmentMode = .baseline
         //menu position setup
         self.menuBckg?.position = CGPoint(x: 0, y: 0)
-        self.replayBtn?.position = CGPoint(x: 0, y: -50)
-        self.menuScoreLbl?.position = CGPoint(x: -50, y: 0)
-        self.menuHiScoreLbl?.position = CGPoint(x: 50, y: 0)
+        self.replayBtn?.position = CGPoint(x: 0, y: -200 + ((replayLbl?.frame.height)! / 2))
+        self.menuLeaderboardLbl?.position = CGPoint(x: 0, y: -100)
         self.replayLbl?.position = self.replayBtn!.position
         //other stup
         setupBorder()
@@ -147,19 +144,29 @@ class GameScene: SKScene {
                 }
             }
         }
-        menuScoreLbl?.text = "SCORE \n \(score)"
-        menuHiScoreLbl?.text = "HISCR \n \(highScore)"
+        //Updates Leaderboard
+        for cScore in 0...lbScores.count - 1 {
+            if(score > lbScores[cScore]){
+                for lScore in stride(from: lbScores.count - 2, to: 0, by: -1) { //uses stride to count down, range can't
+                    lbScores[lScore] = lbScores[lScore - 1]
+                }
+                lbScores[0] = score
+                break
+            }
+        }
+        UserDefaults.standard.set(lbScores, forKey: "lbScores")
+        menuLeaderboardLbl?.text = "High Scores \n1: \(lbScores[0]) \n2: \(lbScores[1]) \n3: \(lbScores[2]) \n4: \(lbScores[3]) \n5: \(lbScores[4])"
         self.addChild(menuBckg!)
         self.addChild(replayBtn!)
-        self.addChild(menuScoreLbl!)
-        self.addChild(menuHiScoreLbl!)
+        self.addChild(menuLeaderboardLbl!)
         self.addChild(replayLbl!)
     }
     func closeMenu(){
+        score = 0 //resets score for next play
+        scoreLbl?.text = "Score: \(score)"
         menuBckg?.removeFromParent()
         replayBtn?.removeFromParent()
-        menuScoreLbl?.removeFromParent()
-        menuHiScoreLbl?.removeFromParent()
+        menuLeaderboardLbl?.removeFromParent()
         replayLbl?.removeFromParent()
         self.addChild(tapPlayLbl!)
         menu = false
@@ -235,7 +242,6 @@ class GameScene: SKScene {
                 active = false
                 menu = true
                 setMenu()
-                score = 0
             }
             if(player!.position.y < -650 + player!.size.height) { //if player hits bottom, moves them up and rewards them with 5 extra points
                 score += 5
