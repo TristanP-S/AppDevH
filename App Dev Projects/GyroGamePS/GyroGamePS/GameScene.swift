@@ -23,7 +23,6 @@ class GameScene: SKScene {
     private var menuBckg: SKSpriteNode?
     private var time: Double = 0
     private var score: Int = 0
-    private var highScore: Int = 0
     private var active: Bool = false
     private var menu: Bool = false
     private var lbScores: [Int] = [0, 0, 0, 0, 0]
@@ -143,6 +142,7 @@ class GameScene: SKScene {
                     wall.removeFromParent()
                 }
             }
+            spawnedWalls = []
         }
         //Updates Leaderboard
         for cScore in 0...lbScores.count - 1 {
@@ -225,17 +225,18 @@ class GameScene: SKScene {
         // Called before each frame is rendered
         if(active){ //if game is active/running
             self.time += (1/60)
-            if(time > 1){ //spawns wall every second (based on FPS)
-                nextWall()
-                time = 0
-            }
-            if(spawnedWalls.count > 0 && spawnedWalls[0][0].position.y > 500){ //despawns first wall when it goes over 300
+            if(spawnedWalls.count > 0 && spawnedWalls[0][0].position.y > 500){ //despawns first wall when it goes over 300 and adds score
                 for wall in spawnedWalls[0]{
                     wall.removeFromParent()
                 }
                 spawnedWalls.remove(at: 0)
                 self.score += 1
                 self.scoreLbl?.text = "Score: \(self.score)"
+            }
+            if(time > 1){ //spawns wall every second (based on FPS)
+                print(spawnedWalls.count)
+                nextWall()
+                time = 0
             }
             if(player!.position.y > 500){ //"kills" player then calls the reset function
                 player?.removeFromParent()
@@ -248,10 +249,6 @@ class GameScene: SKScene {
                 scoreLbl?.text = "Score: \(score)"
                 player!.position.y = -300
                 player!.physicsBody?.velocity.dy = 0
-            }
-            if(score > highScore){
-                highScore = score
-                UserDefaults.standard.set(highScore, forKey: "highScore")
             }
         }
         else if (menu){ //if in "menu"
