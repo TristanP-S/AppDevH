@@ -145,11 +145,11 @@ class GameScene: SKScene {
             spawnedWalls = []
         }
         //Updates Leaderboard
-        for cScore in stride(from: 0, to: lbScores.count - 1, by: 1) {
+        for cScore in stride(from: 0, to: lbScores.count, by: 1) { //the "to" in stride isn't inclusive, unlike range, in lbScores goes from 0->4
             print("Score: \(score) LBScore: \(lbScores[cScore])")
             if(score > lbScores[cScore]){
-                for lScore in stride(from: cScore, to: lbScores.count + 1, by: -1) {
-                    lbScores[lScore] = lbScores[lScore - 1]
+                for lScore in stride(from: lbScores.count - 2, to: cScore - 1, by: -1) { // <- this is never called? 
+                    lbScores[lScore + 1] = lbScores[lScore]
                 }
                 lbScores[cScore] = score
                 break
