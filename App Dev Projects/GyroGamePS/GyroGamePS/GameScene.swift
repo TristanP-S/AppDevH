@@ -56,7 +56,7 @@ class GameScene: SKScene {
         self.menuBckg?.position = CGPoint(x: 0, y: 0)
         self.replayBtn?.position = CGPoint(x: 0, y: -200 + ((replayLbl?.frame.height)! / 2))
         self.menuLeaderboardLbl?.position = CGPoint(x: 0, y: -100)
-        self.replayLbl?.position = self.replayBtn!.position
+        self.replayLbl?.position = CGPoint(x: 0, y: -200)
         //other stup
         setupBorder()
         setupGyro()
@@ -121,11 +121,11 @@ class GameScene: SKScene {
     func setupGyro(){
         motionManager.accelerometerUpdateInterval = 0.2
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
-            //  print(data as Any)
+            //print(data as Any)
             if let trueData = data {
                 let x = trueData.acceleration.x
-                let y = trueData.acceleration.y
-                let z = trueData.acceleration.z
+                //let y = trueData.acceleration.y
+                //let z = trueData.acceleration.z
                 //do motion here
                 //print("X: \(x), Y: \(y), Z: \(z)")
                 self.moveObject(x: x)
@@ -148,7 +148,7 @@ class GameScene: SKScene {
         for cScore in stride(from: 0, to: lbScores.count, by: 1) { //the "to" in stride isn't inclusive, unlike range, in lbScores goes from 0->4
             print("Score: \(score) LBScore: \(lbScores[cScore])")
             if(score > lbScores[cScore]){
-                for lScore in stride(from: lbScores.count - 2, to: cScore - 1, by: -1) { // <- this is never called? 
+                for lScore in stride(from: lbScores.count - 2, to: cScore - 1, by: -1) { // <- this is never called?
                     lbScores[lScore + 1] = lbScores[lScore]
                 }
                 lbScores[cScore] = score
