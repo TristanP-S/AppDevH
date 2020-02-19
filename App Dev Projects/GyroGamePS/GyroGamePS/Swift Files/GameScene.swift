@@ -32,13 +32,14 @@ class GameScene: SKScene {
     private var textUp: Bool = false //if point text is loaded
     private var fadeRemove: SKAction = SKAction()
     private var lbScores: [Int] = [0, 0, 0, 0, 0]
+    //private var lbNames: [String] = ["AAA", "BBB", "CCC", "DDD", "EEE"]
     //private var nameInput: UITextField = UITextField()
     //MARK: functions
     override func didMove(to view: SKView) {
         //Increases gravity
         physicsWorld.gravity.dy = physicsWorld.gravity.dy * 2
         //Plays music
-        gameVC.playSong(song: "JankShank")
+        //gameVC.playSong(song: "JankShank") <- ENABLE IN FINAL (has music [made by me w/ FamiTracker] play)
         //Sets up nodes
         self.scoreLbl = self.childNode(withName: "scoreLbl") as? SKLabelNode
         setupPlayer()
@@ -180,7 +181,16 @@ class GameScene: SKScene {
                 break
             }
         }
+        /*
+        nameInput.isHidden = false
+        nameInput.becomeFirstResponder()
+        if(nameInput.text! == ""){
+            nameInput.text = "AAA"
+        }
+        lbNames[0] = nameInput.text!
         UserDefaults.standard.set(lbScores, forKey: "lbScores")
+        menuLeaderboardLbl?.text = "High Scores \n\(lbNames[0]): \(lbScores[0]) \n\(lbNames[1]): \(lbScores[1]) \n\(lbNames[2]): \(lbScores[2]) \n\(lbNames[3]): \(lbScores[3]) \n\(lbNames[4]): \(lbScores[4])"
+         */
         menuLeaderboardLbl?.text = "High Scores \n1: \(lbScores[0]) \n2: \(lbScores[1]) \n3: \(lbScores[2]) \n4: \(lbScores[3]) \n5: \(lbScores[4])"
         self.addChild(menuBckg!)
         self.addChild(replayBtn!)
