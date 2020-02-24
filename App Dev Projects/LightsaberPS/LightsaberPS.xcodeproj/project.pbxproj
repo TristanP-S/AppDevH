@@ -107,12 +107,9 @@
 		02B6CB592403FDDD00765146 /* LightsaberPS */ = {
 			isa = PBXGroup;
 			children = (
-				02B6CB5A2403FDDD00765146 /* AppDelegate.swift */,
-				02B6CB5C2403FDDD00765146 /* SceneDelegate.swift */,
-				02B6CB5E2403FDDD00765146 /* ViewController.swift */,
-				02B6CB602403FDDD00765146 /* Main.storyboard */,
-				02B6CB652403FDDF00765146 /* LaunchScreen.storyboard */,
 				02B6CB682403FDDF00765146 /* Info.plist */,
+				02B6CB942403FF8200765146 /* Swift Files */,
+				02B6CB932403FF7300765146 /* Storyboards */,
 				02B6CB8A2403FEB700765146 /* Assets */,
 			);
 			path = LightsaberPS;
@@ -146,6 +143,25 @@
 				02B6CB632403FDDF00765146 /* Assets.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		02B6CB932403FF7300765146 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				02B6CB602403FDDD00765146 /* Main.storyboard */,
+				02B6CB652403FDDF00765146 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		02B6CB942403FF8200765146 /* Swift Files */ = {
+			isa = PBXGroup;
+			children = (
+				02B6CB5E2403FDDD00765146 /* ViewController.swift */,
+				02B6CB5A2403FDDD00765146 /* AppDelegate.swift */,
+				02B6CB5C2403FDDD00765146 /* SceneDelegate.swift */,
+			);
+			path = "Swift Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
