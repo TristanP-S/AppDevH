@@ -8,11 +8,13 @@
 import Foundation
 import UIKit
 import AVFoundation
+import CoreMotion
 var saberOn: Bool = false
 class ViewController: UIViewController {
     //MARK: variables
     @IBOutlet weak var lightsaberBtn: UIButton!
     var musicPlayer : AVAudioPlayer = AVAudioPlayer()
+    var motionManager : CMMotionManager = CMMotionManager()
     //MARK: functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,28 @@ class ViewController: UIViewController {
             }
             musicPlayer.numberOfLoops = 1
             musicPlayer.play()
+    }
+    //Sets up gyroscope sensor data
+    func setupGyro(){
+        motionManager.gyroUpdateInterval = 0.1
+        motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
+            //print(data as Any)
+            if let trueData = data {
+                let x = trueData.rotationRate.x
+                let y = trueData.rotationRate.y
+                let z = trueData.rotationRate.z
+                //plays sound if swing is detected unless indle in which case sabercrash plays
+                if(x > 0.5){
+                    self.playSound(sound: "saberSwing")
+                } else if (y > 0.5) {
+                    self.playSound(sound: "saberSwing")
+                } else if (z > 0.5) {
+                    self.playSound(sound: "saberSwing")
+                } else {
+                    self.playSound(sound: "saberCrash")
+                }
+            }
+        }
     }
     //toggles lightsaber on or off
     @IBAction func lightsaberToggle(_ sender: Any) {
