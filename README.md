@@ -1,7 +1,7 @@
 # AppDevH
 All My App Development Honors Projects in Senior Year of Highschool (2019-2020). 
 ## Projects
-Most projects have their assignment pdf attached, and other than the first few, they were all written in swift. Please note some of the projects didn't get perfect grades, as they aren't perfect programs. The .aia files are from MIT App Inventor 2 (which was used before swift)
+Most projects have their assignment pdf attached, and other than the first few, they were all written in swift. Please note some of the projects didn't get perfect grades, as they aren't perfect programs. The .aia files are from MIT App Inventor 2 (which was used before swift was allowed)
 ### Project Name List (In order of date assigned)
 1. ButtonClick - Button Clicking Application
 2. CalcApp - Basic Calculator Application
@@ -20,5 +20,6 @@ Most projects have their assignment pdf attached, and other than the first few, 
 15. TimerApp - A clock-like application made as a group : https://github.com/
 EthanTheInnovator/Timer-App-Dev
 16. GyroGameApp - A game based around the phone's gyroscope sensor.
+17. LightsaberApp - An app that simulates using your phone as a lightsaber.
 ## Warning
 These projects are publicly visible for future reference. This code is 100% mine, so feel free to use it. I personally won't come after you for using this, but your boss/administration might, as copying my code would technically be considered plagiarizing in certain cases.

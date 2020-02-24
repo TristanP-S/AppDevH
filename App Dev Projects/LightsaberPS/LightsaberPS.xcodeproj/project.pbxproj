@@ -15,6 +15,10 @@
 		02B6CB672403FDDF00765146 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02B6CB652403FDDF00765146 /* LaunchScreen.storyboard */; };
 		02B6CB722403FDDF00765146 /* LightsaberPSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6CB712403FDDF00765146 /* LightsaberPSTests.swift */; };
 		02B6CB7D2403FDDF00765146 /* LightsaberPSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6CB7C2403FDDF00765146 /* LightsaberPSUITests.swift */; };
+		02B6CB8F2403FECF00765146 /* saberSwing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02B6CB8B2403FECE00765146 /* saberSwing.mp3 */; };
+		02B6CB902403FECF00765146 /* saberOff.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02B6CB8C2403FECE00765146 /* saberOff.mp3 */; };
+		02B6CB912403FECF00765146 /* saberCrash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02B6CB8D2403FECE00765146 /* saberCrash.mp3 */; };
+		02B6CB922403FECF00765146 /* saberOn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02B6CB8E2403FECF00765146 /* saberOn.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		02B6CB782403FDDF00765146 /* LightsaberPSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LightsaberPSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		02B6CB7C2403FDDF00765146 /* LightsaberPSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightsaberPSUITests.swift; sourceTree = "<group>"; };
 		02B6CB7E2403FDDF00765146 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02B6CB8B2403FECE00765146 /* saberSwing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = saberSwing.mp3; sourceTree = "<group>"; };
+		02B6CB8C2403FECE00765146 /* saberOff.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = saberOff.mp3; sourceTree = "<group>"; };
+		02B6CB8D2403FECE00765146 /* saberCrash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = saberCrash.mp3; sourceTree = "<group>"; };
+		02B6CB8E2403FECF00765146 /* saberOn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = saberOn.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +111,9 @@
 				02B6CB5C2403FDDD00765146 /* SceneDelegate.swift */,
 				02B6CB5E2403FDDD00765146 /* ViewController.swift */,
 				02B6CB602403FDDD00765146 /* Main.storyboard */,
-				02B6CB632403FDDF00765146 /* Assets.xcassets */,
 				02B6CB652403FDDF00765146 /* LaunchScreen.storyboard */,
 				02B6CB682403FDDF00765146 /* Info.plist */,
+				02B6CB8A2403FEB700765146 /* Assets */,
 			);
 			path = LightsaberPS;
 			sourceTree = "<group>";
@@ -126,6 +134,18 @@
 				02B6CB7E2403FDDF00765146 /* Info.plist */,
 			);
 			path = LightsaberPSUITests;
+			sourceTree = "<group>";
+		};
+		02B6CB8A2403FEB700765146 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				02B6CB8D2403FECE00765146 /* saberCrash.mp3 */,
+				02B6CB8C2403FECE00765146 /* saberOff.mp3 */,
+				02B6CB8E2403FECF00765146 /* saberOn.mp3 */,
+				02B6CB8B2403FECE00765146 /* saberSwing.mp3 */,
+				02B6CB632403FDDF00765146 /* Assets.xcassets */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +252,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02B6CB922403FECF00765146 /* saberOn.mp3 in Resources */,
+				02B6CB902403FECF00765146 /* saberOff.mp3 in Resources */,
 				02B6CB672403FDDF00765146 /* LaunchScreen.storyboard in Resources */,
+				02B6CB912403FECF00765146 /* saberCrash.mp3 in Resources */,
+				02B6CB8F2403FECF00765146 /* saberSwing.mp3 in Resources */,
 				02B6CB642403FDDF00765146 /* Assets.xcassets in Resources */,
 				02B6CB622403FDDD00765146 /* Main.storyboard in Resources */,
 			);
