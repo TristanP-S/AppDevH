@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		02B6CB5B2403FDDD00765146 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6CB5A2403FDDD00765146 /* AppDelegate.swift */; };
 		02B6CB5D2403FDDD00765146 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6CB5C2403FDDD00765146 /* SceneDelegate.swift */; };
-		02B6CB5F2403FDDD00765146 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6CB5E2403FDDD00765146 /* ViewController.swift */; };
 		02B6CB622403FDDD00765146 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02B6CB602403FDDD00765146 /* Main.storyboard */; };
 		02B6CB642403FDDF00765146 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02B6CB632403FDDF00765146 /* Assets.xcassets */; };
 		02B6CB672403FDDF00765146 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02B6CB652403FDDF00765146 /* LaunchScreen.storyboard */; };
@@ -19,6 +18,7 @@
 		02B6CB902403FECF00765146 /* saberOff.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02B6CB8C2403FECE00765146 /* saberOff.mp3 */; };
 		02B6CB912403FECF00765146 /* saberCrash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02B6CB8D2403FECE00765146 /* saberCrash.mp3 */; };
 		02B6CB922403FECF00765146 /* saberOn.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02B6CB8E2403FECF00765146 /* saberOn.mp3 */; };
+		02B6CB96240401FB00765146 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B6CB95240401FB00765146 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,6 @@
 		02B6CB572403FDDD00765146 /* LightsaberPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightsaberPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02B6CB5A2403FDDD00765146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02B6CB5C2403FDDD00765146 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		02B6CB5E2403FDDD00765146 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		02B6CB612403FDDD00765146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		02B6CB632403FDDF00765146 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02B6CB662403FDDF00765146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,6 +56,7 @@
 		02B6CB8C2403FECE00765146 /* saberOff.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = saberOff.mp3; sourceTree = "<group>"; };
 		02B6CB8D2403FECE00765146 /* saberCrash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = saberCrash.mp3; sourceTree = "<group>"; };
 		02B6CB8E2403FECF00765146 /* saberOn.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = saberOn.mp3; sourceTree = "<group>"; };
+		02B6CB95240401FB00765146 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,9 +157,9 @@
 		02B6CB942403FF8200765146 /* Swift Files */ = {
 			isa = PBXGroup;
 			children = (
-				02B6CB5E2403FDDD00765146 /* ViewController.swift */,
 				02B6CB5A2403FDDD00765146 /* AppDelegate.swift */,
 				02B6CB5C2403FDDD00765146 /* SceneDelegate.swift */,
+				02B6CB95240401FB00765146 /* ViewController.swift */,
 			);
 			path = "Swift Files";
 			sourceTree = "<group>";
@@ -299,7 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02B6CB5F2403FDDD00765146 /* ViewController.swift in Sources */,
+				02B6CB96240401FB00765146 /* ViewController.swift in Sources */,
 				02B6CB5B2403FDDD00765146 /* AppDelegate.swift in Sources */,
 				02B6CB5D2403FDDD00765146 /* SceneDelegate.swift in Sources */,
 			);
