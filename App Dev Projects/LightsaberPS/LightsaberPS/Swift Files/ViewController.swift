@@ -3,8 +3,7 @@
   LightsaberPS
   Created by Tristan Pudell-Spatscheck on 2/24/20.
   Copyright © 2020 Tristan Pudell-Spatscheck. All rights reserved.
-Note: Used Gyroscope instead of accelerometer as it measues the current speed (aka hard swings) a lot better.
- */
+*/
 import Foundation
 import UIKit
 import AVFoundation
@@ -36,20 +35,21 @@ class ViewController: UIViewController {
     }
     //Sets up gyroscope sensor data
     func setupGyro(){
-        motionManager.gyroUpdateInterval = 0.1
-        motionManager.startGyroUpdates(to: OperationQueue.current!) { (data, error) in
+        motionManager.accelerometerUpdateInterval = 0.1
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data, error) in
             //print(data as Any)
             if let trueData = data {
-                let x = trueData.rotationRate.x
-                let y = trueData.rotationRate.y
-                let z = trueData.rotationRate.z
-                print("X: \(x), Y: \(y), Z:\(z)")
+                let x = trueData.acceleration.x
+                let y = trueData.acceleration.y
+                let z = trueData.acceleration.z
                 //plays sound if swing is detected unless indle in which case sabercrash plays (3 seems to be threshhold for movement)
                 if(saberOn){
-                    if(x > 5 || y > 5 || z > 5){
+                    if((x > 1 || y > 1 || z > 1) && !self.musicPlayer.isPlaying){//if swung
                         self.playSound(sound: "saberSwing")
-                    } else if (!self.musicPlayer.isPlaying){ //plays 'saberCrash' if nothing else is playing
+                        print("X: \(x), Y: \(y), Z:\(z)")
+                    } else if (x < -2.5 || y < -2.5 || z < -5){ //plays 'saberCrash' if abruptly stoped (-accel)
                         self.playSound(sound: "saberCrash")
+                        print("X: \(x), Y: \(y), Z:\(z)")
                     }
                 }
             }
