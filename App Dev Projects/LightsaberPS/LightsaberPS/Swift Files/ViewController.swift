@@ -3,6 +3,7 @@
   LightsaberPS
   Created by Tristan Pudell-Spatscheck on 2/24/20.
   Copyright © 2020 Tristan Pudell-Spatscheck. All rights reserved.
+ //Notable bugs: crash is a bit iffy, but this was the closest value I could find. Also, sometimes the lightsaber doesn't turn on unless you rotate your phone because of how the phone handles orientation.
 */
 import Foundation
 import UIKit

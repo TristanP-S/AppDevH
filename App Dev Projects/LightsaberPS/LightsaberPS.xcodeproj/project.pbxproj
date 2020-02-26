@@ -39,7 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02B6CB572403FDDD00765146 /* LightsaberPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightsaberPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02B6CB572403FDDD00765146 /* Lightsaber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lightsaber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02B6CB5A2403FDDD00765146 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02B6CB5C2403FDDD00765146 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		02B6CB612403FDDD00765146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		02B6CB582403FDDD00765146 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				02B6CB572403FDDD00765146 /* LightsaberPS.app */,
+				02B6CB572403FDDD00765146 /* Lightsaber.app */,
 				02B6CB6D2403FDDF00765146 /* LightsaberPSTests.xctest */,
 				02B6CB782403FDDF00765146 /* LightsaberPSUITests.xctest */,
 			);
@@ -181,7 +181,7 @@
 			);
 			name = LightsaberPS;
 			productName = LightsaberPS;
-			productReference = 02B6CB572403FDDD00765146 /* LightsaberPS.app */;
+			productReference = 02B6CB572403FDDD00765146 /* Lightsaber.app */;
 			productType = "com.apple.product-type.application";
 		};
 		02B6CB6C2403FDDF00765146 /* LightsaberPSTests */ = {
@@ -482,7 +482,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.TAPS.LightsaberPS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Lightsaber;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -500,7 +500,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.TAPS.LightsaberPS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Lightsaber;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
