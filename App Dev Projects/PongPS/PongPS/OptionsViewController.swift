@@ -4,7 +4,7 @@
 //
 //  Created by Tristan Pudell-Spatscheck on 11/21/19.
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
-//
+//✅❌
 
 import Foundation
 import UIKit
@@ -22,6 +22,7 @@ class OptionsViewController: UIViewController{
     @IBOutlet weak var godSwitch: UISwitch!
     @IBOutlet weak var eSwitch: UISwitch!
     @IBOutlet weak var musicSwitch: UISwitch!
+    @IBOutlet weak var achievmentLbl: UILabel!
     var choice = "top"
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,7 @@ class OptionsViewController: UIViewController{
         if(music){
             gameVC.playSong(song: "ElevatorSong")
         }
+        achievmentLbl.text = "Beat Easy: ❌ Beat Normal: ❌ \n Beat Expert: ❌ Win 10 Games: 0/10"
     }
     //lets user pick a color
     func pickAColor(button: UIButton){
