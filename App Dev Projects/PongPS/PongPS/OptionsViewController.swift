@@ -36,7 +36,7 @@ class OptionsViewController: UIViewController{
         eSwitch.isOn = eGod
         musicSwitch.isOn = music
         if(music){
-            gameVC.playSong(song: "ElevatorSong")
+            gameVC.playSong(song: "ElevtorSong")
         }
     }
     //MARK: functions
@@ -120,7 +120,7 @@ class OptionsViewController: UIViewController{
         else{
             music = false
         }
-        gameVC.playSong(song: "ElevatorSong")
+        gameVC.playSong(song: "ElevtorSong")
     }
     
 }

@@ -73,6 +73,7 @@ class GameViewController: UIViewController {
         expertBtn?.isHidden = off
         multiplayerBtn?.isHidden = off
         optionsBtn?.isHidden = off
+        achievmentBtn?.isHidden = off
     }
     func startGame(){
         btnEnable(off: true)
