@@ -4,7 +4,7 @@
 //
 //  Created by Tristan Pudell-Spatscheck on 11/21/19.
 //  Copyright © 2019 Tristan Pudell-Spatscheck. All rights reserved.
-//✅❌
+//
 
 import Foundation
 import UIKit

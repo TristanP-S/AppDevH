@@ -483,6 +483,10 @@
                     <navigationItem key="navigationItem" id="ENN-oN-BcK"/>
                     <connections>
                         <outlet property="backBtn" destination="PHJ-z9-Hfp" id="2Gb-tu-iLL"/>
+                        <outlet property="breadWinnerLbl" destination="5JX-GO-ZPe" id="ekX-wH-8Xs"/>
+                        <outlet property="easyDubsLbl" destination="sQU-pt-m91" id="vfh-0B-Bxr"/>
+                        <outlet property="godGamerLbl" destination="NWK-fH-Lfy" id="62d-CW-0gg"/>
+                        <outlet property="goodPlayerLbl" destination="DNg-xX-l24" id="TBs-Ig-t3F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GiL-Wt-rgI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
