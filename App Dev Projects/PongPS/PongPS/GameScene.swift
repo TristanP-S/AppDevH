@@ -91,6 +91,17 @@ class GameScene: SKScene {
         //resets game
         score1 = Int(playerScore.text!)!
         score2 = Int(enemyScore.text!)!
+        //Checks to see if each difficulty was cleared for achievment purposes + if game was won
+        if(score1 > score2 && difficulty != 0){
+            if(difficulty == 0.25){
+                easyDubs = true
+            } else if (difficulty == 0.16){
+                goodPlayer = true
+            } else if (difficulty == 0.13){
+                godGamer = true
+            }
+            breadWinner += 1
+        }
         let scene = SKScene(fileNamed: "TitleScene")
         // Set the scale mode to scale to fit the window
         scene!.scaleMode = .aspectFill
