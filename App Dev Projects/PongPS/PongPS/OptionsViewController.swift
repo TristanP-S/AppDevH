@@ -104,6 +104,7 @@ class OptionsViewController: UIViewController{
         else{
             god = false
         }
+        UserDefaults.standard.set(god, forKey: "god")
     }
     @IBAction func eSwitched(_ sender: Any) {
         if(eSwitch.isOn){
@@ -112,6 +113,7 @@ class OptionsViewController: UIViewController{
         else{
             eGod = false
         }
+        UserDefaults.standard.set(eGod, forKey: "eGod")
     }
     @IBAction func musicSwitched(_ sender: Any) {
         if(musicSwitch.isOn){
@@ -121,6 +123,7 @@ class OptionsViewController: UIViewController{
             music = false
         }
         gameVC.playSong(song: "ElevtorSong")
+        UserDefaults.standard.set(music, forKey: "music")
     }
     
 }

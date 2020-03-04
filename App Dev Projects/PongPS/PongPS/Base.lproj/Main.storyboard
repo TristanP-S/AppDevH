@@ -348,7 +348,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="noO-N1-iEp">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="easy" translatesAutoresizingMaskIntoConstraints="NO" id="noO-N1-iEp">
                                 <rect key="frame" x="0.0" y="136" width="100" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="1fa-FG-YPX"/>
@@ -367,7 +367,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1oa-cV-Stf">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="good" translatesAutoresizingMaskIntoConstraints="NO" id="1oa-cV-Stf">
                                 <rect key="frame" x="0.0" y="241" width="100" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="QyS-MQ-ghx"/>
@@ -386,7 +386,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pXk-dR-C4P">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="god" translatesAutoresizingMaskIntoConstraints="NO" id="pXk-dR-C4P">
                                 <rect key="frame" x="0.0" y="346" width="100" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="QGf-68-i6m"/>
@@ -405,7 +405,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N66-iX-dbQ">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bread" translatesAutoresizingMaskIntoConstraints="NO" id="N66-iX-dbQ">
                                 <rect key="frame" x="0.0" y="451" width="100" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="MIB-Xn-38e"/>
@@ -494,4 +494,10 @@
             <point key="canvasLocation" x="1044" y="419.64017991004499"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bread" width="160" height="160"/>
+        <image name="easy" width="1600" height="1600"/>
+        <image name="god" width="413" height="447"/>
+        <image name="good" width="195" height="258"/>
+    </resources>
 </document>

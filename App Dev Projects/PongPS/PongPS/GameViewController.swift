@@ -25,6 +25,24 @@ class GameViewController: UIViewController {
     //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        //sets up stored/persistant values
+        if(UserDefaults.standard.bool(forKey: "god") != nil){ //checks if app was loaded before
+            god = UserDefaults.standard.bool(forKey: "god")
+            eGod = UserDefaults.standard.bool(forKey: "eGod")
+            music = UserDefaults.standard.bool(forKey: "music")
+            easyDubs = UserDefaults.standard.bool(forKey: "easyDubs")
+            goodPlayer = UserDefaults.standard.bool(forKey: "goodPlayer")
+            godGamer = UserDefaults.standard.bool(forKey: "godGamer")
+            breadWinner = UserDefaults.standard.integer(forKey: "breadWinner")
+        } else {
+            UserDefaults.standard.set(god, forKey: "god")
+            UserDefaults.standard.set(eGod, forKey: "eGod")
+            UserDefaults.standard.set(music, forKey: "music")
+            UserDefaults.standard.set(easyDubs, forKey: "easyDubs")
+            UserDefaults.standard.set(goodPlayer, forKey: "goodPlayer")
+            UserDefaults.standard.set(godGamer, forKey: "godGamer")
+            UserDefaults.standard.set(breadWinner, forKey: "breadWinner")
+        }
         //plays background music infinitely
         let session = AVAudioSession.sharedInstance()
         do{

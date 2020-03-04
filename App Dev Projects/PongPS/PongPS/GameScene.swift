@@ -91,7 +91,7 @@ class GameScene: SKScene {
         //resets game
         score1 = Int(playerScore.text!)!
         score2 = Int(enemyScore.text!)!
-        //Checks to see if each difficulty was cleared for achievment purposes + if game was won
+        //Checks to see if each difficulty was cleared for achievment purposes + if game was won, then sets values accordingly and saves them w/ persistance
         if(score1 > score2 && difficulty != 0){
             if(difficulty == 0.25){
                 easyDubs = true
@@ -101,6 +101,10 @@ class GameScene: SKScene {
                 godGamer = true
             }
             breadWinner += 1
+            UserDefaults.standard.set(easyDubs, forKey: "easyDubs")
+            UserDefaults.standard.set(goodPlayer, forKey: "goodPlayer")
+            UserDefaults.standard.set(godGamer, forKey: "godGamer")
+            UserDefaults.standard.set(breadWinner, forKey: "breadWinner")
         }
         let scene = SKScene(fileNamed: "TitleScene")
         // Set the scale mode to scale to fit the window
