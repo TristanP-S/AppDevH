@@ -10,6 +10,7 @@
 		02067698238796D5003463CC /* ElevtorSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02067697238796D5003463CC /* ElevtorSong.mp3 */; };
 		020E6F202383098700504075 /* TitleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 020E6F1F2383098700504075 /* TitleScene.sks */; };
 		020E6F2223830A3900504075 /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020E6F2123830A3900504075 /* TitleScene.swift */; };
+		0260B590240FF0AF0026FFD9 /* AchievmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0260B58F240FF0AF0026FFD9 /* AchievmentViewController.swift */; };
 		02977484238782E700AB32D3 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02977483238782E700AB32D3 /* OptionsViewController.swift */; };
 		02BF0CC42386CD5F00DFC652 /* SWSHBattleTower.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02BF0CC32386CD5F00DFC652 /* SWSHBattleTower.mp3 */; };
 		02CA9B5623859B5300B0EA73 /* PBRSunnyPark.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 02CA9B5523859B5300B0EA73 /* PBRSunnyPark.mp3 */; };
@@ -46,6 +47,7 @@
 		02067697238796D5003463CC /* ElevtorSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = ElevtorSong.mp3; path = ../Music/ElevtorSong.mp3; sourceTree = "<group>"; };
 		020E6F1F2383098700504075 /* TitleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = TitleScene.sks; sourceTree = "<group>"; };
 		020E6F2123830A3900504075 /* TitleScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
+		0260B58F240FF0AF0026FFD9 /* AchievmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievmentViewController.swift; sourceTree = "<group>"; };
 		02977483238782E700AB32D3 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		02BF0CC32386CD5F00DFC652 /* SWSHBattleTower.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = SWSHBattleTower.mp3; path = Music/SWSHBattleTower.mp3; sourceTree = SOURCE_ROOT; };
 		02CA9B5523859B5300B0EA73 /* PBRSunnyPark.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = PBRSunnyPark.mp3; path = Music/PBRSunnyPark.mp3; sourceTree = SOURCE_ROOT; };
@@ -123,6 +125,7 @@
 				020E6F2123830A3900504075 /* TitleScene.swift */,
 				02F3DF8B2382E85900B3D815 /* GameViewController.swift */,
 				02977483238782E700AB32D3 /* OptionsViewController.swift */,
+				0260B58F240FF0AF0026FFD9 /* AchievmentViewController.swift */,
 				02F3DF8D2382E85900B3D815 /* Main.storyboard */,
 				02F3DF902382E85C00B3D815 /* Assets.xcassets */,
 				02F3DF922382E85C00B3D815 /* LaunchScreen.storyboard */,
@@ -291,6 +294,7 @@
 			files = (
 				02F3DF8A2382E85900B3D815 /* GameScene.swift in Sources */,
 				02F3DF8C2382E85900B3D815 /* GameViewController.swift in Sources */,
+				0260B590240FF0AF0026FFD9 /* AchievmentViewController.swift in Sources */,
 				02F3DF842382E85900B3D815 /* AppDelegate.swift in Sources */,
 				020E6F2223830A3900504075 /* TitleScene.swift in Sources */,
 				02977484238782E700AB32D3 /* OptionsViewController.swift in Sources */,

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+//MARK: global variables
 var topColor: UIColor = UIColor(ciColor: .red)
 var bottomColor: UIColor = UIColor(ciColor: .green)
 var ballColor: UIColor = UIColor(ciColor: .yellow)
@@ -15,6 +16,7 @@ var god = false
 var eGod = false
 var music = true
 class OptionsViewController: UIViewController{
+    //MARK: variables
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var topPaddleButton: UIButton!
     @IBOutlet weak var bottomPaddleButton: UIButton!
@@ -22,8 +24,8 @@ class OptionsViewController: UIViewController{
     @IBOutlet weak var godSwitch: UISwitch!
     @IBOutlet weak var eSwitch: UISwitch!
     @IBOutlet weak var musicSwitch: UISwitch!
-    @IBOutlet weak var achievmentLbl: UILabel!
     var choice = "top"
+    //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .blue
@@ -36,8 +38,8 @@ class OptionsViewController: UIViewController{
         if(music){
             gameVC.playSong(song: "ElevatorSong")
         }
-        achievmentLbl.text = "Beat Easy: ❌ Beat Normal: ❌ \n Beat Expert: ❌ Win 10 Games: 0/10"
     }
+    //MARK: functions
     //lets user pick a color
     func pickAColor(button: UIButton){
         let actionSheet = UIAlertController(title: "Select a Color", message: nil, preferredStyle: .actionSheet)

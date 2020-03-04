@@ -10,15 +10,19 @@ import UIKit
 import SpriteKit
 import GameplayKit
 import AVFoundation
+//MARK: global variables
 var gamemode = 1
 var gameVC: GameViewController = GameViewController()
 class GameViewController: UIViewController {
+    //MARK: variables
     @IBOutlet weak var easyBtn: UIButton!
     @IBOutlet weak var normalBtn: UIButton!
     @IBOutlet weak var expertBtn: UIButton!
     @IBOutlet weak var multiplayerBtn: UIButton!
     @IBOutlet weak var optionsBtn: UIButton!
+    @IBOutlet weak var achievmentBtn: UIButton!
     var gameMusic: AVAudioPlayer = AVAudioPlayer()
+    //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         //plays background music infinitely
@@ -47,6 +51,7 @@ class GameViewController: UIViewController {
             //view.showsNodeCount = true
         }
     }
+    //MARK: functions
     //sets song to title given
     func playSong(song: String){
         gameMusic.stop()
