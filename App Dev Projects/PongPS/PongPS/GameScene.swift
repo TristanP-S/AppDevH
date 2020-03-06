@@ -93,11 +93,11 @@ class GameScene: SKScene {
         score2 = Int(enemyScore.text!)!
         //Checks to see if each difficulty was cleared for achievment purposes + if game was won, then sets values accordingly and saves them w/ persistance
         if(score1 > score2 && difficulty != 0){
-            if(difficulty == 0.25){
+            if(easyDubs == false && difficulty == 0.25){
                 easyDubs = true
-            } else if (difficulty == 0.16){
+            } else if (goodPlayer == false && difficulty == 0.16){
                 goodPlayer = true
-            } else if (difficulty == 0.13){
+            } else if (godGamer == false && difficulty == 0.13){
                 godGamer = true
             }
             breadWinner += 1
