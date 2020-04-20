@@ -23,5 +23,6 @@ EthanTheInnovator/Timer-App-Dev
 17. LightsaberApp - An app that simulates using your phone as a lightsaber.
 18. Achievement Project - Add Achievements to a previous application (I chose PongApp)
 19. Share Project - Add a working Share Button to share data to a previous application (Already implemented in BowlingApp)
+20. Custom Project - Due to covid-19, our final assignment(s) were to work on custom projects (links to those git repos will be below)
 ## Warning
 These projects are publicly visible for future reference. This code is 100% mine, so feel free to use it. I personally won't come after you for using this, but your boss/administration might, as copying my code would technically be considered plagiarizing in certain cases.
