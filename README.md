@@ -17,8 +17,7 @@ Most projects have their assignment pdf attached, and other than the first few, 
 12. GameDevApp - My End of Year Custom App Project
 13. GlobalGuesserApp - GeoGuesser inspired Application
 14. RouteMapperApp - A Route Mapping Application (Used as Benchmark2)
-15. TimerApp - A clock-like application made as a group : https://github.com/
-EthanTheInnovator/Timer-App-Dev
+15. TimerApp - A clock-like application made as a group : https://github.com/EthanTheInnovator/Timer-App-Dev
 16. GyroGameApp - A game based around the phone's gyroscope sensor.
 17. LightsaberApp - An app that simulates using your phone as a lightsaber.
 18. Achievement Project - Add Achievements to a previous application (I chose PongApp)
